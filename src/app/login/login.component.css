@@ -1,3 +1,18 @@
+.bg {
+    background-image: url('../../assets/image/background.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+}
+
+.image-login {
+    background-image: url('../../assets/image/login.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .btn-block {
     width: 100%;
 }
