@@ -6,11 +6,27 @@
     height: 100%;
 }
 
+.container {
+    padding-top: 5rem;
+}
+
 .image-login {
-    background-image: url('../../assets/image/login.jpg');
+    background-image: url('../../assets/image/logo_asdp.png');
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
+    padding: 3rem;
+    margin: 1rem;
+}
+
+@media only screen and (min-width: 600px) {
+    /* Tablets */
+    .image-login {
+        background-image: url('../../assets/image/login.jpg');
+        background-size: cover;
+        padding: 0;
+        margin: 0;
+    }
 }
 
 .btn-block {
