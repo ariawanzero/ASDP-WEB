@@ -16,7 +16,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'home',
-    component:HomeComponent
+    component: HomeComponent
   }
 ];
 
