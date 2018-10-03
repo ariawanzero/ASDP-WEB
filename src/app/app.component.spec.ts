@@ -5,12 +5,14 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
+import { SharedModule } from './shared/shared.module';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        AppRoutingModule
+        AppRoutingModule,
+        SharedModule
       ],
       declarations: [
         AppComponent,
