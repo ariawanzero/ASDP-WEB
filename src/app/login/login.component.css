@@ -10,25 +10,44 @@
     padding-top: 5rem;
 }
 
-.image-login {
-    background-image: url('../../assets/image/logo_asdp.png');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
-    padding: 3rem;
-    margin: 1rem;
+.img-login {
+    display: none;
 }
 
-@media only screen and (min-width: 600px) {
-    /* Tablets */
-    .image-login {
-        background-image: url('../../assets/image/login.jpg');
-        background-size: cover;
-        padding: 0;
-        margin: 0;
-    }
+.img-logo {
+    display: block;
+    margin: auto;
+    max-width: 55%;
+}
+
+.img-logo-simple {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.login-content {
+    padding-bottom: 1.5rem;
+}
+
+.login-header h1 {
+    font-size: 1.5rem;
 }
 
 .btn-block {
     width: 100%;
+}
+
+@media only screen and (min-width: 600px) {
+    /* Tablets and Desktop */
+    .img-login { 
+        display: block;
+    }
+    
+    .img-logo {
+        display: none;
+    }
+
+    .login-header h1 {
+        font-size: 2rem;
+    }
 }
