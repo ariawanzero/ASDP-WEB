@@ -1,5 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { SidebarService } from '../../service/sidebar.service';
+
 import { NavbarSidebarComponent } from './navbar-sidebar.component';
 
 describe('NavbarSidebarComponent', () => {
@@ -8,7 +10,8 @@ describe('NavbarSidebarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NavbarSidebarComponent ]
+      declarations: [ NavbarSidebarComponent ],
+      providers: [ SidebarService ]
     })
     .compileComponents();
   }));
@@ -22,4 +25,8 @@ describe('NavbarSidebarComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should isOpen to init false', () => {
+    expect(component.isOpen).toBe(false);
+  })
 });

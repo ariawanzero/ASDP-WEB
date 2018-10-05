@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { SidebarService } from '../../service/sidebar.service';
+
 @Component({
   selector: 'asdp-navbar-top',
   templateUrl: './navbar-top.component.html',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarTopComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private sidebarService: SidebarService
+  ) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
+
+  onToogleSidebar(): void { this.sidebarService.toogleOnOff(); }
 
 }

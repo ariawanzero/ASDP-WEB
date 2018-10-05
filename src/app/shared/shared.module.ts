@@ -7,6 +7,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarTopComponent } from './component/navbar-top/navbar-top.component';
 import { NavbarSidebarComponent } from './component/navbar-sidebar/navbar-sidebar.component';
 
+import { SidebarService } from './service/sidebar.service';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -19,7 +21,9 @@ import { NavbarSidebarComponent } from './component/navbar-sidebar/navbar-sideba
     NavbarTopComponent,
     NavbarSidebarComponent
   ], 
-  providers: [ ],
+  providers: [ 
+    SidebarService
+  ],
   exports: [
     NavbarTopComponent,
     NavbarSidebarComponent
