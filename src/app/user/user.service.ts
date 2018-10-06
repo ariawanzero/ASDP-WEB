@@ -7,4 +7,16 @@ export class UserService {
   constructor(
     private http: HttpClient,
   ) { }
+
+  getFilteredUser(): void {
+
+  }
+
+  getSingleUser(): void {
+
+  }
+
+  saveUser(): void {
+    
+  }
 }
