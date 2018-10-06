@@ -29,4 +29,8 @@ describe('NavbarSidebarComponent', () => {
   it('should isOpen to init false', () => {
     expect(component.isOpen).toBe(false);
   })
+
+  it('should menu to undefined', () => {
+    expect(component.menuList).toBeUndefined();
+  })
 });

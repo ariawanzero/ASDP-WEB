@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Menu } from '../../class/menu';
+
 import { SidebarService } from '../../service/sidebar.service';
 
 @Component({
@@ -9,6 +11,8 @@ import { SidebarService } from '../../service/sidebar.service';
 })
 export class NavbarSidebarComponent implements OnInit {
   isOpen: boolean = false;
+  
+  menuList: Menu[];
 
   constructor(
     private sidebarService: SidebarService
