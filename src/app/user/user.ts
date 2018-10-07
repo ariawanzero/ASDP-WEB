@@ -4,6 +4,14 @@ export class UserFilter {
     jabatan: string;
     userrole: string;
     page: number;
+
+    constructor() {
+        this.username = "";
+        this.name = "";
+        this.jabatan = "";
+        this.userrole = "";
+        this.page = 0;
+    }
 }
 
 export class User {

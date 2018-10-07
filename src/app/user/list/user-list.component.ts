@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
+import { UserService } from '../user.service';
+
+import { UserFilter, User } from '../user';
+
 @Component({
   selector: 'asdp-user-list',
   templateUrl: './user-list.component.html',
@@ -11,8 +15,5 @@ export class UserListComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-    this.blockUI.start();
-  }
-
+  ngOnInit() { }
 }

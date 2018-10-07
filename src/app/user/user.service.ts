@@ -19,7 +19,7 @@ export class UserService {
   ) { }
 
   getFilteredUser(value: UserFilter): Observable<PagingData<User>> { 
-    return this.http.post(('user/searchUsers'), value)
+    return this.http.post(('/user/searchUser'), value)
       .pipe(
         map(this.respService.extractDataPaging),
         catchError(this.respService.errorHandling)
@@ -27,7 +27,7 @@ export class UserService {
   }
 
   getSingleUser(value: any): Observable<User> {
-    return this.http.post(('user/findUserDetail'), value)
+    return this.http.post(('/user/findUserDetail'), value)
       .pipe(
         map(this.respService.extractData),
         catchError(this.respService.errorHandling)
@@ -35,7 +35,7 @@ export class UserService {
   }
 
   saveUser(value: User): Observable<any> { 
-    return this.http.post(('user/saveUser'), value)
+    return this.http.post(('/user/saveUser'), value)
       .pipe(
         map(this.respService.extractData),
         catchError(this.respService.errorHandling)
