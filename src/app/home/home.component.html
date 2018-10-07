@@ -1,9 +1,9 @@
-<div class="wrapper">
+<div class="wrapper" [class.extend-wrapper]="isOpen">
     <!-- Sidebar  -->
     <asdp-navbar-sidebar></asdp-navbar-sidebar>
-
     <!-- Page Content  -->
     <div id="content">
-        <asdp-navbar-top></asdp-navbar-top>        
+        <asdp-navbar-top></asdp-navbar-top>   
+        <router-outlet></router-outlet>
     </div>
 </div>
