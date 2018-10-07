@@ -8,6 +8,7 @@ import { NavbarTopComponent } from './component/navbar-top/navbar-top.component'
 import { NavbarSidebarComponent } from './component/navbar-sidebar/navbar-sidebar.component';
 
 import { SidebarService } from './service/sidebar.service';
+import { ResponseService } from './service/response.service';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { SidebarService } from './service/sidebar.service';
     NavbarSidebarComponent
   ], 
   providers: [ 
-    SidebarService
+    SidebarService,
+    ResponseService
   ],
   exports: [
     NavbarTopComponent,
