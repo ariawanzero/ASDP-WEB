@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+import { UserRoutingModule } from './user-routing.module';
+
 import { SharedModule } from '../shared/shared.module';
 
 import { UserService } from './user.service';
@@ -17,6 +19,7 @@ import { UserDetailComponent } from './detail/user-detail.component';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    UserRoutingModule,
 
     SharedModule
   ],
@@ -26,10 +29,7 @@ import { UserDetailComponent } from './detail/user-detail.component';
   ],
   providers: [
     UserService
-  ],
-  exports: [
-    UserListComponent,
-    UserDetailComponent
   ]
 })
+
 export class UserModule { }

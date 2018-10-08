@@ -6,8 +6,6 @@ import { BlockUIModule } from 'ng-block-ui';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { SharedModule } from './shared/shared.module';
 
-import { UserModule } from './user/user.module';
-
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
@@ -18,8 +16,6 @@ import { HomeComponent } from './home/home.component';
 
     AppRoutingModule,
     SharedModule,
-
-    UserModule,
 
     BlockUIModule.forRoot()
   ],

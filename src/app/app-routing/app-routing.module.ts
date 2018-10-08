@@ -23,11 +23,7 @@ const appRoutes: Routes = [
     children: [
       {
         path: 'user',
-        children: [
-          { path: '', component: UserListComponent },
-          { path: 'add', data: { state: 'add' }, component: UserDetailComponent },
-          { path: 'edit/:id', data: { state: 'edit' }, component: UserDetailComponent }
-        ] 
+        loadChildren: 'src/app/user/user.module#UserModule'
       }
     ]
   }

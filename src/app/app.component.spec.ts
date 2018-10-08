@@ -7,10 +7,14 @@ import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { SharedModule } from './shared/shared.module';
 
+import { BlockUIModule } from 'ng-block-ui';
+import { BlockUIInstanceService } from 'ng-block-ui/lib/services/block-ui-instance.service';
+
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        BlockUIModule,
         AppRoutingModule,
         SharedModule
       ],
@@ -18,6 +22,9 @@ describe('AppComponent', () => {
         AppComponent,
         LoginComponent,
         HomeComponent
+      ],
+      providers: [
+        BlockUIInstanceService
       ]
     }).compileComponents();
   }));
