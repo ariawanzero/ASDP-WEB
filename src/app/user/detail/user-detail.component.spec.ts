@@ -22,4 +22,16 @@ describe('UserDetailComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should initialize role', () => {
+    expect(component.role).toBeDefined();
+  });
+
+  it('should initialize jabatan', () => {
+    expect(component.jabatan).toBeDefined();
+  });
+
+  it('should initialize divisi', () => {
+    expect(component.divisi).toBeDefined();
+  });
 });

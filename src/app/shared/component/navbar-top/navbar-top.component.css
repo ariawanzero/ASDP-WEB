@@ -38,7 +38,11 @@ ul ul a {
 }
 
 .bg-blue {
-    background-color: #7386D5 !important;
+    background-color: #145fa3 !important;
+}
+
+.nav-item {
+    color: white;
 }
 
 @media only screen and (max-width: 768px) {
