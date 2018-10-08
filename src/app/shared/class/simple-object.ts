@@ -1,4 +1,4 @@
 export class SimpleObject {
-    code: number;
+    code: number | string;
     value: string;
 }

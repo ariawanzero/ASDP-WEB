@@ -14,9 +14,21 @@
     </div>
   </div>
   <div class="form-group row">
-    <label for="inputEmail" class="col-sm-2 col-form-label">Jabatan</label>
+    <label for="inputJabatan" class="col-sm-2 col-form-label">Jabatan</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="inputJabatan" placeholder="Jabatan">
+      <select class="form-control">
+        <option value="" selected>All</option>
+        <option *ngFor="let jb of jabatan;" [value]="jb.code">{{ jb.value }}</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputDivisi" class="col-sm-2 col-form-label">Divisi</label>
+    <div class="col-sm-10">
+      <select class="form-control">
+        <option value="" selected>All</option>
+        <option *ngFor="let dv of divisi;" [value]="dv.code">{{ dv.value }}</option>
+      </select>
     </div>
   </div>
   <div class="form-group row">
@@ -46,65 +58,59 @@
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Email</th>
-        <th scope="col">Role</th>
         <th scope="col">Name</th>
+        <th scope="col">Role</th>
+        <th scope="col">Username</th>
         <th scope="col">Mobile Phone</th>
-        <th scope="col">Jabatan</th>
-        <th scope="col">Divisi</th>
+        <th scope="col">Position</th>
         <th scope="col">Status</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-        <td>Mark</td>
+        <td>Prama</td>
+        <td>Admin</td>
+        <td>prama@gmail.com</td>
+        <td>0818123124333</td>
+        <td>Direktur Pelayanan</td>
+        <td>Active</td>
       </tr>
       <tr>
         <th scope="row">2</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-        <td>Mark</td>
+        <td>Agus</td>
+        <td>User</td>
+        <td>agus@gmail.com</td>
+        <td>0818123124333</td>
+        <td>Staff</td>
+        <td>Active</td>
       </tr>
       <tr>
         <th scope="row">3</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-        <td>Mark</td>
+        <td>Awan</td>
+        <td>User</td>
+        <td>awan@gmail.com</td>
+        <td>0818123124333</td>
+        <td>Staff</td>
+        <td>Active</td>
       </tr>
       <tr>
         <th scope="row">4</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-        <td>Mark</td>
+        <td>Tama</td>
+        <td>Viewer</td>
+        <td>tama@gmail.com</td>
+        <td>0818123124333</td>
+        <td>Staff</td>
+        <td>Active</td>
       </tr>
       <tr>
         <th scope="row">5</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-        <td>Mark</td>
+        <td>Septa</td>
+        <td>Viewer</td>
+        <td>septa@gmail.com</td>
+        <td>0818123124333</td>
+        <td>Staff</td>
+        <td>Active</td>
       </tr>
     </tbody>
   </table>

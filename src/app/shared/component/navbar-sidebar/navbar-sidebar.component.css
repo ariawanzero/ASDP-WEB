@@ -6,12 +6,17 @@ a:focus {
     transition: all 0.3s;
 }
 
+.img-logo {
+    max-width: 40%;
+}
+
 #sidebar {
     min-width: 200px;
     max-width: 200px;
-    background: #7386D5;
+    background: #6c757d;
     color: #fff;
     transition: all 0.3s;
+    height: 100%;
 }
 
 #sidebar.active {
@@ -19,7 +24,7 @@ a:focus {
 }
 
 #sidebar .sidebar-header {
-    padding: 20px;
+    padding: 13px;
     background: #6d7fcc;
 }
 
