@@ -6,16 +6,18 @@ import { ROLE } from '../../shared/constant/role';
 import { SimpleObject } from '../../shared/class/simple-object';
 
 @Component({
-  selector: 'asdp-user-list',
-  templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.css']
+  selector: 'asdp-user-detail',
+  templateUrl: './user-detail.component.html',
+  styleUrls: ['./user-detail.component.css']
 })
-export class UserListComponent implements OnInit {
+export class UserDetailComponent implements OnInit {
   @BlockUI() blockUI: NgBlockUI;
 
   role: SimpleObject[] = ROLE;
 
   constructor() { }
 
-  ngOnInit() { }
+  ngOnInit() {
+  }
+
 }
