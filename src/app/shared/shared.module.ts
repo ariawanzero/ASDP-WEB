@@ -6,8 +6,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NavbarTopComponent } from './component/navbar-top/navbar-top.component';
 import { NavbarSidebarComponent } from './component/navbar-sidebar/navbar-sidebar.component';
+import { FooterComponent } from './component/footer/footer.component';
 
 import { SidebarService } from './service/sidebar.service';
+import { ResponseService } from './service/response.service';
 
 @NgModule({
   imports: [
@@ -19,14 +21,17 @@ import { SidebarService } from './service/sidebar.service';
   ],
   declarations: [
     NavbarTopComponent,
-    NavbarSidebarComponent
+    NavbarSidebarComponent,
+    FooterComponent
   ], 
   providers: [ 
-    SidebarService
+    SidebarService,
+    ResponseService
   ],
   exports: [
     NavbarTopComponent,
-    NavbarSidebarComponent
+    NavbarSidebarComponent,
+    FooterComponent
   ]
 })
 export class SharedModule { }

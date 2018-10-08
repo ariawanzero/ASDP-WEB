@@ -37,6 +37,14 @@ ul ul a {
     background: #6d7fcc;
 }
 
+.bg-blue {
+    background-color: #145fa3 !important;
+}
+
+.nav-item {
+    color: white;
+}
+
 @media only screen and (max-width: 768px) {
     #sidebarCollapse span {
         display: none;

@@ -13,8 +13,10 @@ import { HomeComponent } from './home/home.component';
 @NgModule({
   imports: [
     BrowserModule,
+
     AppRoutingModule,
     SharedModule,
+
     BlockUIModule.forRoot()
   ],
   declarations: [

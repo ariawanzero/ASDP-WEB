@@ -1,0 +1,81 @@
+<h4>User Form</h4>
+<div class="line"></div>
+<form>
+  <div class="form-group row">
+    <label for="inputEmail" class="col-sm-2 col-form-label">Username</label>
+    <div class="col-sm-10">
+      <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+    <div class="col-sm-10">
+      <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="inputName" placeholder="Name">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputMobilePhone" class="col-sm-2 col-form-label">Mobile Phone</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="inputMobilePhone" placeholder="Mobile Phone">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputAlamat" class="col-sm-2 col-form-label">Alamat</label>
+    <div class="col-sm-10">
+      <textarea class="form-control" rows="5" maxlength="255"></textarea>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputJabatan" class="col-sm-2 col-form-label">Jabatan</label>
+    <div class="col-sm-10">
+      <select class="form-control">
+        <option value="" selected>-- Choose --</option>
+        <option *ngFor="let rl of role;" [value]="rl.code">{{ rl.value }}</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputDivisi" class="col-sm-2 col-form-label">Divisi</label>
+    <div class="col-sm-10">
+      <select class="form-control">
+        <option value="" selected>-- Choose --</option>
+        <option *ngFor="let dv of divisi;" [value]="dv.code">{{ dv.value }}</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputUnit" class="col-sm-2 col-form-label">Unit</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="inputUnit" placeholder="unit">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputRole" class="col-sm-2 col-form-label">Role</label>
+    <div class="col-sm-10">
+      <select class="form-control">
+        <option value="" selected>-- Choose --</option>
+        <option *ngFor="let rl of role;" [value]="rl.code">{{ rl.value }}</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputExpire" class="col-sm-2 col-form-label">Expire</label>
+    <div class="col-sm-10">
+      <input type="date" class="form-control" id="inputExpire" placeholder="Expire Date">
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-2 offset-sm-2">
+        <button type="submit" class="btn btn-block btn-primary" (click)="onSearch()"><i class="fa fa-save"> Save</i></button>
+    </div>
+    <div class="col-sm-2">
+        <button type="button" class="btn btn-block btn-secondary" (click)="onAdd()"><i class="fa fa-ban"> Cancel</i></button>
+    </div>
+  </div>
+</form>
