@@ -1,4 +1,4 @@
-export const DIVISi = [
+export const DIVISI = [
     { code: "KOMERSIAL", value: "Komersial" },
     { code: "PELAYANAN_DAN_FASILITAS", value: "Pelayanan & Fasilitas" },
     { code: "TEKNIK_DAN_OPERASIONAL", value: "Teknik & Operasional" },

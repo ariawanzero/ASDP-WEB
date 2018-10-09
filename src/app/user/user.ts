@@ -2,14 +2,18 @@ export class UserFilter {
     username: string;
     name: string;
     jabatan: string;
-    userrole: string;
+    divisi: string;
+    userRole: string;
+    status: string;
     page: number;
 
     constructor() {
         this.username = "";
         this.name = "";
         this.jabatan = "";
-        this.userrole = "";
+        this.divisi = "";
+        this.userRole = "";
+        this.status = "";
         this.page = 0;
     }
 }
@@ -17,10 +21,10 @@ export class UserFilter {
 export class User {
     id: string;
     username: string;
+    userRoleName: string;
     name: string;
-    no_hp: string;
+    noHp: string;
     alamat: string;
-    jabatan: string;
-    divisi: string;
-    valid: number;    
+    position: string;
+    status: string;
 }

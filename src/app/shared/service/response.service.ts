@@ -26,16 +26,11 @@ export class ResponseService {
     }
   }
 
-  extractDataPaging(response: Response): any {
-    if(response.status < 200 || response.status > 300) {
-      throw new Error('Bad Response Status: ' + response.statusText);
+  extractDataPaging(response: CommonResponsePaging<any>): any {
+    if(response.responseStatus.responseCode !== "00") {
+      throw new Error('Bad Response Status: ' + response.responseStatus.responseDesc);
     } else {
-      let body: CommonResponsePaging<any> = response.json();
-      if (body.responseStatus.responseCode === "00") {
-          return body.paging;
-      } else {
-          return body.responseStatus;
-      }
+      return response.paging;
     }
   }
 

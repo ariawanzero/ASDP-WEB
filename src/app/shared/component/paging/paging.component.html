@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-sm-6">
+    <div id="dataTables-example_info" class="dataTables_info" role="status" aria-live="polite">
+      Showing {{ startRow }} to {{ endRow }} of {{ totalData }} entries
+    </div>
+  </div>
+  
+  <div class="col-sm-6">
+    <nav aria-label="...">
+      <ul class="pagination pagination-sm justify-content-end">
+        <li class="page-item" [class.disabled]="pageIndex <= 0">
+          <a class="page-link" tabindex="-1" (click)="onFirstPage()">First</a>
+        </li>
+        <li class="page-item" [class.disabled]="pageIndex <= 0">
+          <a class="page-link" tabindex="-1" (click)="onPreviousPage()">Previous</a>
+        </li>
+        <span *ngFor="let page of pages">
+          <li class="page-item" [class.active]="(pageIndex + 1) == page">
+            <a class="page-link" (click)="onSelectPage(page)">{{ page }}
+              <span class="sr-only" *ngIf="isCurrent(page)">(current)</span>
+            </a>
+          </li>
+        </span>
+        <li class="page-item" [class.disabled]="(pageIndex + 1) >= totalPage">
+          <a class="page-link" (click)="onNextPage()">Next</a>
+        </li>
+        <li class="page-item" [class.disabled]="(pageIndex + 1) >= totalPage">
+          <a class="page-link" (click)="onLastPage()">Last</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>

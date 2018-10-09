@@ -18,7 +18,7 @@ export class UserService {
     private respService: ResponseService
   ) { }
 
-  getFilteredUser(value: UserFilter): Observable<PagingData<User>> { 
+  getFilteredUser(value: UserFilter): Observable<PagingData<User[]>> { 
     return this.http.post(('/user/searchUser'), value)
       .pipe(
         map(this.respService.extractDataPaging),
