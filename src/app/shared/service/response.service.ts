@@ -13,16 +13,11 @@ export class ResponseService {
 
   constructor() { }
 
-  extractData(response: Response): any {
-    if(response.status < 200 || response.status > 300) {
-      throw new Error('Bad Response Status: ' + response.statusText);
+  extractData(response: CommonResponse<any>): any {
+    if(response.responseStatus.responseCode !== "00") {
+      throw new Error('Bad Response Status: ' + response.responseStatus.responseDesc);
     } else {
-      let body: CommonResponse<any> = response.json();
-      if (body.responseStatus.responseCode === "00") {
-          return body.data;
-      } else {
-          return body.responseStatus;
-      }
+      return response.data;
     }
   }
 

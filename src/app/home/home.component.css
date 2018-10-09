@@ -22,7 +22,8 @@
 }
 
 @media only screen and (max-width: 575.98px) {
-    .extend-wrapper { width: 150%; }
+    .extend-wrapper { min-width: 150%; }
+    .extend-footer { min-width: 150%; }
 }
 
 

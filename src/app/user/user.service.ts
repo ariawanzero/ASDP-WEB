@@ -8,7 +8,7 @@ import { PagingData } from '../shared/class/paging-data';
 
 import { ResponseService } from '../shared/service/response.service';
 
-import { UserFilter, User } from './user';
+import { UserFilter, User, UserDetail } from './user';
 
 @Injectable()
 export class UserService {
@@ -26,7 +26,7 @@ export class UserService {
       )
   }
 
-  getSingleUser(value: any): Observable<User> {
+  getSingleUser(value: any): Observable<UserDetail> {
     return this.http.post(('/user/findUserDetail'), value)
       .pipe(
         map(this.respService.extractData),
@@ -34,7 +34,7 @@ export class UserService {
       )
   }
 
-  saveUser(value: User): Observable<any> { 
+  saveUser(value: UserDetail): Observable<any> { 
     return this.http.post(('/user/saveUser'), value)
       .pipe(
         map(this.respService.extractData),

@@ -4,6 +4,10 @@ body, html {
     height: 100%;
 }
 
+textarea {
+    resize: none;
+}
+
 .bg-please-wait-1 {
     background: rgba(128, 157, 176, 0.57);
     height: 100%;

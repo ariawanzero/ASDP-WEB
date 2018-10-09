@@ -28,3 +28,16 @@ export class User {
     position: string;
     status: string;
 }
+
+export class UserDetail {
+    id: string;
+    username: string;
+    userRoleId: string;
+    name: string;
+    noHp: string;
+    alamat: string;
+    jabatan: string;
+    divisi: string;
+    unit: string;
+    expired: string;    
+}

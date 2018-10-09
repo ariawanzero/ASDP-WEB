@@ -10,6 +10,9 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 
+import { ConfirmationDialogComponent } from './shared/component/confirmation-dialog/confirmation-dialog.component';
+import { ConfirmationDialogService } from './shared/service/confirmation-dialog.service';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -22,9 +25,12 @@ import { HomeComponent } from './home/home.component';
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    ConfirmationDialogComponent
   ],
-  providers: [],
+  providers: [
+    ConfirmationDialogService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
