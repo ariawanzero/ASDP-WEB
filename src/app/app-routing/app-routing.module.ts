@@ -4,9 +4,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from '../login/login.component';
 import { HomeComponent } from '../home/home.component';
 
-import { UserListComponent } from '../user/list/user-list.component';
-import { UserDetailComponent } from '../user/detail/user-detail.component';
-
 const appRoutes: Routes = [
   {
     path: '',
