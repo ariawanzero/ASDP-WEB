@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -11,11 +11,13 @@ import { PagingComponent } from './component/paging/paging.component';
 
 import { SidebarService } from './service/sidebar.service';
 import { ResponseService } from './service/response.service';
+import { LocalStorageService } from './service/local-storage.service';
+import { AuthenticationService } from './service/authentication.service';
 
 @NgModule({
   imports: [
     CommonModule,
-    HttpModule,
+    HttpClientModule,
     RouterModule,
     FormsModule,
     ReactiveFormsModule
@@ -28,7 +30,9 @@ import { ResponseService } from './service/response.service';
   ], 
   providers: [ 
     SidebarService,
-    ResponseService
+    ResponseService,
+    LocalStorageService,
+    AuthenticationService
   ],
   exports: [
     NavbarTopComponent,
