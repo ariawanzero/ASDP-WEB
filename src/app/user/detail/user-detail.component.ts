@@ -11,6 +11,7 @@ import { DIVISI } from '../../shared/constant/divisi';
 import { ConfirmationMessage } from '../../shared/class/confirmation-message';
 import { TitleModal } from '../../shared/class/title-modal';
 import { SimpleObject } from '../../shared/class/simple-object';
+import { CommonResponseStatus } from '../../shared/class/common-response-status';
 import { Task } from '../../shared/enum/task.enum';
 
 import { ConfirmationDialogService } from '../../shared/service/confirmation-dialog.service';
@@ -26,6 +27,7 @@ import { UserDetail } from '../user';
 })
 export class UserDetailComponent implements OnInit {
   @BlockUI() blockUI: NgBlockUI;
+  response: CommonResponseStatus;
 
   role: SimpleObject[] = ROLE;
   jabatan: SimpleObject[] = JABATAN;
@@ -68,7 +70,7 @@ export class UserDetailComponent implements OnInit {
       divisi: new FormControl('', [Validators.required]),
       unit: new FormControl('', [Validators.required]),
       userRoleId: new FormControl('', [Validators.required]),
-      expired: new FormControl('', [Validators.required])
+      expiredDate: new FormControl('', [Validators.required])
     });
 
     if(!this.isAdd) { this.getIdFromParameter(); }
@@ -111,13 +113,13 @@ export class UserDetailComponent implements OnInit {
       divisi: user.divisi,
       unit: user.unit,
       role: user.userRoleId,
-      expired: user.expired
+      expired: user.expiredDate
     })
   }
 
   private mapUser(data: any): UserDetail {
     let user: UserDetail = new UserDetail();
-    user = Object.assign({}, data);
+    user = Object.assign({}, data, {  });
 
     return user
   }
@@ -126,14 +128,23 @@ export class UserDetailComponent implements OnInit {
     this.blockUI.start();
     this.userServ.saveUser(this.mapUser(this.detailForm.getRawValue())).subscribe(
       resp => {
-        console.log(resp);
+        this.response = resp;
       }, err => {
-        this.blockUI.stop();        
+        this.blockUI.stop();
+        console.log(err);
       }, () => {
         this.blockUI.stop();
-        // this.checkResponseSave();
+        this.checkResultAction();
       }
     );
+  }
+
+  private checkResultAction(): void {
+    if(this.response.responseCode !== "00") {
+      console.log(this.response.responseDesc);
+    } else {
+      this.onGoToList();
+    }
   }
 
   onSubmit(): void {

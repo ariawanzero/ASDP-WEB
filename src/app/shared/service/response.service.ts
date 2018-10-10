@@ -27,13 +27,11 @@ export class ResponseService {
     }
   }
 
-  errorHandling(error: HttpErrorResponse): Observable<any> {
-    let errMsg = "";
-    if (error.error instanceof ErrorEvent) {        
-      errMsg = `Error: ${error.error.message}`;
+  extractResultAction(response: CommonResponse<any>): any {
+    if(response.responseStatus.responseCode !== "00") {
+      throw new Error('Bad Response Status: ' + response.responseStatus.responseDesc);
     } else {
-      errMsg = `Error Code: ${error.status},  Message: ${error.message}`;
+      return response.responseStatus;
     }
-    return throwError(errMsg);
   }
 }

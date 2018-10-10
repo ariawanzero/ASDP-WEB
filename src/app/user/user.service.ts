@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
-import { catchError, map, retry } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 import { PagingData } from '../shared/class/paging-data';
 
@@ -21,24 +21,21 @@ export class UserService {
   getFilteredUser(value: UserFilter): Observable<PagingData<User[]>> { 
     return this.http.post(('/user/searchUser'), value)
       .pipe(
-        map(this.respService.extractDataPaging),
-        catchError(this.respService.errorHandling)
+        map(this.respService.extractDataPaging)
       )
   }
 
   getSingleUser(value: any): Observable<UserDetail> {
     return this.http.post(('/user/findUserDetail'), value)
       .pipe(
-        map(this.respService.extractData),
-        catchError(this.respService.errorHandling)
+        map(this.respService.extractResultAction)
       )
   }
 
   saveUser(value: UserDetail): Observable<any> { 
     return this.http.post(('/user/saveUser'), value)
       .pipe(
-        map(this.respService.extractData),
-        catchError(this.respService.errorHandling)
+        map(this.respService.extractResultAction)
       )
   }  
 }
