@@ -11,12 +11,13 @@ import { DIVISI } from '../../shared/constant/divisi';
 import { ConfirmationMessage } from '../../shared/class/confirmation-message';
 import { TitleModal } from '../../shared/class/title-modal';
 import { SimpleObject } from '../../shared/class/simple-object';
+import { Task } from '../../shared/enum/task.enum';
 
 import { ConfirmationDialogService } from '../../shared/service/confirmation-dialog.service';
 
 import { UserService } from '../user.service';
 
-import { UserDetail, User } from '../user';
+import { UserDetail } from '../user';
 
 @Component({
   selector: 'asdp-user-detail',
@@ -29,6 +30,8 @@ export class UserDetailComponent implements OnInit {
   role: SimpleObject[] = ROLE;
   jabatan: SimpleObject[] = JABATAN;
   divisi: SimpleObject[] = DIVISI;
+
+  task: Task = Task.None;
 
   isAdd: boolean;
   userId: string;
@@ -49,17 +52,12 @@ export class UserDetailComponent implements OnInit {
   }
 
   private checkStateAction(action: string) {
-    if(action === "add") {
-      this.isAdd = true;
-    } else {
-      this.isAdd = false;
-    }
-
+    this.isAdd = action === "add" ? true : false;
     this.setForm();
   }
 
   private setForm(): void {
-    let defaultDisabled = { value: '', disabled: (this.isAdd) };
+    let defaultDisabled = { value: '', disabled: (!this.isAdd) };
     this.detailForm = new FormGroup({
       id: new FormControl(''),
       username: new FormControl(defaultDisabled, [Validators.required]),
@@ -69,7 +67,7 @@ export class UserDetailComponent implements OnInit {
       jabatan: new FormControl('', [Validators.required]),
       divisi: new FormControl('', [Validators.required]),
       unit: new FormControl('', [Validators.required]),
-      role: new FormControl('', [Validators.required]),
+      userRoleId: new FormControl('', [Validators.required]),
       expired: new FormControl('', [Validators.required])
     });
 
@@ -93,9 +91,11 @@ export class UserDetailComponent implements OnInit {
       resp => {
         this.user = resp;
       }, err => {
+        this.blockUI.stop();
         console.log(err);
       }, () => {
         this.setValueForm(this.user);
+        this.blockUI.stop();
       }
     )
   }
@@ -115,26 +115,59 @@ export class UserDetailComponent implements OnInit {
     })
   }
 
+  private mapUser(data: any): UserDetail {
+    let user: UserDetail = new UserDetail();
+    user = Object.assign({}, data);
 
+    return user
+  }
 
+  private saveUser(): void {
+    this.blockUI.start();
+    this.userServ.saveUser(this.mapUser(this.detailForm.getRawValue())).subscribe(
+      resp => {
+        console.log(resp);
+      }, err => {
+        this.blockUI.stop();        
+      }, () => {
+        this.blockUI.stop();
+        // this.checkResponseSave();
+      }
+    );
+  }
 
+  onSubmit(): void {
+    switch (this.task) {
+      case Task.Save:
+        this.confirmServ.activate(ConfirmationMessage.SAVE, TitleModal.CONFIRM)
+          .then(result => {
+            if (result) { this.saveUser(); }
+          });
+        break;
+      default:
+        console.log('Unhandled Task');
+        this.task = Task.None;
+        break;
+    }
+  }
+
+  onSave(): void { this.task = Task.Save; }
 
   onGoToList(): void {
-    // if (this.isAdd) {
-    //   this.router.navigate(['../' ], { relativeTo: this.route });
-    // } else if (this.isEdit) {
-    //   this.router.navigate(['../../' ], { relativeTo: this.route });
-    // } else {
-    //   this.router.navigate(['/home']);
-    // }
+    if (this.isAdd) {
+      this.router.navigate(['../' ], { relativeTo: this.route });
+    } else if (!this.isAdd) {
+      this.router.navigate(['../../' ], { relativeTo: this.route });
+    } else {
+      this.router.navigate(['/home']);
+    }
   }
 
   onCancel(): void {
-    this.confirmServ.activate(ConfirmationMessage.SAVE, TitleModal.CONFIRM).then(
+    this.confirmServ.activate(ConfirmationMessage.CANCEL, TitleModal.CONFIRM).then(
       result => {
-
+        if (result) { this.onGoToList(); }
       }
     )
   }
-
 }

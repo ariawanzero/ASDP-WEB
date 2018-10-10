@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Response } from '@angular/http';
-import { HttpResponse } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 
-
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 
 import { CommonResponse } from '../class/common-response';
 import { CommonResponsePaging } from '../class/common-response-paging';
@@ -29,8 +27,13 @@ export class ResponseService {
     }
   }
 
-  errorHandling(error: any): Observable<any> {
-    let errMsg = error.message || 'Server Error';
-    return Observable.throw(errMsg);
+  errorHandling(error: HttpErrorResponse): Observable<any> {
+    let errMsg = "";
+    if (error.error instanceof ErrorEvent) {        
+      errMsg = `Error: ${error.error.message}`;
+    } else {
+      errMsg = `Error Code: ${error.status},  Message: ${error.message}`;
+    }
+    return throwError(errMsg);
   }
 }

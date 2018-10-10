@@ -1,5 +1,6 @@
 export class UserFilter {
     username: string;
+    usernameActive: string;
     name: string;
     jabatan: string;
     divisi: string;
@@ -9,6 +10,7 @@ export class UserFilter {
 
     constructor() {
         this.username = "";
+        this.usernameActive = "";
         this.name = "";
         this.jabatan = "";
         this.divisi = "";
