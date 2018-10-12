@@ -10,6 +10,7 @@ import { MENU } from '../shared/constant/menu';
 import { LocalStorageService } from '../shared/service/local-storage.service';
 
 import { AuthenticationService } from '../shared/service/authentication.service';
+import { GlobalMessageService } from '../shared/service/global-message.service';
 
 @Component({
   selector: 'asdp-login',
@@ -23,9 +24,10 @@ export class LoginComponent implements OnInit {
   responseAuth: Authentication;
 
   constructor(
+    private router:Router,
     private authServ: AuthenticationService,
     private localStorageServ: LocalStorageService,
-    private router:Router,
+    private globalMessageServ: GlobalMessageService
   ) { }
 
   ngOnInit() {
@@ -36,22 +38,24 @@ export class LoginComponent implements OnInit {
   }
 
   loginUser() {
-    this.blockUI.start();
-    this.authServ.getAccess(this.loginForm.getRawValue()).subscribe(
-      resp => {
-        this.responseAuth = resp;
-      }, (err) => {
-        console.log(err);
-        this.blockUI.stop();
-      }, () => {
-        this.generateMenu();
-        this.generateKey();
+    if(this.loginForm.valid) {
+      this.blockUI.start();
+      this.authServ.getAccess(this.loginForm.getRawValue()).subscribe(
+        resp => {
+          this.responseAuth = resp;
+        }, (err) => {
+          this.blockUI.stop();
+          this.globalMessageServ.changeMessage(err);
+        }, () => {
+          this.generateMenu();
+          this.generateKey();
 
-        this.blockUI.stop();
+          this.blockUI.stop();
 
-        this.goToDashboard();
-      }
-    )
+          this.goToDashboard();
+        }
+      )
+    }
   }
 
   private generateMenu(): void {

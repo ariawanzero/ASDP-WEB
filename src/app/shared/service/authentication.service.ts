@@ -44,9 +44,17 @@ export class AuthenticationService {
             )
   }
 
-  private handleError(error: HttpErrorResponse) {
+  checkCredentials(): boolean {
+    return this.localStorageServ.getValue('key') ? true : false;
+  }
+
+  private handleError(error: HttpErrorResponse): Observable<any> {
     let errMsg = '';
-    errMsg = `Error: ${error.error.error}, Message: ${error.error.error_description}`;
+    if(error.status < 500) {
+      errMsg = `Error: ${error.error.error}, Message: ${error.error.error_description}`;
+    } else {
+      errMsg = error.statusText;
+    }
     
     return throwError(errMsg);
   }

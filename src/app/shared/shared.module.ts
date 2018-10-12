@@ -13,6 +13,7 @@ import { SidebarService } from './service/sidebar.service';
 import { ResponseService } from './service/response.service';
 import { LocalStorageService } from './service/local-storage.service';
 import { AuthenticationService } from './service/authentication.service';
+import { RouterGuardService } from './service/router-guard.service';
 
 @NgModule({
   imports: [
@@ -32,7 +33,8 @@ import { AuthenticationService } from './service/authentication.service';
     SidebarService,
     ResponseService,
     LocalStorageService,
-    AuthenticationService
+    AuthenticationService,
+    RouterGuardService
   ],
   exports: [
     NavbarTopComponent,

@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { RouterGuardService } from '../shared/service/router-guard.service';
+
 import { LoginComponent } from '../login/login.component';
 import { HomeComponent } from '../home/home.component';
 
@@ -22,7 +24,8 @@ const appRoutes: Routes = [
         path: 'user',
         loadChildren: 'src/app/user/user.module#UserModule'
       }
-    ]
+    ],
+    canActivate: [RouterGuardService]
   }
 ];
 

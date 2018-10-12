@@ -14,6 +14,9 @@ import { HomeComponent } from './home/home.component';
 import { ConfirmationDialogComponent } from './shared/component/confirmation-dialog/confirmation-dialog.component';
 import { ConfirmationDialogService } from './shared/service/confirmation-dialog.service';
 
+import { MessageComponent } from './shared/component/message/message.component';
+import { GlobalMessageService  } from './shared/service/global-message.service';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -28,10 +31,12 @@ import { ConfirmationDialogService } from './shared/service/confirmation-dialog.
   declarations: [
     AppComponent,
     HomeComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    MessageComponent
   ],
   providers: [
-    ConfirmationDialogService
+    ConfirmationDialogService,
+    GlobalMessageService
   ],
   bootstrap: [AppComponent]
 })

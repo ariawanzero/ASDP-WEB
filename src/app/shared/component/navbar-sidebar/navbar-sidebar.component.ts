@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {Router, ActivatedRoute} from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { LocalStorageService } from '../../service/local-storage.service';
 import { AuthenticationService } from '../../service/authentication.service';
 
 import { SidebarService } from '../../service/sidebar.service';
 import { Menu } from '../../class/menu';
-import { TouchSequence } from 'selenium-webdriver';
 
 @Component({
   selector: 'asdp-navbar-sidebar',

@@ -17,10 +17,16 @@
           <div class="card-block login-form">
             <form [formGroup]="loginForm" (ngSubmit)="loginUser($event)">
               <div class="form-group">
-                <input type="email" class="form-control" formControlName="username" name="username" placeholder="Email">
+                <input type="email" class="form-control" [ngClass]="loginForm.controls.username.errors && loginForm.controls.username.touched ? ' error' : ''"  formControlName="username" name="username" placeholder="Email">
+                <span class="text-danger invalidMessage" *ngIf="loginForm.controls.username.touched && loginForm.controls.username.errors">
+                  <span *ngIf="loginForm.controls.username.errors?.required">Email Required.</span>
+                </span>
               </div>
               <div class="form-group">
-                <input type="password" class="form-control" formControlName="password" name="password" placeholder="Password">
+                <input type="password" class="form-control" [ngClass]="loginForm.controls.username.errors && loginForm.controls.username.touched ? ' error' : ''" formControlName="password" name="password" placeholder="Password">
+                <span class="text-danger invalidMessage" *ngIf="loginForm.controls.password.touched && loginForm.controls.password.errors">
+                  <span *ngIf="loginForm.controls.password.errors?.required">Password Required.</span>
+                </span>
               </div>
               <button type="submit" class="btn btn-warning btn-block">Sign In</button>
             </form>

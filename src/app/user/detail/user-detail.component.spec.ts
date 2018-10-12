@@ -1,6 +1,25 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+
+import { ConfirmationDialogService } from '../../shared/service/confirmation-dialog.service';
 
 import { UserDetailComponent } from './user-detail.component';
+import { UserService } from '../user.service';
+import { ResponseService } from 'src/app/shared/service/response.service';
+
+class MockConfirmationDialogService extends ConfirmationDialogService {
+
+}
+
+class MockUserService extends UserService {
+
+}
+
+class MockResponseService extends ResponseService {
+
+}
 
 describe('UserDetailComponent', () => {
   let component: UserDetailComponent;
@@ -8,7 +27,23 @@ describe('UserDetailComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserDetailComponent ]
+      imports: [ 
+        ReactiveFormsModule,
+        FormsModule,
+        RouterTestingModule,
+        HttpClientTestingModule
+      ],
+      declarations: [ UserDetailComponent ],
+      providers: [{
+        provide: ConfirmationDialogService,
+        useClass: MockConfirmationDialogService
+      }, {
+        provide: UserService,
+        useClass: MockUserService
+      }, {
+        provide: ResponseService,
+        useClass: MockResponseService
+      }]
     })
     .compileComponents();
   }));
