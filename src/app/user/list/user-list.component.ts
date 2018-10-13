@@ -71,4 +71,8 @@ export class UserListComponent implements OnInit {
     this.filter.page = idx;
     this.getUserList();
   }
+
+  onEditUser(id: string) {
+    this.router.navigate(['edit', id], { relativeTo: this.route });
+  }
 }

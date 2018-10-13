@@ -113,7 +113,7 @@ export class UserDetailComponent implements OnInit {
       divisi: user.divisi,
       unit: user.unit,
       role: user.userRoleId,
-      expired: user.expiredDate
+      expiredDate: new Date(user.expiredDate).toISOString().substring(0, 10)
     })
   }
 

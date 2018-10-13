@@ -78,7 +78,7 @@
     <tbody *ngIf="page">
       <tr *ngFor="let user of page.data; let i = index">
         <th scope="row">{{ i + 1 }}</th>
-        <td>{{ user.name }}</td>
+        <td><a (click)="onEditUser(user.id)">{{ user.name }}</a></td>
         <td>{{ user.userRoleName }}</td>
         <td>{{ user.username }}</td>
         <td>{{ user.noHp }}</td>

@@ -41,5 +41,5 @@ export class UserDetail {
     jabatan: string;
     divisi: string;
     unit: string;
-    expiredDate: string;    
+    expiredDate: number;
 }
