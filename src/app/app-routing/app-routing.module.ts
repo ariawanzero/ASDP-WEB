@@ -23,6 +23,10 @@ const appRoutes: Routes = [
       {
         path: 'user',
         loadChildren: 'src/app/user/user.module#UserModule'
+      }, 
+      {
+        path: 'change-password',
+        loadChildren: 'src/app/change-password/change-password.module#ChangePasswordModule'
       }
     ],
     canActivate: [RouterGuardService]

@@ -41,8 +41,12 @@ ul ul a {
     background-color: #145fa3 !important;
 }
 
-.nav-item {
+.nav-item .nav-link {
     color: white;
+}
+
+.navbar-nav {
+    flex-direction: unset;
 }
 
 @media only screen and (max-width: 768px) {

@@ -1,5 +1,6 @@
 export class ConfirmationMessage {
     public static SAVE = 'Are you sure want to save?';    
+    public static CHANGE = 'Are you sure want to change?';    
     public static DELETE = 'Are you sure want to delete?';
     public static CANCEL = 'Are you sure want to cancel?';
     public static APPROVE = 'Are you sure want to approve?';

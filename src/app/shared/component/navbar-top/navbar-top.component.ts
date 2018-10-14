@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { SidebarService } from '../../service/sidebar.service';
 
@@ -10,11 +11,19 @@ import { SidebarService } from '../../service/sidebar.service';
 export class NavbarTopComponent implements OnInit {
 
   constructor(
-    private sidebarService: SidebarService
+    private sidebarService: SidebarService,
+    private router:Router,
+    private activatedRoute:ActivatedRoute
   ) { }
 
   ngOnInit() { }
 
   onToogleSidebar(): void { this.sidebarService.toogleOnOff(); }
+
+  onChangePassword(): void { 
+    this.router.navigate(['change-password'], {
+      relativeTo: this.activatedRoute, skipLocationChange: false
+    });
+  }
 
 }
