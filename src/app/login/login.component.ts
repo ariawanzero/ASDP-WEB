@@ -47,8 +47,10 @@ export class LoginComponent implements OnInit {
           this.blockUI.stop();
           this.globalMessageServ.changeMessage(err);
         }, () => {
-          this.generateMenu();
+          this.localStorageServ.clearAll();
           this.generateKey();
+          this.generateMenu();
+          this.generateClient();
 
           this.blockUI.stop();
 
@@ -61,17 +63,25 @@ export class LoginComponent implements OnInit {
   private generateMenu(): void {
     let menuList = new Array();
     MENU.forEach(val => {
-      let parent: Menu = new Menu(val.code, val.value, val.icon);
-      parent.menuItem = this.responseAuth.menu.filter(item => item.parent === val.code);
-
-      menuList.push(parent);
+      let idx: number = this.responseAuth.menu.findIndex(item => item.parent === val.code);
+      if(idx >= 0) {
+        let parent: Menu = new Menu(val.code, val.value, val.icon);
+        parent.menuItem = this.responseAuth.menu.filter(item => item.parent === val.code);
+        menuList.push(parent);
+      }
     })
-    this.localStorageServ.insertValue('menu', JSON.stringify(menuList));
+
+    if(menuList.length > 0) this.localStorageServ.insertValue('menu', JSON.stringify(menuList));
   }
 
   private generateKey(): void {
     let key = this.responseAuth.token_type + ' ' + this.responseAuth.access_token;
     this.localStorageServ.insertValue('key', key);
+  }
+
+  private generateClient(): void {
+    this.localStorageServ.insertValue('client-email', this.responseAuth.clientEmail);
+    this.localStorageServ.insertValue('client-name', this.responseAuth.clientName);
   }
 
   private goToDashboard(): void {

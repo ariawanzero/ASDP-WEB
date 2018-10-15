@@ -1,16 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 import { ConfirmationMessage } from '../shared/class/confirmation-message';
 import { TitleModal } from '../shared/class/title-modal';
+import { PasswordValidator } from '../shared/validator/password.validator';
 
 import { CommonResponseStatus } from '../shared/class/common-response-status';
 import { Task } from '../shared/enum/task.enum';
 
 import { ConfirmationDialogService } from '../shared/service/confirmation-dialog.service';
+import { LocalStorageService } from '../shared/service/local-storage.service';
+
+import { ChangePasswordService } from './change-password.service';
+
+import { ChangePassword } from './change-password';
 
 @Component({
   selector: 'asdp-change-password',
@@ -27,8 +33,9 @@ export class ChangePasswordComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute,
-    private confirmServ: ConfirmationDialogService
+    private confirmServ: ConfirmationDialogService,
+    private localStorageServ: LocalStorageService,
+    private changePasswordServ: ChangePasswordService
   ) { }
 
   ngOnInit() {
@@ -37,13 +44,33 @@ export class ChangePasswordComponent implements OnInit {
 
   private setForm(): void {
     this.passwordForm = new FormGroup({
-      oldPassword: new FormControl('', [Validators.required]),
-      newPassword: new FormControl('', [Validators.required]),
-      confirmPassword: new FormControl('', [Validators.required])
+      username: new FormControl(this.localStorageServ.getValue('client-email')),
+      oldPassword: new FormControl('', [Validators.required, Validators.minLength(7)]),
+      newPassword: new FormControl('', [Validators.required, Validators.minLength(7), PasswordValidator.passwordPattern]),
+      confirmPassword: new FormControl('', [Validators.required, Validators.minLength(7), PasswordValidator.passwordRetypeCheck])
     })
   }
 
+  private mapChangePw(data: any): ChangePassword {
+    let result: ChangePassword = new ChangePassword();
+    result = Object.assign({}, data);
+
+    return result;
+  }
+
   private changePassword(): void {
+    this.blockUI.start();
+    this.changePasswordServ.changePassword(this.mapChangePw(this.passwordForm.getRawValue())).subscribe(
+      resp => {
+        this.response = resp;
+      }, (err) => {
+        this.blockUI.stop();
+        console.log(err);
+      }, () => {
+        this.checkResultAction();
+        this.blockUI.stop();
+      }
+    )
   }
 
   private checkResultAction(): void {
@@ -70,7 +97,7 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   onGoToList(): void {
-    this.router.navigate(['../' ], { relativeTo: this.route });
+    this.router.navigate(['home']);
   }
 
   onSave(): void { this.task = Task.Save; }
@@ -78,7 +105,7 @@ export class ChangePasswordComponent implements OnInit {
   onCancel(): void {
     this.confirmServ.activate(ConfirmationMessage.CANCEL, TitleModal.CONFIRM).then(
       result => {
-        if (result) { this.onGoToList(); }
+        if (result) this.onGoToList(); 
       }
     )
   }

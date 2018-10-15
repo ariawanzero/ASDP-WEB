@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
+
 import { LocalStorageService } from '../../service/local-storage.service';
 import { AuthenticationService } from '../../service/authentication.service';
 
@@ -13,8 +15,11 @@ import { Menu } from '../../class/menu';
   styleUrls: ['./navbar-sidebar.component.css']
 })
 export class NavbarSidebarComponent implements OnInit {
+  @BlockUI() blockUI: NgBlockUI;
+
   isOpen: boolean = false;
   menuList: Menu[];
+  user: string;
 
   constructor(
     private authServ: AuthenticationService,
@@ -26,6 +31,7 @@ export class NavbarSidebarComponent implements OnInit {
 
   ngOnInit() {
     this.menuList = JSON.parse(this.localStorageServ.getValue('menu'));
+    this.user = this.localStorageServ.getValue('client-name');
     this.changeToogleSidebar();
   }
 
@@ -46,12 +52,15 @@ export class NavbarSidebarComponent implements OnInit {
   }
 
   goSignOut(): void {
+    this.blockUI.start();
     this.authServ.removeAccess().subscribe(
       resp => {
-        console.log(resp);
+        this.blockUI.stop();
       }, (err) => {
+        this.blockUI.stop();
         console.log(err);
       }, () => {
+        this.localStorageServ.clearAll();
         this.router.navigate(['']);
       }
     )

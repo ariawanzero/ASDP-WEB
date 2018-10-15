@@ -37,5 +37,5 @@ export class UserService {
       .pipe(
         map(this.respService.extractResultAction)
       )
-  }  
+  }
 }

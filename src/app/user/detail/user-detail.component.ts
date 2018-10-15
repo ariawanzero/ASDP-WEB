@@ -62,13 +62,13 @@ export class UserDetailComponent implements OnInit {
     let defaultDisabled = { value: '', disabled: (!this.isAdd) };
     this.detailForm = new FormGroup({
       id: new FormControl(''),
-      username: new FormControl(defaultDisabled, [Validators.required]),
-      name: new FormControl('', [Validators.required]),
-      noHp: new FormControl('', [Validators.required]),
+      username: new FormControl(defaultDisabled, [Validators.required, Validators.maxLength(100)]),
+      name: new FormControl('', [Validators.required, Validators.maxLength(100)]),
+      noHp: new FormControl('', [Validators.required, Validators.maxLength(15)]),
       alamat: new FormControl('', [Validators.maxLength(255)]),
       jabatan: new FormControl('', [Validators.required]),
       divisi: new FormControl('', [Validators.required]),
-      unit: new FormControl('', [Validators.required]),
+      unit: new FormControl('', [Validators.required, Validators.maxLength(150)]),
       userRoleId: new FormControl('', [Validators.required]),
       expiredDate: new FormControl('', [Validators.required])
     });
@@ -180,5 +180,13 @@ export class UserDetailComponent implements OnInit {
         if (result) { this.onGoToList(); }
       }
     )
+  }
+
+  onKeyPress(event: any): boolean {
+    if(event.which >= 48 && event.which <= 57 || event.which == 8) {
+        return true
+    } else {
+        return event.preventDefault();
+    }  
   }
 }

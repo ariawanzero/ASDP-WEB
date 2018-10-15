@@ -4,19 +4,31 @@
   <div class="form-group row">
     <label for="inputEmail" class="col-sm-2 col-form-label required">Email</label>
     <div class="col-sm-10">
-      <input type="email" class="form-control" formControlName="username" name="username" placeholder="Email" autocomplete="off">
+      <input type="email" class="form-control" [ngClass]="detailForm.controls.username.errors && detailForm.controls.username.touched ? ' error' : ''" formControlName="username" name="username" placeholder="Email" autocomplete="off">
+      <span class="text-danger invalidMessage" *ngIf="detailForm.controls.username.touched && detailForm.controls.username.errors">
+        <span *ngIf="detailForm.controls.username.errors?.required">Email Required.</span>
+        <span *ngIf="detailForm.controls.username.errors?.maxlength">Max Length of Email 100.</span>
+      </span>
     </div>
   </div>
   <div class="form-group row">
     <label for="inputName" class="col-sm-2 col-form-label required">Name</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" formControlName="name" name="name" placeholder="Name" autocomplete="off">
+      <input type="text" class="form-control" [ngClass]="detailForm.controls.name.errors && detailForm.controls.name.touched ? ' error' : ''" formControlName="name" name="name" placeholder="Name" autocomplete="off" maxlength="100">
+      <span class="text-danger invalidMessage" *ngIf="detailForm.controls.name.touched && detailForm.controls.name.errors">
+        <span *ngIf="detailForm.controls.name.errors?.required">Name Required.</span>
+        <span *ngIf="detailForm.controls.name.errors?.maxlength">Max Length of Name 100.</span>
+      </span>
     </div>
   </div>
   <div class="form-group row">
     <label for="inputMobilePhone" class="col-sm-2 col-form-label required">Mobile Phone</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" formControlName="noHp" name="noHp" placeholder="Mobile Phone" autocomplete="off">
+      <input type="text" class="form-control" [ngClass]="detailForm.controls.noHp.errors && detailForm.controls.noHp.touched ? ' error' : ''" formControlName="noHp" name="noHp" placeholder="Mobile Phone" autocomplete="off" maxlength="15" (keypress)="onKeyPress($event)">
+      <span class="text-danger invalidMessage" *ngIf="detailForm.controls.noHp.touched && detailForm.controls.noHp.errors">
+        <span *ngIf="detailForm.controls.noHp.errors?.required">Mobile Phone Required.</span>
+        <span *ngIf="detailForm.controls.noHp.errors?.maxlength">Max Length of Mobile Phone 15.</span>
+      </span>
     </div>
   </div>
   <div class="form-group row">
@@ -28,34 +40,47 @@
   <div class="form-group row">
     <label for="inputJabatan" class="col-sm-2 col-form-label required">Jabatan</label>
     <div class="col-sm-10">
-      <select class="form-control" formControlName="jabatan" name="jabatan">
+      <select class="form-control" [ngClass]="detailForm.controls.jabatan.errors && detailForm.controls.jabatan.touched ? ' error' : ''" formControlName="jabatan" name="jabatan">
         <option value="" selected>-- Choose --</option>
         <option *ngFor="let jb of jabatan;" [value]="jb.code">{{ jb.value }}</option>
       </select>
+      <span class="text-danger invalidMessage" *ngIf="detailForm.controls.jabatan.touched && detailForm.controls.jabatan.errors">
+        <span *ngIf="detailForm.controls.jabatan.errors?.required">Jabatan must be Choosen.</span>
+      </span>
     </div>
   </div>
   <div class="form-group row">
     <label for="inputDivisi" class="col-sm-2 col-form-label required">Divisi</label>
     <div class="col-sm-10">
-      <select class="form-control" formControlName="divisi" name="divisi">
+      <select class="form-control" [ngClass]="detailForm.controls.divisi.errors && detailForm.controls.divisi.touched ? ' error' : ''" formControlName="divisi" name="divisi">
         <option value="" selected>-- Choose --</option>
         <option *ngFor="let dv of divisi;" [value]="dv.code">{{ dv.value }}</option>
       </select>
+      <span class="text-danger invalidMessage" *ngIf="detailForm.controls.divisi.touched && detailForm.controls.divisi.errors">
+        <span *ngIf="detailForm.controls.divisi.errors?.required">Divisi must be Choosen.</span>
+      </span>
     </div>
   </div>
   <div class="form-group row">
     <label for="inputUnit" class="col-sm-2 col-form-label required">Unit</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" formControlName="unit" name="unit" placeholder="unit" autocomplete="off">
+      <input type="text" class="form-control" [ngClass]="detailForm.controls.unit.errors && detailForm.controls.unit.touched ? ' error' : ''" formControlName="unit" name="unit" placeholder="unit" maxlength="150" autocomplete="off">
+      <span class="text-danger invalidMessage" *ngIf="detailForm.controls.unit.touched && detailForm.controls.unit.errors">
+        <span *ngIf="detailForm.controls.unit.errors?.required">Unit required.</span>
+        <span *ngIf="detailForm.controls.unit.errors?.maxlength">Max Length of Unit 150.</span>
+      </span>
     </div>
   </div>
   <div class="form-group row">
     <label for="inputRole" class="col-sm-2 col-form-label required">Role</label>
     <div class="col-sm-10">
-      <select class="form-control" formControlName="userRoleId" name="role">
+      <select class="form-control" [ngClass]="detailForm.controls.userRoleId.errors && detailForm.controls.userRoleId.touched ? ' error' : ''" formControlName="userRoleId" name="role">
         <option value="" selected>-- Choose --</option>
         <option *ngFor="let rl of role;" [value]="rl.code">{{ rl.value }}</option>
       </select>
+      <span class="text-danger invalidMessage" *ngIf="detailForm.controls.userRoleId.touched && detailForm.controls.userRoleId.errors">
+        <span *ngIf="detailForm.controls.userRoleId.errors?.required">Role must be Choosen.</span>
+      </span>
     </div>
   </div>
   <div class="form-group row">

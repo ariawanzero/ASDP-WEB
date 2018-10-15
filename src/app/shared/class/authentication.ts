@@ -7,4 +7,6 @@ export class Authentication {
     menu: MenuItem[];
     scope: string;
     token_type: string;
+    clientEmail: string;
+    clientName: string;
 }
