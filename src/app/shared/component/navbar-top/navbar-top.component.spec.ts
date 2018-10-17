@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { SidebarService } from '../../service/sidebar.service';
 
@@ -11,6 +12,7 @@ describe('NavbarTopComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ RouterTestingModule ],
       declarations: [ NavbarTopComponent ],
       providers: [ SidebarService ]
     })
