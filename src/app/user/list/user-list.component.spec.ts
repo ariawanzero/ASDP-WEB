@@ -1,6 +1,21 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+
+import { UserService } from '../user.service';
+import { ResponseService } from '../../shared/service/response.service';
 
 import { UserListComponent } from './user-list.component';
+
+class MockUserService extends UserService {
+
+}
+
+class MockResponseService extends ResponseService{
+
+}
 
 describe('UserListComponent', () => {
   let component: UserListComponent;
@@ -8,7 +23,20 @@ describe('UserListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserListComponent ]
+      imports: [ 
+        FormsModule,
+        RouterTestingModule,
+        HttpClientTestingModule
+      ],
+      declarations: [ UserListComponent ],
+      providers: [{
+        provide: UserService,
+        useClass: MockUserService
+      }, {
+        provide: ResponseService,
+        useClass: MockResponseService
+      }],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
   }));
@@ -33,5 +61,9 @@ describe('UserListComponent', () => {
 
   it('should initialize divisi', () => {
     expect(component.divisi).toBeDefined();
+  });
+
+  it('should initialize status', () => {
+    expect(component.stats).toBeDefined();
   });
 });

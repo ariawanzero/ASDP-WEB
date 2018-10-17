@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
-import { catchError, map, retry } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 import { PagingData } from '../shared/class/paging-data';
 
 import { ResponseService } from '../shared/service/response.service';
 
-import { UserFilter, User } from './user';
+import { UserFilter, User, UserDetail } from './user';
 
 @Injectable()
 export class UserService {
@@ -18,27 +18,24 @@ export class UserService {
     private respService: ResponseService
   ) { }
 
-  getFilteredUser(value: UserFilter): Observable<PagingData<User>> { 
+  getFilteredUser(value: UserFilter): Observable<PagingData<User[]>> { 
     return this.http.post(('/user/searchUser'), value)
       .pipe(
-        map(this.respService.extractDataPaging),
-        catchError(this.respService.errorHandling)
+        map(this.respService.extractDataPaging)
       )
   }
 
-  getSingleUser(value: any): Observable<User> {
+  getSingleUser(value: any): Observable<UserDetail> {
     return this.http.post(('/user/findUserDetail'), value)
       .pipe(
-        map(this.respService.extractData),
-        catchError(this.respService.errorHandling)
+        map(this.respService.extractData)
       )
   }
 
-  saveUser(value: User): Observable<any> { 
+  saveUser(value: UserDetail): Observable<any> { 
     return this.http.post(('/user/saveUser'), value)
       .pipe(
-        map(this.respService.extractData),
-        catchError(this.respService.errorHandling)
+        map(this.respService.extractResultAction)
       )
-  }  
+  }
 }

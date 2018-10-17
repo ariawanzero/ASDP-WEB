@@ -1,8 +1,21 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { SidebarService } from '../../service/sidebar.service';
+import { AuthenticationService } from '../../service/authentication.service';
+import { LocalStorageService } from '../../service/local-storage.service';
 
 import { NavbarSidebarComponent } from './navbar-sidebar.component';
+
+
+class MockAuthenticationService extends AuthenticationService {
+
+}
+
+class MockLocalStorageService extends LocalStorageService {
+
+}
 
 describe('NavbarSidebarComponent', () => {
   let component: NavbarSidebarComponent;
@@ -10,8 +23,20 @@ describe('NavbarSidebarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ 
+        HttpClientTestingModule,
+        RouterTestingModule
+      ],
       declarations: [ NavbarSidebarComponent ],
-      providers: [ SidebarService ]
+      providers: [ SidebarService, 
+        {
+          provide: AuthenticationService,
+          useClass: MockAuthenticationService
+        }, {
+          provide: LocalStorageService,
+          useClass: MockLocalStorageService
+        }
+      ]
     })
     .compileComponents();
   }));

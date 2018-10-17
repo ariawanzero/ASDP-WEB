@@ -3,49 +3,21 @@
     <img src="../../assets/image/logo_white_asdp.png" class="img-fluid img-logo" alt="imgLogo" />
   </div>
 
-  <ul class="list-unstyled components">
-    <p>Welcome, Superuser</p>
+  <ul class="list-unstyled components" *ngIf="menuList">
+    <p>Welcome, {{ user }}</p>
     <li>
-      <a href="#pageUser" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-users" aria-hidden="true"></i> User</a>
-      <ul class="collapse list-unstyled" id="pageUser">
-          <li>
-            <a href="#">List User</a>
-          </li>
-          <li>
-            <a href="#">History User</a>
+      <a><i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</a>
+    </li>
+    <li *ngFor="let menu of menuList;">
+      <a href="{{'#page'+menu.value}}" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="{{menu.icon}}" aria-hidden="true"></i> {{ menu.value }}</a>
+      <ul class="collapse list-unstyled" id="{{'page'+menu.value}}">
+          <li *ngFor="let item of menu.menuItem;">
+            <a (click)='goToPage(item.url)'>{{ item.menuName }}</a>
           </li>
       </ul>
     </li>
     <li>
-      <a href="#pageDocument" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-book" aria-hidden="true"></i> Document</a>
-      <ul class="collapse list-unstyled" id="pageDocument">
-          <li>
-            <a href="#">List Document</a>
-          </li>
-          <li>
-            <a href="#">History Document</a>
-          </li>
-          <li>
-            <a href="#">Pending Document</a>
-          </li>
-      </ul>
-    </li>
-    <li>
-      <a href="#pageELearning" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-graduation-cap" aria-hidden="true"></i> ELearning</a>
-      <ul class="collapse list-unstyled" id="pageELearning">
-          <li>
-            <a href="#">List Quiz</a>
-          </li>
-          <li>
-            <a href="#">Module ELearning</a>
-          </li>
-          <li>
-            <a href="#">Result Quiz</a>
-          </li>
-      </ul>
-    </li>
-    <li>
-      <a href="#"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign Out</a>
+      <a (click)='goSignOut()'><i class="fa fa-sign-out" aria-hidden="true"></i> Sign Out</a>
     </li>
   </ul>
 </nav>

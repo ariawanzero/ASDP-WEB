@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { RouterGuardService } from '../shared/service/router-guard.service';
+
 import { LoginComponent } from '../login/login.component';
 import { HomeComponent } from '../home/home.component';
-
-import { UserListComponent } from '../user/list/user-list.component';
-import { UserDetailComponent } from '../user/detail/user-detail.component';
 
 const appRoutes: Routes = [
   {
@@ -24,8 +23,13 @@ const appRoutes: Routes = [
       {
         path: 'user',
         loadChildren: 'src/app/user/user.module#UserModule'
+      }, 
+      {
+        path: 'change-password',
+        loadChildren: 'src/app/change-password/change-password.module#ChangePasswordModule'
       }
-    ]
+    ],
+    canActivate: [RouterGuardService]
   }
 ];
 

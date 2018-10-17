@@ -1,8 +1,8 @@
-export const DIVISi = [
-    { code: "KOMERSIAL", value: "Komersial" },
-    { code: "PELAYANAN_DAN_FASILITAS", value: "Pelayanan & Fasilitas" },
-    { code: "TEKNIK_DAN_OPERASIONAL", value: "Teknik & Operasional" },
-    { code: "SUMBER_DAYA_MANUSIA_DAN_UMUM", value: "Sumber Daya Manusia & Umum" },
-    { code: "KEUANGAN", value: "Keuangan" },
-    { code: "OTHER", value: "Other" }
+export const DIVISI = [
+    { code: "Komersial", value: "Komersial" },
+    { code: "Pelayanan dan Fasilitas", value: "Pelayanan & Fasilitas" },
+    { code: "Teknik dan Operasional", value: "Teknik & Operasional" },
+    { code: "Sumber Daya Manusia dan Umum", value: "Sumber Daya Manusia & Umum" },
+    { code: "Keuangan", value: "Keuangan" },
+    { code: "Other", value: "Other" }
 ]

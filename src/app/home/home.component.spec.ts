@@ -1,11 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { SharedModule } from '../shared/shared.module';
-
-import { AppRoutingModule } from '../app-routing/app-routing.module';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { HomeComponent } from './home.component';
-import { LoginComponent } from '../login/login.component';
+
+import { SidebarService } from '../shared/service/sidebar.service';
+
+class MockSidebarService extends SidebarService {
+
+}
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -13,14 +15,15 @@ describe('HomeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ 
-        SharedModule, 
-        AppRoutingModule
-      ],
+      imports: [],
       declarations: [ 
-        HomeComponent,
-        LoginComponent
-      ]
+        HomeComponent
+      ],
+      providers: [{
+        provide: SidebarService,
+        useClass: MockSidebarService
+      }],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
   }));

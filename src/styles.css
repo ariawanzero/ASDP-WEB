@@ -4,6 +4,18 @@ body, html {
     height: 100%;
 }
 
+textarea {
+    resize: none;
+}
+
+.invalidMessage {
+    font-size: smaller;
+}
+
+.error {
+    border-color: crimson;
+}
+
 .bg-please-wait-1 {
     background: rgba(128, 157, 176, 0.57);
     height: 100%;

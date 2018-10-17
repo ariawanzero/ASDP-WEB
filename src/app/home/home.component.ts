@@ -1,13 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
+
 import { SidebarService } from '../shared/service/sidebar.service';
 
 @Component({
-  selector: 'app-home',
+  selector: 'asdp-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  @BlockUI() blockUI: NgBlockUI;
+
   isOpen: boolean = false;
 
   constructor(
@@ -15,7 +19,12 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.changeToogleSidebar();
+    this.blockUI.start();
+
+    setTimeout(() => {
+      this.changeToogleSidebar();
+      this.blockUI.stop();
+    }, 2500);
   }
 
   private changeToogleSidebar(): void {

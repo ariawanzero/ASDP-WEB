@@ -4,3 +4,9 @@
     border-bottom: 1px solid #ddd;
     margin: 15px 0;
 }
+
+td a {
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
+}

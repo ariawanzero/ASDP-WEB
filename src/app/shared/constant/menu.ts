@@ -1,6 +1,5 @@
 export const MENU = [
-    { code: "DASHBOARD", value: "Dashboard" },
-    { code: "USER", value: "User" },
-    { code: "DOCUMENT", value: "Document" },
-    { code: "ELEARNING", value: "Elearning" }
+    { code: "USER", value: "User", icon: "fa fa-users" },
+    { code: "DOCUMENT", value: "Document", icon: "fa fa-book" },
+    { code: "ELEARNING", value: "Elearning", icon: "fa fa-graduation-cap" }
 ]
