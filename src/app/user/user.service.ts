@@ -8,7 +8,7 @@ import { PagingData } from '../shared/class/paging-data';
 
 import { ResponseService } from '../shared/service/response.service';
 
-import { UserFilter, User, UserDetail } from './user';
+import { UserFilter, User, UserDetail, UserHistoryFilter, UserHistory } from './user';
 
 @Injectable()
 export class UserService {
@@ -21,6 +21,13 @@ export class UserService {
   getFilteredUser(value: UserFilter): Observable<PagingData<User[]>> { 
     return this.http.post(('/user/searchUser'), value)
       .pipe(
+        map(this.respService.extractDataPaging)
+      )
+  }
+
+  getFilteredUserHistory(value: UserHistoryFilter): Observable<PagingData<UserHistory[]>> {
+    return this.http.post(('/user/searchHistoryLogin'), value)
+      .pipe (
         map(this.respService.extractDataPaging)
       )
   }

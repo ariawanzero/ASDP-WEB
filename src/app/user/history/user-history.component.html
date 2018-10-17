@@ -1,0 +1,36 @@
+<h4>History Filter</h4>
+<div class="line"></div>
+<form>
+  <div class="form-group row">
+    <label for="inputDate" class="col-sm-1 col-form-label">Date</label>
+    <div class="col-sm-4">
+      <input type="date" class="form-control" name="dateFrom" autocomplete="off">
+    </div>
+    <label for="inputDate" class="col-sm-1 col-form-label text-center"> - </label>
+    <div class="col-sm-4">
+      <input type="date" class="form-control" name="dateTo" autocomplete="off">
+    </div>
+  </div>
+</form>
+
+<br/>
+
+<h4>User History</h4>
+<div class="table-responsive-sm">
+  <table class="table table-sm">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">User</th>
+        <th scope="col">Login Date</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="page">
+        <tr *ngFor="let hist of page.data; let i = index">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{ hist.username }}</td>
+          <td>{{ hist.dateLogin }}</td>
+        </tr>
+      </tbody>
+  </table>
+</div>

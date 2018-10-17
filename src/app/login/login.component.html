@@ -23,7 +23,7 @@
                 </span>
               </div>
               <div class="form-group">
-                <input type="password" class="form-control" [ngClass]="loginForm.controls.username.errors && loginForm.controls.username.touched ? ' error' : ''" formControlName="password" name="password" placeholder="Password">
+                <input type="password" class="form-control" [ngClass]="loginForm.controls.password.errors && loginForm.controls.password.touched ? ' error' : ''" formControlName="password" name="password" placeholder="Password" autocomplete="on">
                 <span class="text-danger invalidMessage" *ngIf="loginForm.controls.password.touched && loginForm.controls.password.errors">
                   <span *ngIf="loginForm.controls.password.errors?.required">Password Required.</span>
                 </span>
