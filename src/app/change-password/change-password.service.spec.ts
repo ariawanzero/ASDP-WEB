@@ -1,7 +1,7 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-import { ResponseService } from 'src/app/shared/service/response.service';
+import { ResponseService } from '../shared/service/response.service';
 
 import { ChangePasswordService } from './change-password.service';
 

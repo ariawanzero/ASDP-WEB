@@ -5,7 +5,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { ConfirmationDialogService } from '../shared/service/confirmation-dialog.service';
 import { LocalStorageService } from '../shared/service/local-storage.service';
-import { ResponseService } from 'src/app/shared/service/response.service';
+import { ResponseService } from '../shared/service/response.service';
 
 import { ChangePasswordService } from './change-password.service';
 
