@@ -43,3 +43,20 @@ export class UserDetail {
     unit: string;
     expiredDate: number;
 }
+
+export class UserHistoryFilter {
+    startDate: string;
+    endDate: string;
+    page: number;
+
+    constructor() {
+        this.startDate = "";
+        this.endDate = "";
+        this.page = 0;
+    }
+}
+
+export class UserHistory {
+    username: string;
+    dateLogin: number;
+}

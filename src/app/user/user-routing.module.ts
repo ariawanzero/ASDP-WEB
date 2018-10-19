@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { UserListComponent } from './list/user-list.component';
 import { UserDetailComponent } from './detail/user-detail.component';
+import { UserHistoryComponent } from './history/user-history.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,10 @@ const routes: Routes = [
     path: 'edit/:id',
     data: { state: 'edit' },
     component: UserDetailComponent
+  },
+  {
+    path: 'history',
+    component: UserHistoryComponent
   }
 ];
 

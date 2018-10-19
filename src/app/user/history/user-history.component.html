@@ -1,0 +1,42 @@
+<h4>History Filter</h4>
+<div class="line"></div>
+<form>
+  <div class="form-group row">
+    <label for="inputDate" class="col-sm-1 col-form-label">Date</label>
+    <div class="col-sm-4">
+      <input type="date" class="form-control" [(ngModel)]="filter.startDate" name="startDate" autocomplete="off">
+    </div>
+    <label for="inputDate" class="col-sm-1 col-form-label text-center"> - </label>
+    <div class="col-sm-4">
+      <input type="date" class="form-control" [(ngModel)]="filter.endDate" name="endDate" autocomplete="off">
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-2 offset-sm-1">
+      <button type="button" class="btn btn-block btn-info" (click)="onSearch()"><i class="fa fa-search"> Search</i></button>
+    </div>
+  </div>
+</form>
+
+<br/>
+
+<h4>User History</h4>
+<div class="table-responsive-sm">
+  <table class="table table-sm">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">User</th>
+        <th scope="col">Login Date</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="page">
+        <tr *ngFor="let hist of page.data; let i = index">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{ hist.username }}</td>
+          <td>{{ hist.dateLogin | dateFormat }}</td>
+        </tr>
+      </tbody>
+  </table>
+</div>
+<asdp-paging *ngIf="page" [pagingData]="page" (notify)="onNotify($event)"></asdp-paging>

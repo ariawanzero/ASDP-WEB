@@ -48,7 +48,6 @@ export class UserListComponent implements OnInit {
     this.userServ.getFilteredUser(this.filter).subscribe(
       resp => {
         this.page = resp;
-        this.blockUI.stop();
       }, (err) => {
         console.log(err);
         this.blockUI.stop();

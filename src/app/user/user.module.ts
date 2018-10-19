@@ -10,10 +10,11 @@ import { SharedModule } from '../shared/shared.module';
 import { UserService } from './user.service';
 
 import { HttpErrorInterceptor } from '../http-interceptor/http-error-interceptor';
+import { Oauth2AuthenticationInterceptor } from '../http-interceptor/oauth2-authentication-interceptor';
 
 import { UserListComponent } from './list/user-list.component';
 import { UserDetailComponent } from './detail/user-detail.component';
-import { Oauth2AuthenticationInterceptor } from '../http-interceptor/oauth2-authentication-interceptor';
+import { UserHistoryComponent } from './history/user-history.component';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { Oauth2AuthenticationInterceptor } from '../http-interceptor/oauth2-auth
   ],
   declarations: [
     UserListComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    UserHistoryComponent
   ],
   providers: [
     {

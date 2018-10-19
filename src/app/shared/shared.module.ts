@@ -15,6 +15,8 @@ import { LocalStorageService } from './service/local-storage.service';
 import { AuthenticationService } from './service/authentication.service';
 import { RouterGuardService } from './service/router-guard.service';
 
+import { DateFormatPipe } from './pipe/date-format.pipe';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -27,7 +29,9 @@ import { RouterGuardService } from './service/router-guard.service';
     NavbarTopComponent,
     NavbarSidebarComponent,
     FooterComponent,
-    PagingComponent
+    PagingComponent,
+
+    DateFormatPipe
   ], 
   providers: [ 
     SidebarService,
@@ -40,7 +44,9 @@ import { RouterGuardService } from './service/router-guard.service';
     NavbarTopComponent,
     NavbarSidebarComponent,
     FooterComponent,
-    PagingComponent
+    PagingComponent,
+
+    DateFormatPipe
   ]
 })
 export class SharedModule { }
