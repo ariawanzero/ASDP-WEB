@@ -1,6 +1,8 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
+import { CookieService } from 'ngx-cookie-service';
+
 import { AuthenticationService } from './authentication.service';
 import { RouterGuardService } from './router-guard.service';
 import { LocalStorageService } from './local-storage.service';
@@ -10,6 +12,10 @@ class MockAuthenticationService extends AuthenticationService {
 }
 
 class MockLocalStorageService extends LocalStorageService {
+
+}
+
+class MockCookieService extends CookieService {
 
 }
 
@@ -24,6 +30,9 @@ describe('RouterGuardService', () => {
         }, {
           provide: LocalStorageService,
           useClass: MockLocalStorageService
+        }, {
+          provide: CookieService,
+          useClass: MockCookieService
         }
       ]
     });

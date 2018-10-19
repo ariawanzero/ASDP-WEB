@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
+import { CookieService } from 'ngx-cookie-service';
+
 import { UserRoutingModule } from './user-routing.module';
 
 import { SharedModule } from '../shared/shared.module';
@@ -40,7 +42,8 @@ import { UserHistoryComponent } from './history/user-history.component';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: Oauth2AuthenticationInterceptor,
-      multi: true
+      multi: true,
+      deps: [ CookieService ]
     },
     UserService
   ]

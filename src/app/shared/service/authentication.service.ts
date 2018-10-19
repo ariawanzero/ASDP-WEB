@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams, HttpErrorResponse } from '@angular/common/http';
 
+import { CookieService } from 'ngx-cookie-service';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
@@ -11,7 +12,8 @@ export class AuthenticationService {
 
   constructor(
     private http: HttpClient,
-    private localStorageServ: LocalStorageService
+    private localStorageServ: LocalStorageService,
+    private cookieService: CookieService
   ) { }
 
   getAccess(data: any): Observable<any>{
@@ -45,7 +47,7 @@ export class AuthenticationService {
   }
 
   checkCredentials(): boolean {
-    return this.localStorageServ.getValue('key') ? true : false;
+    return this.cookieService.get('key') ? true : false;
   }
 
   private handleError(error: HttpErrorResponse): Observable<any> {

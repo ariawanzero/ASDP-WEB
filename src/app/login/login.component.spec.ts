@@ -3,6 +3,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
+import { CookieService } from 'ngx-cookie-service';
+
 import { AuthenticationService } from '../shared/service/authentication.service';
 import { LocalStorageService } from '../shared/service/local-storage.service';
 
@@ -22,6 +24,10 @@ class MockGlobalMessageService extends GlobalMessageService {
 
 }
 
+class MockCookieService extends CookieService {
+
+}
+
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
@@ -36,15 +42,19 @@ describe('LoginComponent', () => {
       ],
       declarations: [ LoginComponent ],
       providers: [{
-        provide: AuthenticationService,
-        useClass: MockAuthenticationService
-      }, {
-        provide: LocalStorageService,
-        useClass: MockLocalStorageService
-      }, {
-        provide: GlobalMessageService,
-        useClass: MockGlobalMessageService
-      }],
+          provide: AuthenticationService,
+          useClass: MockAuthenticationService
+        }, {
+          provide: LocalStorageService,
+          useClass: MockLocalStorageService
+        }, {
+          provide: GlobalMessageService,
+          useClass: MockGlobalMessageService
+        }, {
+          provide: CookieService,
+          useClass: MockCookieService
+        }
+      ]
     })
     .compileComponents();
   }));

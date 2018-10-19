@@ -25,6 +25,7 @@
     "font-awesome": "^4.7.0",
     "jquery": "^3.3.1",
     "ng-block-ui": "^1.0.6",
+    "ngx-cookie-service": "^1.0.10",
     "popper.js": "^1.14.3",
     "rxjs": "^6.0.0",
     "rxjs-compat": "^6.2.2",

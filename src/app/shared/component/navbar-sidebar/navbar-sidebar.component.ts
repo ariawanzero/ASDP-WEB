@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
+import { CookieService } from 'ngx-cookie-service';
 
 import { LocalStorageService } from '../../service/local-storage.service';
 import { AuthenticationService } from '../../service/authentication.service';
@@ -26,7 +27,8 @@ export class NavbarSidebarComponent implements OnInit {
     private sidebarServ: SidebarService,
     private localStorageServ: LocalStorageService,
     private router:Router,
-    private activatedRoute:ActivatedRoute
+    private activatedRoute:ActivatedRoute,
+    private cookieService: CookieService
   ) { }
 
   ngOnInit() {
@@ -60,6 +62,7 @@ export class NavbarSidebarComponent implements OnInit {
         this.blockUI.stop();
         console.log(err);
       }, () => {
+        this.cookieService.deleteAll();
         this.localStorageServ.clearAll();
         this.router.navigate(['']);
       }

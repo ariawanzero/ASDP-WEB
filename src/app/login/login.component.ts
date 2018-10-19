@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
+import { CookieService } from 'ngx-cookie-service';
 
 import { Authentication } from '../shared/class/authentication';
 import { Menu } from '../shared/class/menu';
@@ -27,7 +28,8 @@ export class LoginComponent implements OnInit {
     private router:Router,
     private authServ: AuthenticationService,
     private localStorageServ: LocalStorageService,
-    private globalMessageServ: GlobalMessageService
+    private globalMessageServ: GlobalMessageService,
+    private cookieService: CookieService
   ) { }
 
   ngOnInit() {
@@ -75,8 +77,8 @@ export class LoginComponent implements OnInit {
   }
 
   private generateKey(): void {
-    let key = this.responseAuth.token_type + ' ' + this.responseAuth.access_token;
-    this.localStorageServ.insertValue('key', key);
+    let key: string = this.responseAuth.token_type + ' ' + this.responseAuth.access_token;
+    this.cookieService.set('key', key, this.responseAuth.expires_in);
   }
 
   private generateClient(): void {
@@ -85,6 +87,7 @@ export class LoginComponent implements OnInit {
   }
 
   private goToDashboard(): void {
+    console.log(this.cookieService.get('key'));
     this.router.navigate(['home']);
   }
 }
