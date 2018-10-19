@@ -33,10 +33,17 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.checkAuth();
     this.loginForm = new FormGroup({
       username: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required)
     });
+  }
+
+  private checkAuth(): void {
+    if(this.authServ.checkCredentials()) {
+      this.goToDashboard();
+    }
   }
 
   loginUser() {
@@ -86,8 +93,7 @@ export class LoginComponent implements OnInit {
     this.localStorageServ.insertValue('client-name', this.responseAuth.clientName);
   }
 
-  private goToDashboard(): void {
-    console.log(this.cookieService.get('key'));
+  private goToDashboard(): void { 
     this.router.navigate(['home']);
   }
 }
