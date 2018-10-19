@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { BlockUIModule } from 'ng-block-ui';
+import { CookieService } from 'ngx-cookie-service';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { SharedModule } from './shared/shared.module';
@@ -36,7 +37,8 @@ import { GlobalMessageService  } from './shared/service/global-message.service';
   ],
   providers: [
     ConfirmationDialogService,
-    GlobalMessageService
+    GlobalMessageService,
+    CookieService
   ],
   bootstrap: [AppComponent]
 })

@@ -2,6 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
+import { CookieService } from 'ngx-cookie-service';
+
 import { SidebarService } from '../../service/sidebar.service';
 import { AuthenticationService } from '../../service/authentication.service';
 import { LocalStorageService } from '../../service/local-storage.service';
@@ -14,6 +16,10 @@ class MockAuthenticationService extends AuthenticationService {
 }
 
 class MockLocalStorageService extends LocalStorageService {
+
+}
+
+class MockCookieService extends CookieService {
 
 }
 
@@ -35,6 +41,9 @@ describe('NavbarSidebarComponent', () => {
         }, {
           provide: LocalStorageService,
           useClass: MockLocalStorageService
+        }, {
+          provide: CookieService,
+          useClass: MockCookieService
         }
       ]
     })
