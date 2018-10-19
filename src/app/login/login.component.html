@@ -15,7 +15,7 @@
             <h3>Di Website Resmi ASDP</h3>
           </div>
           <div class="card-block login-form">
-            <form [formGroup]="loginForm" (ngSubmit)="loginUser($event)">
+            <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
               <div class="form-group">
                 <input type="email" class="form-control" [ngClass]="loginForm.controls.username.errors && loginForm.controls.username.touched ? ' error' : ''"  formControlName="username" name="username" placeholder="Email">
                 <span class="text-danger invalidMessage" *ngIf="loginForm.controls.username.touched && loginForm.controls.username.errors">
