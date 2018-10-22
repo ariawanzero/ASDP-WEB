@@ -112,7 +112,7 @@ export class UserDetailComponent implements OnInit {
       jabatan: user.jabatan,
       divisi: user.divisi,
       unit: user.unit,
-      role: user.userRoleId,
+      userRoleId: user.userRoleId,
       expiredDate: new Date(user.expiredDate).toISOString().substring(0, 10)
     })
   }
