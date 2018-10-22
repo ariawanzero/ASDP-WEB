@@ -70,7 +70,7 @@ export class UserDetailComponent implements OnInit {
       divisi: new FormControl('', [Validators.required]),
       unit: new FormControl('', [Validators.required, Validators.maxLength(150)]),
       userRoleId: new FormControl('', [Validators.required]),
-      expiredDate: new FormControl('', [Validators.required])
+      expiredDate: new FormControl('')
     });
 
     if(!this.isAdd) { this.getIdFromParameter(); }
