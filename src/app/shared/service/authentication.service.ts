@@ -34,7 +34,7 @@ export class AuthenticationService {
   }
 
   removeAccess(): Observable<any> {
-    let currentKey: string = this.localStorageServ.getValue('key');
+    let currentKey: string = this.cookieService.get('key');
 
     const AUTH = new HttpHeaders()
       .set('Authorization', currentKey);
