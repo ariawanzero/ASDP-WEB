@@ -6,6 +6,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { UserService } from '../user.service';
 import { ResponseService } from '../../shared/service/response.service';
+import { LocalStorageService } from '../../shared/service/local-storage.service';
 
 import { UserListComponent } from './user-list.component';
 
@@ -14,6 +15,10 @@ class MockUserService extends UserService {
 }
 
 class MockResponseService extends ResponseService{
+
+}
+
+class MockLocalStorageService extends LocalStorageService {
 
 }
 
@@ -35,6 +40,9 @@ describe('UserListComponent', () => {
       }, {
         provide: ResponseService,
         useClass: MockResponseService
+      }, {
+        provide: LocalStorageService,
+        useClass: MockLocalStorageService
       }],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })

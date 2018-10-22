@@ -8,9 +8,9 @@ export class UserFilter {
     status: string;
     page: number;
 
-    constructor() {
+    constructor(active: string) {
         this.username = "";
-        this.usernameActive = "";
+        this.usernameActive = active;
         this.name = "";
         this.jabatan = "";
         this.divisi = "";
