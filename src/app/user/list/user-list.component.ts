@@ -3,8 +3,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
-import { LocalStorageService } from '../../shared/service/local-storage.service';
-
 import { ROLE } from '../../shared/constant/role';
 import { JABATAN } from '../../shared/constant/jabatan';
 import { DIVISI } from '../../shared/constant/divisi';
@@ -36,12 +34,11 @@ export class UserListComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private userServ: UserService,
-    private localStorageServ: LocalStorageService,
+    private userServ: UserService
   ) { }
 
   ngOnInit() {
-    this.filter = new UserFilter(this.localStorageServ.getValue('client-email'));
+    this.filter = new UserFilter();
     
     this.getUserList();
   }
