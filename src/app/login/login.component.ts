@@ -41,9 +41,7 @@ export class LoginComponent implements OnInit {
   }
 
   private checkAuth(): void {
-    if(this.authServ.checkCredentials()) {
-      this.goToDashboard();
-    }
+    if(this.authServ.checkCredentials()) this.cookieService.delete('key');
   }
 
   loginUser() {
@@ -76,7 +74,8 @@ export class LoginComponent implements OnInit {
       if(idx >= 0) {
         let parent: Menu = new Menu(val.code, val.value, val.icon);
         parent.menuItem = this.responseAuth.menu.filter(item => item.parent === val.code);
-        menuList.push(parent);
+        
+        if(parent.menuItem.length >= 0) menuList.push(parent);
       }
     })
 
