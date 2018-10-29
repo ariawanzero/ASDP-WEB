@@ -9,18 +9,15 @@ const routes: Routes = [
   {
     path: '',
     component: UserListComponent
-  }, 
-  {
+  }, {
     path: 'add',
     data: { state: 'add' },
     component: UserDetailComponent
-  },
-  {
+  }, {
     path: 'edit/:id',
     data: { state: 'edit' },
     component: UserDetailComponent
-  },
-  {
+  }, {
     path: 'history',
     component: UserHistoryComponent
   }

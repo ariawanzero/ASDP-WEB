@@ -32,7 +32,7 @@ export class UserService {
       )
   }
 
-  getSingleUser(value: any): Observable<UserDetail> {
+  getDetailUser(value: any): Observable<UserDetail> {
     return this.http.post(('/user/findUserDetail'), value)
       .pipe(
         map(this.respService.extractData)

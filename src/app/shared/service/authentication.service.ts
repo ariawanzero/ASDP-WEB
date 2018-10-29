@@ -24,7 +24,7 @@ export class AuthenticationService {
 
     const OPTIONS = new HttpHeaders()
       .set('Content-type', 'application/x-www-form-urlencoded')
-      .set('Authorization', 'Basic '+ btoa("infoasdp-client:infoasdp-secret"));
+      .set('Authorization', 'Basic '+ btoa("asdp-client:asdp-secret"));
     
     return this.http.post('/oauth/token', BODY.toString(), { headers : OPTIONS })
             .pipe(
@@ -47,7 +47,7 @@ export class AuthenticationService {
   }
 
   checkCredentials(): boolean {
-    return this.cookieService.get('key') ? true : false;
+    return this.cookieService.check('key');
   }
 
   private handleError(error: HttpErrorResponse): Observable<any> {

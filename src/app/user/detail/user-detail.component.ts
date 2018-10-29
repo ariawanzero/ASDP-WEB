@@ -53,7 +53,7 @@ export class UserDetailComponent implements OnInit {
     this.checkStateAction(state);
   }
 
-  private checkStateAction(action: string) {
+  private checkStateAction(action: string): void {
     this.isAdd = action === "add" ? true : false;
     this.setForm();
   }
@@ -89,7 +89,7 @@ export class UserDetailComponent implements OnInit {
 
   private getUser(): void {
     this.blockUI.start();
-    this.userServ.getSingleUser({ id: this.userId }).subscribe(
+    this.userServ.getDetailUser({ id: this.userId }).subscribe(
       resp => {
         this.user = resp;
       }, err => {
