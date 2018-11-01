@@ -8,15 +8,6 @@ export class MateriFilter {
     }
 }
 
-export class MateriRequest {
-    id: string;
-    name: string;
-    file: FormData;
-}
-
 export class Materi {
-    id: string;
     name: string;
-    nameFile: string[];
-    nameFileJson: string;
 }

@@ -12,7 +12,7 @@ import { ConfirmationDialogService } from '../../shared/service/confirmation-dia
 
 import { MateriService } from '../materi.service';
 
-import { MateriRequest } from '../materi';
+import { Materi } from '../materi';
 
 @Component({
   selector: 'asdp-materi-detail',
@@ -24,14 +24,9 @@ export class MateriDetailComponent implements OnInit {
 
   task: Task = Task.None;
 
-  isAdd: boolean;
   materiId: string;
 
-  selectedFiles: FileList;
-  currentFileUpload: File;
-
   detailForm: FormGroup;
-  formData: FormData;
 
   constructor(
     private router: Router,
@@ -42,84 +37,35 @@ export class MateriDetailComponent implements OnInit {
 
   ngOnInit() {
     let state = this.route.snapshot.data['state'];
-    this.checkStateAction(state);
-  }
-
-  private checkStateAction(action: string): void {
-    this.isAdd = action === "add" ? true : false;
     this.setForm();
   }
 
   private setForm(): void {
     this.detailForm = new FormGroup({
-      id: new FormControl(''),
       name: new FormControl('', [Validators.required, Validators.maxLength(100)]),
-      file: new FormControl(null)
     });
-
-    if(!this.isAdd) { this.getIdFromParameter(); }
   }
 
-  private getIdFromParameter(): void {
-    this.route.params.subscribe(
-      params => { 
-        this.materiId = params['id'];
-        this.getMateri();
-      }, err => { 
-        console.log(err);
-      }
-    );
+  private mapHeader(data: any): Materi {
+    let dt: Materi = new Materi();
+    dt = Object.assign({}, data);
+
+    return dt;
   }
 
-  private getMateri(): void {
+  private saveMateri(): void {  
     this.blockUI.start();
-    this.materiServ.getDetailMateri({ id: this.materiId }).subscribe(
+    this.materiServ.saveMateriHeader(this.mapHeader(this.detailForm.getRawValue())).subscribe(
       resp => {
-        console.log(resp);
-        // this.user = resp;
-      }, err => {
-        this.blockUI.stop();
+        this.materiId = resp;
+      }, (err) => {
         console.log(err);
-      }, () => {
-        // this.setValueForm(this.user);
         this.blockUI.stop();
+      }, () => {
+        this.blockUI.stop();
+        this.onGoToUpload();
       }
     )
-  }
-
-  onFileChange(event: any): void {
-    let reader: FileReader = new FileReader();
-
-    if(event.target.files && event.target.files.length) {
-      this.selectedFiles = event.target.files;
-      this.detailForm.patchValue({
-        file: event.target.files
-      })
-    }
-  }
-
-  private mapMateri(data: any): MateriRequest {
-    let materiReq: MateriRequest = new MateriRequest();
-    materiReq = Object.assign({}, data);
-    
-    return materiReq;
-  }
-
-  private saveMateri(): void {
-    this.currentFileUpload = this.selectedFiles.item(0);
-    this.materiServ.pushFileToStorage(this.currentFileUpload).subscribe(event => {
-      console.log(event);
-    });
- 
-    // this.blockUI.start();
-    // this.materiServ.saveMateri(this.mapMateri(this.detailForm.getRawValue())).subscribe(
-    //   resp => {
-    //     console.log(resp);
-    //   }, (err) => {
-    //     console.log(err);
-    //     this.blockUI.stop();
-    //   }
-    // )
   }
 
   onSubmit(): void {
@@ -139,14 +85,12 @@ export class MateriDetailComponent implements OnInit {
 
   onSave(): void { this.task = Task.Save; }
 
-  onGoToList(): void {
-    if (this.isAdd) {
-      this.router.navigate(['../' ], { relativeTo: this.route });
-    } else if (!this.isAdd) {
-      this.router.navigate(['../../' ], { relativeTo: this.route });
-    } else {
-      this.router.navigate(['/home']);
-    }
+  private onGoToList(): void {
+    this.router.navigate(['../' ], { relativeTo: this.route });
+  }
+
+  private onGoToUpload(): void {
+    this.router.navigate(['../upload', this.materiId], { relativeTo: this.route });
   }
 
   onCancel(): void {

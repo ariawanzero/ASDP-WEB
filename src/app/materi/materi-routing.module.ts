@@ -10,12 +10,9 @@ const routes: Routes = [
     component: MateriListComponent
   }, {
     path: 'add',
-    data: { state: 'add' },
     component: MateriDetailComponent
   }, {
-    path: 'edit/:id',
-    data: { state: 'edit' },
-    component: MateriDetailComponent
+    path: 'upload/:id',
   }
 ];
 
