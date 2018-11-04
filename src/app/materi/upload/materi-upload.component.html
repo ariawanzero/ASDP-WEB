@@ -8,36 +8,37 @@
     <label class="btn">
       <input type="file" (change)="onSelectFile($event)">
     </label>
-    <button class="btn btn-success" [disabled]="!selectedFiles" (click)="onUpload()">Upload</button>
+    <button class="btn btn-success" [disabled]="!selectedFiles" (click)="onUpload()"><i class="fa fa-cloud-upload"> Upload</i></button>
+    <button class="btn btn-secondary" (click)="onBack()"><i class="fa fa-arrow-left" aria-hidden="true"> Back</i></button>
   </div>
 </div>
-<div class="progress">
-    <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" 
-      attr.aria-valuenow="{{progress.percentage}}"
-      aria-valuemin="0" aria-valuemax="100" 
-      [ngStyle]="{width:progress.percentage+'%'}">
-      {{progress.percentage}}%
-    </div>
+<div *ngIf="currentFile" class="progress">
+  <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" 
+    attr.aria-valuenow="{{progress.percentage}}"
+    aria-valuemin="0" aria-valuemax="100" 
+    [ngStyle]="{width:progress.percentage+'%'}">
+    {{progress.percentage}}%
+  </div>
 </div>
 <br/>
 <div class="table-responsive-sm">
-    <table class="table table-sm">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Name File</th>
-          <th scope="col">Action</th>
-        </tr>
-      </thead>
-      <tbody *ngIf="dtMateri">
-        <tr *ngFor="let file of dtMateri.nameFile; let i = index">
-          <th scope="row">{{ i + 1 }}</th>
-          <td>{{ file }}</td>
-          <td>
-            <button type="button" class="btn btn-primary btn-sm" (click)="onPreview()">Preview</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <object data="http://localhost:8081/materi/previewFile?name=coba-1.pdf" type="application/pdf"></object>
+  <table class="table table-sm">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name File</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="dtMateri">
+      <tr *ngFor="let file of dtMateri.nameFile; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ file }}</td>
+        <td>
+          <button type="button" class="btn btn-primary btn-sm" (click)="onPreview(dtMateri.urlPreview + file)">Preview</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<asdp-modal-materi-file [urlFile]="urlFile"></asdp-modal-materi-file>

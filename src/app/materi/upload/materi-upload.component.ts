@@ -6,8 +6,9 @@ import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { MateriService } from '../materi.service';
 
 import { Materi } from '../materi';
-import { HttpEventType, HttpResponse } from '@angular/common/http';
+import { HttpEventType } from '@angular/common/http';
 
+import { ModalService } from '../../shared/service/modal.service';
 
 @Component({
   selector: 'app-materi-upload',
@@ -19,6 +20,7 @@ export class MateriUploadComponent implements OnInit {
 
   materiId: string;
   dtMateri: Materi;
+  urlFile: string;
 
   selectedFiles: FileList;
   currentFile: File;
@@ -27,7 +29,8 @@ export class MateriUploadComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private materiServ: MateriService
+    private materiServ: MateriService,
+    private modalServ: ModalService
   ) { }
 
   ngOnInit() {
@@ -78,5 +81,12 @@ export class MateriUploadComponent implements OnInit {
         this.getMateriDetail();
       }
     )
+  }
+
+  onBack(): void { this.router.navigate(['../../'], { relativeTo: this.route }) }
+
+  onPreview(url: string): void {
+    this.urlFile = url;
+    this.modalServ.openModal("modal-materi-file");
   }
 }

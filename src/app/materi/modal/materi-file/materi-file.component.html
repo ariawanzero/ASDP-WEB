@@ -1,0 +1,15 @@
+<div id="modal-materi-file" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+          <h6 class="modal-title">Materi Preview</h6>
+      </div>
+      <div class="modal-body">
+        <object class="object-data" *ngIf="urlFile" [data]='sanitizer.bypassSecurityTrustResourceUrl(urlFile)' type="application/pdf"></object>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="onClose()"><i class="fa fa-ban"> Close</i></button>
+      </div>
+    </div>
+  </div>
+</div>  

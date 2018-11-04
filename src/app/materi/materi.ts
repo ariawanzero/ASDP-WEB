@@ -12,4 +12,5 @@ export class Materi {
     id: string;
     name: string;
     nameFile: string[];
+    urlPreview: string;
 }

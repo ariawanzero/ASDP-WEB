@@ -9,7 +9,7 @@ import { ConfirmationDialogService } from '../../../shared/service/confirmation-
 import { ModalService } from '../../../shared/service/modal.service';
 
 @Component({
-  selector: 'asdp-materi-modal-detail',
+  selector: 'asdp-modal-materi-detail',
   templateUrl: './materi-detail.component.html',
   styleUrls: ['./materi-detail.component.css']
 })
