@@ -1,9 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { MateriService } from '../materi.service';
 import { ResponseService } from '../../shared/service/response.service';
+import { ModalService } from '../../shared/service/modal.service';
 
 import { MateriUploadComponent } from './materi-upload.component';
 
@@ -15,6 +17,9 @@ class MockResponseService extends ResponseService{
 
 }
 
+class MockModalService extends ModalService {
+
+}
 
 describe('MateriUploadComponent', () => {
   let component: MateriUploadComponent;
@@ -33,7 +38,11 @@ describe('MateriUploadComponent', () => {
       }, {
         provide: ResponseService,
         useClass: MockResponseService
-      }]
+      }, {
+        provide: ModalService,
+        useClass: MockModalService
+      }],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
   }));

@@ -1,7 +1,7 @@
 <div id="modal-materi-header" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog">
     <div class="modal-content">
-      <form [formGroup]="detailForm" (ngSubmit)="onSubmit()">
+      <form *ngIf="detailForm" [formGroup]="detailForm" (ngSubmit)="onSubmit()">
         <div class="modal-header">
             <h6 class="modal-title">Materi Header</h6>
         </div>

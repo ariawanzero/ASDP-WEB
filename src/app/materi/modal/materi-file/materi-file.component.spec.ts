@@ -1,6 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { ModalService } from '../../../shared/service/modal.service';
+
 import { MateriFileComponent } from './materi-file.component';
+
+class MockModalService extends ModalService {
+
+}
 
 describe('MateriFileComponent', () => {
   let component: MateriFileComponent;
@@ -8,7 +14,11 @@ describe('MateriFileComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MateriFileComponent ]
+      declarations: [ MateriFileComponent ],
+      providers: [{
+        provide: ModalService,
+        useClass: MockModalService
+      }]
     })
     .compileComponents();
   }));
