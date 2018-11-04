@@ -57,7 +57,7 @@ export class ConfirmationDialogComponent implements OnInit {
       return;
     }
     this._confirmElement.style.opacity = 0;
-    this._confirmElement.style.zIndex = 1;
+    this._confirmElement.style.zIndex = 1051;
 
     this._cancelButton.onclick = ((e: any) => {
       e.preventDefault();

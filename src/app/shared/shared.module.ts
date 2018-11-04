@@ -14,6 +14,7 @@ import { ResponseService } from './service/response.service';
 import { LocalStorageService } from './service/local-storage.service';
 import { AuthenticationService } from './service/authentication.service';
 import { RouterGuardService } from './service/router-guard.service';
+import { ModalService } from './service/modal.service';
 
 import { DateFormatPipe } from './pipe/date-format.pipe';
 
@@ -38,7 +39,8 @@ import { DateFormatPipe } from './pipe/date-format.pipe';
     ResponseService,
     LocalStorageService,
     AuthenticationService,
-    RouterGuardService
+    RouterGuardService,
+    ModalService
   ],
   exports: [
     NavbarTopComponent,

@@ -84,7 +84,10 @@ export class LoginComponent implements OnInit {
 
   private generateKey(): void {
     let key: string = this.responseAuth.token_type + ' ' + this.responseAuth.access_token;
-    this.cookieService.set('key', key, this.responseAuth.expires_in);
+    let expire: Date = new Date();
+    expire.setSeconds(new Date().getSeconds() + this.responseAuth.expires_in);
+
+    this.cookieService.set('key', key, expire);
   }
 
   private generateClient(): void {
