@@ -22,7 +22,7 @@ const appRoutes: Routes = [
     children: [
       {
         path: 'user',
-        loadChildren: 'src/app/user/user.module#UserModule'
+        loadChildren: 'src/app/user/user.module#UserModule',
       }, {
         path: 'change-password',
         loadChildren: 'src/app/change-password/change-password.module#ChangePasswordModule'
@@ -31,7 +31,8 @@ const appRoutes: Routes = [
         loadChildren: 'src/app/materi/materi.module#MateriModule'
       }
     ],
-    canActivate: [RouterGuardService]
+    canActivate: [RouterGuardService],
+    canActivateChild: [RouterGuardService]
   }
 ];
 

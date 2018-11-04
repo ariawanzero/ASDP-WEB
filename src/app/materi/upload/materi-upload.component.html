@@ -1,0 +1,43 @@
+<h4>Materi Upload Form</h4>
+<div class="line"></div>
+<div class="row">
+  <div class="col-sm-12"><h6>Name : <span *ngIf="dtMateri">{{ dtMateri.name }}</span></h6></div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <label class="btn">
+      <input type="file" (change)="onSelectFile($event)">
+    </label>
+    <button class="btn btn-success" [disabled]="!selectedFiles" (click)="onUpload()">Upload</button>
+  </div>
+</div>
+<div class="progress">
+    <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" 
+      attr.aria-valuenow="{{progress.percentage}}"
+      aria-valuemin="0" aria-valuemax="100" 
+      [ngStyle]="{width:progress.percentage+'%'}">
+      {{progress.percentage}}%
+    </div>
+</div>
+<br/>
+<div class="table-responsive-sm">
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name File</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="dtMateri">
+        <tr *ngFor="let file of dtMateri.nameFile; let i = index">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{ file }}</td>
+          <td>
+            <button type="button" class="btn btn-primary btn-sm" (click)="onPreview()">Preview</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <object data="http://localhost:8081/materi/previewFile?name=coba-1.pdf" type="application/pdf"></object>

@@ -13,9 +13,11 @@ import { HttpErrorInterceptor } from '../http-interceptor/http-error-interceptor
 import { Oauth2AuthenticationInterceptor } from '../http-interceptor/oauth2-authentication-interceptor';
 
 import { MateriService } from './materi.service';
+import { ModalService } from '../shared/service/modal.service';
 
 import { MateriListComponent } from './list/materi-list.component';
-import { MateriDetailComponent } from './detail/materi-detail.component';
+import { MateriDetailComponent } from './modal/materi-detail/materi-detail.component';
+import { MateriUploadComponent } from './upload/materi-upload.component';
 
 @NgModule({
   imports: [
@@ -29,7 +31,8 @@ import { MateriDetailComponent } from './detail/materi-detail.component';
   ],
   declarations: [
     MateriListComponent,
-    MateriDetailComponent
+    MateriDetailComponent,
+    MateriUploadComponent
   ],
   providers: [
     {
@@ -43,7 +46,8 @@ import { MateriDetailComponent } from './detail/materi-detail.component';
       multi: true,
       deps: [ CookieService ]
     },
-    MateriService
+    MateriService,
+    ModalService
   ]
 })
 export class MateriModule { }
