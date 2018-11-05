@@ -6,7 +6,7 @@
 <div class="row">
   <div class="col-sm-12">
     <label class="btn">
-      <input type="file" (change)="onSelectFile($event)">
+      <input type="file" (change)="onSelectFile($event)" accept="application/pdf">
     </label>
     <button class="btn btn-success" [disabled]="!selectedFiles" (click)="onUpload()"><i class="fa fa-cloud-upload"> Upload</i></button>
     <button class="btn btn-secondary" (click)="onBack()"><i class="fa fa-arrow-left" aria-hidden="true"> Back</i></button>
