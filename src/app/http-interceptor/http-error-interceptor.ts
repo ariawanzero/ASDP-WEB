@@ -5,13 +5,13 @@ import { catchError } from "rxjs/operators";
 export class HttpErrorInterceptor implements HttpInterceptor{
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{
         return next.handle(request).pipe(
-            catchError( (error: HttpErrorResponse) => { 
+            catchError( (error: HttpErrorResponse) => {
                 let errMsg = '';
-                // Client Side Error
+                // Client Side Error                
                 if (error.error instanceof ErrorEvent) {        
                     errMsg = `Error: ${error.error.message}`;
                 } else {  // Server Side Error
-                    errMsg = `Error Code: ${error.status},  Message: ${error.message}`;
+                    errMsg = `Error Code: ${error.status},  Message: ${error.statusText}`;
                 }
                 return throwError(errMsg);
             })

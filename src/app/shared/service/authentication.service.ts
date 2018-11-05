@@ -53,7 +53,8 @@ export class AuthenticationService {
   private handleError(error: HttpErrorResponse): Observable<any> {
     let errMsg = '';
     if(error.status < 500) {
-      errMsg = `Error: ${error.error.error}, Message: ${error.error.error_description}`;
+      console.log(`Error: ${error.error.error}, Message: ${error.error.error_description}`);
+      errMsg = "Email or Password doesn't Registered";
     } else {
       errMsg = error.statusText;
     }

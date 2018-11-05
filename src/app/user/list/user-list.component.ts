@@ -11,6 +11,8 @@ import { STATS } from '../../shared/constant/stats';
 import { SimpleObject } from '../../shared/class/simple-object';
 import { PagingData } from '../../shared/class/paging-data';
 
+import { GlobalMessageService } from '../../shared/service/global-message.service';
+
 import { UserService } from '../user.service';
 
 import { UserFilter, User } from '../user';
@@ -34,7 +36,8 @@ export class UserListComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private userServ: UserService
+    private userServ: UserService,
+    private globalMsgServ: GlobalMessageService
   ) { }
 
   ngOnInit() {
@@ -49,8 +52,8 @@ export class UserListComponent implements OnInit {
       resp => {
         this.page = resp;
       }, (err) => {
-        console.log(err);
         this.blockUI.stop();
+        this.globalMsgServ.changeMessage(err);
       }, () => {
         this.blockUI.stop();
       }
