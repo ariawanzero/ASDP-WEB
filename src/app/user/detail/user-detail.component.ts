@@ -15,6 +15,7 @@ import { CommonResponseStatus } from '../../shared/class/common-response-status'
 import { Task } from '../../shared/enum/task.enum';
 
 import { ConfirmationDialogService } from '../../shared/service/confirmation-dialog.service';
+import { GlobalMessageService } from '../../shared/service/global-message.service';
 
 import { UserService } from '../user.service';
 
@@ -45,6 +46,7 @@ export class UserDetailComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private confirmServ: ConfirmationDialogService,
+    private globalMsgServ: GlobalMessageService,
     private userServ: UserService
   ) { }
 
@@ -82,7 +84,7 @@ export class UserDetailComponent implements OnInit {
         this.userId = params['id'];
         this.getUser();
       }, err => { 
-        console.log(err);
+        this.globalMsgServ.changeMessage(err);
       }
     );
   }
@@ -94,7 +96,7 @@ export class UserDetailComponent implements OnInit {
         this.user = resp;
       }, err => {
         this.blockUI.stop();
-        console.log(err);
+        this.globalMsgServ.changeMessage(err);
       }, () => {
         this.setValueForm(this.user);
         this.blockUI.stop();
@@ -129,9 +131,9 @@ export class UserDetailComponent implements OnInit {
     this.userServ.saveUser(this.mapUser(this.detailForm.getRawValue())).subscribe(
       resp => {
         this.response = resp;
-      }, err => {
+      }, (err) => {
         this.blockUI.stop();
-        console.log(err);
+        this.globalMsgServ.changeMessage(err);
       }, () => {
         this.blockUI.stop();
         this.checkResultAction();
@@ -141,7 +143,7 @@ export class UserDetailComponent implements OnInit {
 
   private checkResultAction(): void {
     if(this.response.responseCode !== "00") {
-      console.log(this.response.responseDesc);
+      this.globalMsgServ.changeMessage(this.response.responseDesc);
     } else {
       this.onGoToList();
     }
@@ -156,7 +158,7 @@ export class UserDetailComponent implements OnInit {
           });
         break;
       default:
-        console.log('Unhandled Task');
+        this.globalMsgServ.changeMessage('Unhandled Task');
         this.task = Task.None;
         break;
     }

@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpEventType } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
+import { GlobalMessageService } from '../../shared/service/global-message.service';
+import { ModalService } from '../../shared/service/modal.service';
+
 import { MateriService } from '../materi.service';
 
 import { Materi } from '../materi';
-import { HttpEventType } from '@angular/common/http';
-
-import { ModalService } from '../../shared/service/modal.service';
 
 @Component({
   selector: 'app-materi-upload',
@@ -30,7 +31,8 @@ export class MateriUploadComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private materiServ: MateriService,
-    private modalServ: ModalService
+    private modalServ: ModalService,
+    private globalMsgServ: GlobalMessageService
   ) { }
 
   ngOnInit() {
@@ -43,7 +45,7 @@ export class MateriUploadComponent implements OnInit {
         this.materiId = params['id'];
         this.getMateriDetail();
       }, err => { 
-        console.log(err);
+        this.globalMsgServ.changeMessage(err);
       }
     );
   }
@@ -54,8 +56,8 @@ export class MateriUploadComponent implements OnInit {
       data => {
         this.dtMateri = data;
       }, (err) => {
-        console.log(err);
         this.blockUI.stop();
+        this.globalMsgServ.changeMessage(err);
       }, () => {
         this.blockUI.stop();
       }
@@ -75,7 +77,7 @@ export class MateriUploadComponent implements OnInit {
           this.progress.percentage = Math.round(100 * event.loaded / event.total);
         }
       },(err) =>{
-        console.log(err);
+        this.globalMsgServ.changeMessage(err);
       }, () =>{
         this.currentFile = undefined;
         this.getMateriDetail();

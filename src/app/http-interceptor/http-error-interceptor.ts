@@ -7,11 +7,11 @@ export class HttpErrorInterceptor implements HttpInterceptor{
         return next.handle(request).pipe(
             catchError( (error: HttpErrorResponse) => {
                 let errMsg = '';
-                // Client Side Error                
-                if (error.error instanceof ErrorEvent) {        
+                //Check If Error Not Object
+                if (typeof error.error === "string") {        
+                    errMsg = `Error: ${error.statusText}`;
+                } else {
                     errMsg = `Error: ${error.error.message}`;
-                } else {  // Server Side Error
-                    errMsg = `Error Code: ${error.status},  Message: ${error.statusText}`;
                 }
                 return throwError(errMsg);
             })

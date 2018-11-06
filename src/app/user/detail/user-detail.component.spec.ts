@@ -4,6 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { ConfirmationDialogService } from '../../shared/service/confirmation-dialog.service';
+import { GlobalMessageService } from '../../shared/service/global-message.service';
 
 import { UserDetailComponent } from './user-detail.component';
 import { UserService } from '../user.service';
@@ -18,6 +19,10 @@ class MockUserService extends UserService {
 }
 
 class MockResponseService extends ResponseService {
+
+}
+
+class MockGlobalMessageService extends GlobalMessageService {
 
 }
 
@@ -43,6 +48,9 @@ describe('UserDetailComponent', () => {
       }, {
         provide: ResponseService,
         useClass: MockResponseService
+      }, {
+        provide: GlobalMessageService,
+        useClass: MockGlobalMessageService
       }]
     })
     .compileComponents();

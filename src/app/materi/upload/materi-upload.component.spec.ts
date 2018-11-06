@@ -6,6 +6,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MateriService } from '../materi.service';
 import { ResponseService } from '../../shared/service/response.service';
 import { ModalService } from '../../shared/service/modal.service';
+import { GlobalMessageService } from '../../shared/service/global-message.service';
 
 import { MateriUploadComponent } from './materi-upload.component';
 
@@ -18,6 +19,10 @@ class MockResponseService extends ResponseService{
 }
 
 class MockModalService extends ModalService {
+
+}
+
+class MockGlobalMessageService extends GlobalMessageService {
 
 }
 
@@ -41,6 +46,9 @@ describe('MateriUploadComponent', () => {
       }, {
         provide: ModalService,
         useClass: MockModalService
+      }, {
+        provide: GlobalMessageService,
+        useClass: MockGlobalMessageService
       }],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })

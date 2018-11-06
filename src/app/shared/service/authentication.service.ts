@@ -5,14 +5,11 @@ import { CookieService } from 'ngx-cookie-service';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
-import { LocalStorageService } from './local-storage.service';
-
 @Injectable()
 export class AuthenticationService {
 
   constructor(
     private http: HttpClient,
-    private localStorageServ: LocalStorageService,
     private cookieService: CookieService
   ) { }
 
@@ -54,7 +51,7 @@ export class AuthenticationService {
     let errMsg = '';
     if(error.status < 500) {
       console.log(`Error: ${error.error.error}, Message: ${error.error.error_description}`);
-      errMsg = "Email or Password doesn't Registered";
+      errMsg = `Error: ${error.error.error_description}`;
     } else {
       errMsg = error.statusText;
     }

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
 
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 import { PagingData } from '../../shared/class/paging-data';
+import { GlobalMessageService } from '../../shared/service/global-message.service';
 
 import { UserService } from '../user.service';
 
@@ -21,9 +21,8 @@ export class UserHistoryComponent implements OnInit {
   page: PagingData<UserHistory[]>;
   
   constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private userServ: UserService
+    private userServ: UserService,
+    private globalMsgServ: GlobalMessageService
   ) { }
 
   ngOnInit() {
@@ -38,8 +37,8 @@ export class UserHistoryComponent implements OnInit {
       resp => {
         this.page = resp;
       }, (err) => {
-        console.log(err);
         this.blockUI.stop();
+        this.globalMsgServ.changeMessage(err);
       }, () => {
         this.blockUI.stop();
       }

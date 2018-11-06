@@ -9,12 +9,17 @@ import { UserService } from '../user.service';
 
 import { ResponseService } from '../../shared/service/response.service';
 import { DateFormatPipe } from '../../shared/pipe/date-format.pipe';
+import { GlobalMessageService } from '../../shared/service/global-message.service';
 
 class MockUserService extends UserService {
 
 }
 
 class MockResponseService extends ResponseService{
+
+}
+
+class MockGlobalMessageService extends GlobalMessageService {
 
 }
 
@@ -36,6 +41,9 @@ describe('UserHistoryComponent', () => {
       }, {
         provide: ResponseService,
         useClass: MockResponseService
+      }, {
+        provide: GlobalMessageService,
+        useClass: MockGlobalMessageService
       }],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })

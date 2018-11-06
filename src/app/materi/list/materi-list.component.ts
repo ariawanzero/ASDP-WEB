@@ -8,6 +8,8 @@ import { PagingData } from '../../shared/class/paging-data';
 import { CommonResponseStatus } from '../../shared/class/common-response-status';
 
 import { ModalService } from '../../shared/service/modal.service';
+import { GlobalMessageService } from '../../shared/service/global-message.service';
+
 import { MateriService } from '../materi.service';
 
 import { MateriFilter, Materi } from '../materi';
@@ -32,6 +34,7 @@ export class MateriListComponent implements OnInit {
     private route: ActivatedRoute,
     private materiServ: MateriService,
     private modalServ: ModalService,
+    private globalMsgServ: GlobalMessageService
   ) { }
 
   ngOnInit() {
@@ -53,8 +56,8 @@ export class MateriListComponent implements OnInit {
       resp => {
         this.page = resp;
       },(err) => {
-        console.log(err);
         this.blockUI.stop();
+        this.globalMsgServ.changeMessage(err);
       }, () => {
         this.blockUI.stop();
       }
@@ -89,8 +92,8 @@ export class MateriListComponent implements OnInit {
       resp => {
         this.response = resp;
       }, (err) => {
-        console.log(err);
         this.blockUI.stop();
+        this.globalMsgServ.changeMessage(err);
       }, () => {
         this.blockUI.stop();
         this.checkResultSave();
@@ -100,7 +103,7 @@ export class MateriListComponent implements OnInit {
 
   private checkResultSave(): void {
     if(this.response.responseCode !== "00") {
-      console.log(this.response.responseDesc);
+      this.globalMsgServ.changeMessage(this.response.responseDesc);
     } else {
       this.modalServ.closeModal("modal-materi-header");
       this.getMateriList();
