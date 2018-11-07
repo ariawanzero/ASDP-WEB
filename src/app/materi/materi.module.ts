@@ -16,9 +16,10 @@ import { MateriService } from './materi.service';
 import { ModalService } from '../shared/service/modal.service';
 
 import { MateriListComponent } from './list/materi-list.component';
-import { MateriDetailComponent } from './modal/materi-detail/materi-detail.component';
+import { MateriDetailComponent } from './detail/materi-detail.component';
 import { MateriUploadComponent } from './upload/materi-upload.component';
 import { MateriFileComponent } from './modal/materi-file/materi-file.component';
+import { MateriQuestionComponent } from './question/materi-question.component';
 
 @NgModule({
   imports: [
@@ -34,7 +35,8 @@ import { MateriFileComponent } from './modal/materi-file/materi-file.component';
     MateriListComponent,
     MateriDetailComponent,
     MateriUploadComponent,
-    MateriFileComponent
+    MateriFileComponent,
+    MateriQuestionComponent
   ],
   providers: [
     {

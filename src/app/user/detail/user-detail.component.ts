@@ -121,7 +121,7 @@ export class UserDetailComponent implements OnInit {
 
   private mapUser(data: any): UserDetail {
     let user: UserDetail = new UserDetail();
-    user = Object.assign({}, data, {  });
+    user = Object.assign({}, data);
 
     return user
   }
@@ -166,7 +166,7 @@ export class UserDetailComponent implements OnInit {
 
   onSave(): void { this.task = Task.Save; }
 
-  onGoToList(): void {
+  private onGoToList(): void {
     if (this.isAdd) {
       this.router.navigate(['../' ], { relativeTo: this.route });
     } else if (!this.isAdd) {
