@@ -56,7 +56,8 @@ export class MateriDetailComponent implements OnInit {
       name: new FormControl('', [Validators.required, Validators.maxLength(100)]),
       deskripsi: new FormControl(''),
       startDate: new FormControl(''),
-      endDate: new FormControl('')
+      endDate: new FormControl(''),
+      totalQuiz: new FormControl('', [Validators.required])
     });
 
     if(!this.isAdd) { this.getIdFromParameter(); }
