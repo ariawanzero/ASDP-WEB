@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
+import { NgSelectModule } from '@ng-select/ng-select';
 import { QuillModule } from 'ngx-quill'
 import { CookieService } from 'ngx-cookie-service';
 
@@ -28,8 +29,10 @@ import { MateriQuestionComponent } from './question/materi-question.component';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    QuillModule,
     MateriRoutingModule,
+
+    QuillModule,
+    NgSelectModule,
 
     SharedModule
   ],

@@ -4,7 +4,7 @@
 <form [formGroup]="detailForm" (ngSubmit)="onSubmit()">
   <div class="form-group row">
     <label for="inputNama" class="col-sm-2 col-form-label required">Nama</label>
-    <div class="col-sm-10">
+    <div class="col-sm-4">
       <input type="text" class="form-control" [ngClass]="detailForm.controls.name.errors && detailForm.controls.name.touched ? ' error' : ''" formControlName="name" name="name" placeholder="Name" autocomplete="off">
       <span class="text-danger invalidMessage" *ngIf="detailForm.controls.name.touched && detailForm.controls.name.errors">
         <span *ngIf="detailForm.controls.name.errors?.required">Name Required.</span>
@@ -12,27 +12,41 @@
       </span>
     </div>
   </div>
-
    
   <div class="form-group row">
-    <label for="inputDeskripsi" class="col-sm-2 col-form-label">Deksripsi</label>
+    <label for="inputDescription" class="col-sm-2 col-form-label">Description</label>
     <div class="col-sm-10 editor-outer">
-      <quill-editor formControlName="deskripsi" [style]="{height: '250px'}"></quill-editor>  
+      <quill-editor formControlName="description" [style]="{height: '250px'}"></quill-editor>  
     </div>
   </div>
 
   <div class="form-group row">
     <label for="inputDivisi" class="col-sm-2 col-form-label required">Divisi</label>
+    <div class="col-sm-10">
+      <div [ngClass]="detailForm.controls.divisi.errors && detailForm.controls.divisi.touched ? 'input-error' : ''">
+        <ng-select 
+          [items]="divisi"
+          bindLabel="value"
+          bindValue="code"
+          [multiple]="true"
+          formControlName="divisi"
+          placeholder="Select divisi">
+        </ng-select>
+      </div>
+      <span class="text-danger invalidMessage" *ngIf="detailForm.controls.divisi.touched && detailForm.controls.divisi.errors">
+        <span *ngIf="detailForm.controls.divisi.errors?.required">Need Select 1 Divisi.</span>
+      </span>
+    </div>
   </div>
 
   <div class="form-group row">
-    <label for="inputTanggal" class="col-sm-2 col-form-label required">Tanggal Quiz</label>
+    <label for="inputTanggal" class="col-sm-2 col-form-label required">Start Quiz</label>
     <div class="col-sm-4">
-        <input type="datetime-local" class="form-control" name="totalQuiz" autocomplete="off">
+      <input type="datetime-local" formControlName="startDate" class="form-control" name="startDate" autocomplete="off">
     </div>
-    <div class="col-sm-2 text-center">-</div>
+    <label for="inputTanggal" class="col-sm-2 col-form-label required">Finish Quiz</label>
     <div class="col-sm-4">
-        <input type="datetime-local" class="form-control" name="totalQuiz" autocomplete="off">
+      <input type="datetime-local" formControlName="endDate" class="form-control" name="endDate" autocomplete="off">
     </div>
   </div>
 

@@ -4,9 +4,13 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
+import { DIVISI } from '../../shared/constant/divisi';
+
 import { CommonResponseStatus } from '../../shared/class/common-response-status';
 import { ConfirmationMessage } from '../../shared/class/confirmation-message';
 import { TitleModal } from '../../shared/class/title-modal';
+import { SimpleObject } from '../../shared/class/simple-object';
+
 import { Task } from '../../shared/enum/task.enum';
 
 import { ConfirmationDialogService } from '../../shared/service/confirmation-dialog.service';
@@ -26,6 +30,8 @@ export class MateriDetailComponent implements OnInit {
   response: CommonResponseStatus;
 
   task: Task = Task.None;
+
+  divisi: SimpleObject[] = DIVISI;
 
   isAdd: boolean;
   materiId: string;
@@ -54,7 +60,8 @@ export class MateriDetailComponent implements OnInit {
   private setForm(): void {
     this.detailForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.maxLength(100)]),
-      deskripsi: new FormControl(''),
+      description: new FormControl(''),
+      divisi: new FormControl([], [Validators.required]),
       startDate: new FormControl(''),
       endDate: new FormControl(''),
       totalQuiz: new FormControl('', [Validators.required])
