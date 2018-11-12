@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
+import { QuillModule } from 'ngx-quill'
 import { CookieService } from 'ngx-cookie-service';
 
 import { SharedModule } from '../shared/shared.module';
@@ -27,6 +28,7 @@ import { MateriQuestionComponent } from './question/materi-question.component';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    QuillModule,
     MateriRoutingModule,
 
     SharedModule

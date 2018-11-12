@@ -98,18 +98,19 @@ export class MateriDetailComponent implements OnInit {
   }
 
   private saveMateri(): void {
-    this.blockUI.start();
-    this.materiServ.saveMateriHeader(this.mapMateri(this.detailForm.getRawValue())).subscribe(
-      resp => {
-        this.response = resp;
-      }, (err) => {
-        this.blockUI.stop();
-        this.globalMsgServ.changeMessage(err);
-      }, () => {
-        this.blockUI.stop();
-        this.checkResultAction();
-      }
-    );
+    console.log(this.detailForm.getRawValue());
+    // this.blockUI.start();
+    // this.materiServ.saveMateriHeader(this.mapMateri(this.detailForm.getRawValue())).subscribe(
+    //   resp => {
+    //     this.response = resp;
+    //   }, (err) => {
+    //     this.blockUI.stop();
+    //     this.globalMsgServ.changeMessage(err);
+    //   }, () => {
+    //     this.blockUI.stop();
+    //     this.checkResultAction();
+    //   }
+    // );
   }
 
   private checkResultAction(): void {

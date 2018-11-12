@@ -11,3 +11,13 @@
     border-bottom: 1px solid #ddd;
     margin: 15px 0;
 }
+
+.editor-outer {
+    width: 44em;
+}
+
+@media only screen and (max-width: 576px) {
+    .editor-outer {
+        width: -webkit-fill-available;
+    }
+}
