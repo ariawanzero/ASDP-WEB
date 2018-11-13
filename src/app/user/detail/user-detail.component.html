@@ -3,7 +3,7 @@
 <form [formGroup]="detailForm" (ngSubmit)="onSubmit()">
   <div class="form-group row">
     <label for="inputEmail" class="col-sm-2 col-form-label required">Email</label>
-    <div class="col-sm-10">
+    <div class="col-sm-4">
       <input type="email" class="form-control" [ngClass]="detailForm.controls.username.errors && detailForm.controls.username.touched ? ' error' : ''" formControlName="username" name="username" placeholder="Email" autocomplete="off">
       <span class="text-danger invalidMessage" *ngIf="detailForm.controls.username.touched && detailForm.controls.username.errors">
         <span *ngIf="detailForm.controls.username.errors?.required">Email Required.</span>
@@ -13,7 +13,7 @@
   </div>
   <div class="form-group row">
     <label for="inputName" class="col-sm-2 col-form-label required">Name</label>
-    <div class="col-sm-10">
+    <div class="col-sm-4">
       <input type="text" class="form-control" [ngClass]="detailForm.controls.name.errors && detailForm.controls.name.touched ? ' error' : ''" formControlName="name" name="name" placeholder="Name" autocomplete="off" maxlength="100">
       <span class="text-danger invalidMessage" *ngIf="detailForm.controls.name.touched && detailForm.controls.name.errors">
         <span *ngIf="detailForm.controls.name.errors?.required">Name Required.</span>
@@ -23,7 +23,7 @@
   </div>
   <div class="form-group row">
     <label for="inputMobilePhone" class="col-sm-2 col-form-label required">Mobile Phone</label>
-    <div class="col-sm-10">
+    <div class="col-sm-4">
       <input type="text" class="form-control" [ngClass]="detailForm.controls.noHp.errors && detailForm.controls.noHp.touched ? ' error' : ''" formControlName="noHp" name="noHp" placeholder="Mobile Phone" autocomplete="off" maxlength="15" (keypress)="onKeyPress($event)">
       <span class="text-danger invalidMessage" *ngIf="detailForm.controls.noHp.touched && detailForm.controls.noHp.errors">
         <span *ngIf="detailForm.controls.noHp.errors?.required">Mobile Phone Required.</span>
@@ -33,13 +33,14 @@
   </div>
   <div class="form-group row">
     <label for="inputAlamat" class="col-sm-2 col-form-label">Alamat</label>
-    <div class="col-sm-10">
+    <div class="col-sm-4">
       <textarea class="form-control" rows="5" formControlName="alamat" name="alamat" maxlength="255"></textarea>
     </div>
   </div>
+  <div class="line"></div>
   <div class="form-group row">
     <label for="inputJabatan" class="col-sm-2 col-form-label required">Jabatan</label>
-    <div class="col-sm-10">
+    <div class="col-sm-4">
       <select class="form-control" [ngClass]="detailForm.controls.jabatan.errors && detailForm.controls.jabatan.touched ? ' error' : ''" formControlName="jabatan" name="jabatan">
         <option value="" selected>-- Choose --</option>
         <option *ngFor="let jb of jabatan;" [value]="jb.code">{{ jb.value }}</option>
@@ -51,7 +52,7 @@
   </div>
   <div class="form-group row">
     <label for="inputDivisi" class="col-sm-2 col-form-label required">Divisi</label>
-    <div class="col-sm-10">
+    <div class="col-sm-4">
       <select class="form-control" [ngClass]="detailForm.controls.divisi.errors && detailForm.controls.divisi.touched ? ' error' : ''" formControlName="divisi" name="divisi">
         <option value="" selected>-- Choose --</option>
         <option *ngFor="let dv of divisi;" [value]="dv.code">{{ dv.value }}</option>
@@ -63,7 +64,7 @@
   </div>
   <div class="form-group row">
     <label for="inputUnit" class="col-sm-2 col-form-label required">Unit</label>
-    <div class="col-sm-10">
+    <div class="col-sm-4">
       <input type="text" class="form-control" [ngClass]="detailForm.controls.unit.errors && detailForm.controls.unit.touched ? ' error' : ''" formControlName="unit" name="unit" placeholder="unit" maxlength="150" autocomplete="off">
       <span class="text-danger invalidMessage" *ngIf="detailForm.controls.unit.touched && detailForm.controls.unit.errors">
         <span *ngIf="detailForm.controls.unit.errors?.required">Unit required.</span>
@@ -71,9 +72,10 @@
       </span>
     </div>
   </div>
+  <div class="line"></div>
   <div class="form-group row">
     <label for="inputRole" class="col-sm-2 col-form-label required">Role</label>
-    <div class="col-sm-10">
+    <div class="col-sm-4">
       <select class="form-control" [ngClass]="detailForm.controls.userRoleId.errors && detailForm.controls.userRoleId.touched ? ' error' : ''" formControlName="userRoleId" name="role">
         <option value="" selected>-- Choose --</option>
         <option *ngFor="let rl of role;" [value]="rl.code">{{ rl.value }}</option>
@@ -82,10 +84,8 @@
         <span *ngIf="detailForm.controls.userRoleId.errors?.required">Role must be Choosen.</span>
       </span>
     </div>
-  </div>
-  <div class="form-group row">
     <label for="inputExpire" class="col-sm-2 col-form-label">Expire</label>
-    <div class="col-sm-10">
+    <div class="col-sm-4">
       <input type="date" class="form-control" formControlName="expiredDate" name="expiredDate" placeholder="Expire Date">
     </div>
   </div>
