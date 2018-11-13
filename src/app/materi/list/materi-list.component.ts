@@ -3,7 +3,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
+import { SimpleObject } from '../../shared/class/simple-object';
 import { PagingData } from '../../shared/class/paging-data';
+
+import { DIVISI } from '../../shared/constant/divisi';
 
 import { GlobalMessageService } from '../../shared/service/global-message.service';
 
@@ -18,6 +21,8 @@ import { MateriFilter, Materi } from '../materi';
 })
 export class MateriListComponent implements OnInit {
   @BlockUI() blockUI: NgBlockUI;
+
+  divisi: SimpleObject[] = DIVISI;
 
   filter: MateriFilter;
   page: PagingData<Materi[]>

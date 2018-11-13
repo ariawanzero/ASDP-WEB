@@ -1,4 +1,3 @@
-
 <h4>Materi Header Form</h4>
 <div class="line"></div>
 <form [formGroup]="detailForm" (ngSubmit)="onSubmit()">
@@ -12,17 +11,9 @@
       </span>
     </div>
   </div>
-   
-  <div class="form-group row">
-    <label for="inputDescription" class="col-sm-2 col-form-label">Description</label>
-    <div class="col-sm-10 editor-outer">
-      <quill-editor formControlName="description" [style]="{height: '250px'}"></quill-editor>  
-    </div>
-  </div>
-
   <div class="form-group row">
     <label for="inputDivisi" class="col-sm-2 col-form-label required">Divisi</label>
-    <div class="col-sm-10">
+    <div class="col-sm-4">
       <div [ngClass]="detailForm.controls.divisi.errors && detailForm.controls.divisi.touched ? 'input-error' : ''">
         <ng-select 
           [items]="divisi"
@@ -34,11 +25,11 @@
         </ng-select>
       </div>
       <span class="text-danger invalidMessage" *ngIf="detailForm.controls.divisi.touched && detailForm.controls.divisi.errors">
-        <span *ngIf="detailForm.controls.divisi.errors?.required">Need Select 1 Divisi.</span>
+        <span *ngIf="detailForm.controls.divisi.errors?.required">Required at Least 1.</span>
       </span>
     </div>
   </div>
-
+  <div class="line"></div>
   <div class="form-group row">
     <label for="inputTanggal" class="col-sm-2 col-form-label required">Start Quiz</label>
     <div class="col-sm-4">
@@ -49,7 +40,6 @@
       <input type="datetime-local" formControlName="endDate" class="form-control" name="endDate" autocomplete="off">
     </div>
   </div>
-
   <div class="form-group row">
     <label for="inputQuestion" class="col-sm-2 col-form-label required">Total Quiz for User</label>
     <div class="col-sm-4">
@@ -59,7 +49,12 @@
       </span>
     </div>
   </div>
-
+  <div class="form-group row">
+    <label for="inputDescription" class="col-sm-2 col-form-label">Description</label>
+    <div class="col-sm-10 editor-outer">
+      <quill-editor formControlName="description" [style]="{height: '250px'}"></quill-editor>  
+    </div>
+  </div>
   <div class="form-group row">
     <div class="col-sm-10 offset-sm-2">
       <div class="btn-group mr-2">
