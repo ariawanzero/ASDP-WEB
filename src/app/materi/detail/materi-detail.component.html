@@ -1,0 +1,68 @@
+<h4>Materi Header Form</h4>
+<div class="line"></div>
+<form [formGroup]="detailForm" (ngSubmit)="onSubmit()">
+  <div class="form-group row">
+    <label for="inputNama" class="col-sm-2 col-form-label required">Nama</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" [ngClass]="detailForm.controls.name.errors && detailForm.controls.name.touched ? ' error' : ''" formControlName="name" name="name" placeholder="Name" autocomplete="off">
+      <span class="text-danger invalidMessage" *ngIf="detailForm.controls.name.touched && detailForm.controls.name.errors">
+        <span *ngIf="detailForm.controls.name.errors?.required">Name Required.</span>
+        <span *ngIf="detailForm.controls.name.errors?.maxlength">Max Length of Name 100.</span>
+      </span>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputDivisi" class="col-sm-2 col-form-label required">Divisi</label>
+    <div class="col-sm-4">
+      <div [ngClass]="detailForm.controls.divisi.errors && detailForm.controls.divisi.touched ? 'input-error' : ''">
+        <ng-select 
+          [items]="divisi"
+          bindLabel="value"
+          bindValue="code"
+          [multiple]="true"
+          formControlName="divisi"
+          placeholder="Select divisi">
+        </ng-select>
+      </div>
+      <span class="text-danger invalidMessage" *ngIf="detailForm.controls.divisi.touched && detailForm.controls.divisi.errors">
+        <span *ngIf="detailForm.controls.divisi.errors?.required">Required at Least 1.</span>
+      </span>
+    </div>
+  </div>
+  <div class="line"></div>
+  <div class="form-group row">
+    <label for="inputTanggal" class="col-sm-2 col-form-label required">Start Quiz</label>
+    <div class="col-sm-4">
+      <input type="datetime-local" formControlName="startDate" class="form-control" name="startDate" autocomplete="off">
+    </div>
+    <label for="inputTanggal" class="col-sm-2 col-form-label required">Finish Quiz</label>
+    <div class="col-sm-4">
+      <input type="datetime-local" formControlName="endDate" class="form-control" name="endDate" autocomplete="off">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputQuestion" class="col-sm-2 col-form-label required">Total Quiz for User</label>
+    <div class="col-sm-4">
+      <input type="number" class="form-control" [ngClass]="detailForm.controls.totalQuiz.errors && detailForm.controls.totalQuiz.touched ? ' error' : ''" formControlName="totalQuiz" name="totalQuiz" placeholder="0" autocomplete="off">
+      <span class="text-danger invalidMessage" *ngIf="detailForm.controls.totalQuiz.touched && detailForm.controls.totalQuiz.errors">
+        <span *ngIf="detailForm.controls.totalQuiz.errors?.required">Total Quiz Required.</span>
+      </span>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputDescription" class="col-sm-2 col-form-label">Description</label>
+    <div class="col-sm-10 editor-outer">
+      <quill-editor formControlName="description" [style]="{height: '250px'}"></quill-editor>  
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-10 offset-sm-2">
+      <div class="btn-group mr-2">
+        <button type="submit" class="btn btn-primary" [disabled]="!detailForm.valid" (click)="onSave()"><i class="fa fa-save"> Save</i></button>
+      </div>
+      <div class="btn-group">
+        <button type="button" class="btn btn-secondary" (click)="onCancel()"><i class="fa fa-ban"> Cancel</i></button>
+      </div>
+    </div>
+  </div>
+</form>

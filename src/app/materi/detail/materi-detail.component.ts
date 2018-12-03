@@ -4,41 +4,38 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
-import { ROLE } from '../../shared/constant/role';
-import { JABATAN } from '../../shared/constant/jabatan';
 import { DIVISI } from '../../shared/constant/divisi';
 
+import { CommonResponseStatus } from '../../shared/class/common-response-status';
 import { ConfirmationMessage } from '../../shared/class/confirmation-message';
 import { TitleModal } from '../../shared/class/title-modal';
 import { SimpleObject } from '../../shared/class/simple-object';
-import { CommonResponseStatus } from '../../shared/class/common-response-status';
+
 import { Task } from '../../shared/enum/task.enum';
 
 import { ConfirmationDialogService } from '../../shared/service/confirmation-dialog.service';
 import { GlobalMessageService } from '../../shared/service/global-message.service';
 
-import { UserService } from '../user.service';
+import { MateriService } from '../materi.service';
 
-import { UserDetail } from '../user';
+import { Materi } from '../materi';
 
 @Component({
-  selector: 'asdp-user-detail',
-  templateUrl: './user-detail.component.html',
-  styleUrls: ['./user-detail.component.css']
+  selector: 'asdp-materi-detail',
+  templateUrl: './materi-detail.component.html',
+  styleUrls: ['./materi-detail.component.css']
 })
-export class UserDetailComponent implements OnInit {
+export class MateriDetailComponent implements OnInit {
   @BlockUI() blockUI: NgBlockUI;
   response: CommonResponseStatus;
 
-  role: SimpleObject[] = ROLE;
-  jabatan: SimpleObject[] = JABATAN;
-  divisi: SimpleObject[] = DIVISI;
-
   task: Task = Task.None;
 
+  divisi: SimpleObject[] = DIVISI;
+
   isAdd: boolean;
-  userId: string;
-  user: UserDetail;
+  materiId: string;
+  dtMateri: Materi;
 
   detailForm: FormGroup;
 
@@ -47,10 +44,10 @@ export class UserDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private confirmServ: ConfirmationDialogService,
     private globalMsgServ: GlobalMessageService,
-    private userServ: UserService
+    private materiServ: MateriService
   ) { }
 
-  ngOnInit() {
+  ngOnInit() { 
     let state = this.route.snapshot.data['state'];
     this.checkStateAction(state);
   }
@@ -61,18 +58,14 @@ export class UserDetailComponent implements OnInit {
   }
 
   private setForm(): void {
-    let defaultDisabled = { value: '', disabled: (!this.isAdd) };
     this.detailForm = new FormGroup({
       id: new FormControl(''),
-      username: new FormControl(defaultDisabled, [Validators.required, Validators.maxLength(100)]),
       name: new FormControl('', [Validators.required, Validators.maxLength(100)]),
-      noHp: new FormControl('', [Validators.required, Validators.maxLength(15)]),
-      alamat: new FormControl('', [Validators.maxLength(255)]),
-      jabatan: new FormControl('', [Validators.required]),
-      divisi: new FormControl('', [Validators.required]),
-      unit: new FormControl('', [Validators.required, Validators.maxLength(150)]),
-      userRoleId: new FormControl('', [Validators.required]),
-      expiredDate: new FormControl('')
+      description: new FormControl(''),
+      divisi: new FormControl([], [Validators.required]),
+      startDate: new FormControl(''),
+      endDate: new FormControl(''),
+      totalQuiz: new FormControl('', [Validators.required])
     });
 
     if(!this.isAdd) { this.getIdFromParameter(); }
@@ -81,54 +74,51 @@ export class UserDetailComponent implements OnInit {
   private getIdFromParameter(): void {
     this.route.params.subscribe(
       params => { 
-        this.userId = params['id'];
-        this.getUser();
+        this.materiId = params['id'];
+        this.getMateri();
       }, err => { 
         this.globalMsgServ.changeMessage(err);
       }
     );
   }
 
-  private getUser(): void {
+  private getMateri(): void {
     this.blockUI.start();
-    this.userServ.getDetailUser({ id: this.userId }).subscribe(
+    this.materiServ.getDetailMateri({ id: this.materiId }).subscribe(
       resp => {
-        this.user = resp;
+        this.dtMateri = resp;
       }, err => {
         this.blockUI.stop();
         this.globalMsgServ.changeMessage(err);
       }, () => {
-        this.setValueForm(this.user);
+        this.setValueForm(this.dtMateri);
         this.blockUI.stop();
       }
     )
   }
 
-  private setValueForm(user: UserDetail): void {
+  private setValueForm(user: Materi): void {
     this.detailForm.patchValue({
       id: user.id,
-      username: user.username,
       name: user.name,
-      noHp: user.noHp,
-      alamat: user.alamat,
-      jabatan: user.jabatan,
-      divisi: user.divisi,
-      unit: user.unit,
-      userRoleId: user.userRoleId,
-      expiredDate: new Date(user.expiredDate).toISOString().substring(0, 10)
-    })
+      divisi: JSON.parse(user.divisi),
+      description: user.description,
+      startDate: new Date(user.startDate).toISOString().slice(0, -8),
+      endDate: new Date(user.endDate).toISOString().slice(0, -8),
+      totalQuiz: user.totalQuiz
+    });
   }
 
-  private mapUser(data: any): UserDetail {
-    let user: UserDetail = new UserDetail();
-    user = Object.assign({}, data);
+  private mapMateri(data: any): Materi {
+    let mt: Materi = new Materi();
+    Object.assign(mt, data, { divisi: JSON.stringify(data.divisi) });
 
-    return user
+    return mt;
   }
 
-  private saveUser(): void {
+  private saveMateri(): void {
     this.blockUI.start();
-    this.userServ.saveUser(this.mapUser(this.detailForm.getRawValue())).subscribe(
+    this.materiServ.saveMateriHeader(this.mapMateri(this.detailForm.getRawValue())).subscribe(
       resp => {
         this.response = resp;
       }, (err) => {
@@ -154,7 +144,7 @@ export class UserDetailComponent implements OnInit {
       case Task.Save:
         this.confirmServ.activate(ConfirmationMessage.SAVE, TitleModal.CONFIRM)
           .then(result => {
-            if (result) { this.saveUser(); }
+            if (result) { this.saveMateri(); }
           });
         break;
       default:
@@ -166,6 +156,14 @@ export class UserDetailComponent implements OnInit {
 
   onSave(): void { this.task = Task.Save; }
 
+  onCancel(): void {
+    this.confirmServ.activate(ConfirmationMessage.CANCEL, TitleModal.CONFIRM).then(
+      result => {
+        if (result) { this.onGoToList();}
+      }
+    )
+  }
+
   private onGoToList(): void {
     if (this.isAdd) {
       this.router.navigate(['../' ], { relativeTo: this.route });
@@ -174,21 +172,5 @@ export class UserDetailComponent implements OnInit {
     } else {
       this.router.navigate(['/home']);
     }
-  }
-
-  onCancel(): void {
-    this.confirmServ.activate(ConfirmationMessage.CANCEL, TitleModal.CONFIRM).then(
-      result => {
-        if (result) { this.onGoToList(); }
-      }
-    )
-  }
-
-  onKeyPress(event: any): boolean {
-    if(event.which >= 48 && event.which <= 57 || event.which == 8) {
-        return true
-    } else {
-        return event.preventDefault();
-    }  
   }
 }

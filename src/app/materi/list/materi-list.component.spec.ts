@@ -6,7 +6,6 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { MateriService } from '../materi.service';
 import { ResponseService } from '../../shared/service/response.service';
-import { ModalService } from '../../shared/service/modal.service';
 import { GlobalMessageService } from '../../shared/service/global-message.service';
 
 import { MateriListComponent } from './materi-list.component';
@@ -16,10 +15,6 @@ class MockMateriService extends MateriService {
 }
 
 class MockResponseService extends ResponseService {
-
-}
-
-class MockModalService extends ModalService {
 
 }
 
@@ -45,9 +40,6 @@ describe('MateriListComponent', () => {
       }, {
         provide: ResponseService,
         useClass: MockResponseService
-      }, {
-        provide: ModalService,
-        useClass: MockModalService
       }, {
         provide: GlobalMessageService,
         useClass: MockGlobalMessageService

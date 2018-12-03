@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
+import { NgSelectModule } from '@ng-select/ng-select';
+import { QuillModule } from 'ngx-quill'
 import { CookieService } from 'ngx-cookie-service';
 
 import { SharedModule } from '../shared/shared.module';
@@ -16,9 +18,10 @@ import { MateriService } from './materi.service';
 import { ModalService } from '../shared/service/modal.service';
 
 import { MateriListComponent } from './list/materi-list.component';
-import { MateriDetailComponent } from './modal/materi-detail/materi-detail.component';
+import { MateriDetailComponent } from './detail/materi-detail.component';
 import { MateriUploadComponent } from './upload/materi-upload.component';
 import { MateriFileComponent } from './modal/materi-file/materi-file.component';
+import { MateriQuestionComponent } from './question/materi-question.component';
 
 @NgModule({
   imports: [
@@ -28,13 +31,17 @@ import { MateriFileComponent } from './modal/materi-file/materi-file.component';
     HttpClientModule,
     MateriRoutingModule,
 
+    QuillModule,
+    NgSelectModule,
+
     SharedModule
   ],
   declarations: [
     MateriListComponent,
     MateriDetailComponent,
     MateriUploadComponent,
-    MateriFileComponent
+    MateriFileComponent,
+    MateriQuestionComponent
   ],
   providers: [
     {
