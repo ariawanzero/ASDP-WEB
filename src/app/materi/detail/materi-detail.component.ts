@@ -59,6 +59,7 @@ export class MateriDetailComponent implements OnInit {
 
   private setForm(): void {
     this.detailForm = new FormGroup({
+      id: new FormControl(''),
       name: new FormControl('', [Validators.required, Validators.maxLength(100)]),
       description: new FormControl(''),
       divisi: new FormControl([], [Validators.required]),
@@ -97,27 +98,37 @@ export class MateriDetailComponent implements OnInit {
   }
 
   private setValueForm(user: Materi): void {
-    
+    this.detailForm.patchValue({
+      id: user.id,
+      name: user.name,
+      divisi: JSON.parse(user.divisi),
+      description: user.description,
+      startDate: new Date(user.startDate).toISOString().slice(0, -8),
+      endDate: new Date(user.endDate).toISOString().slice(0, -8),
+      totalQuiz: user.totalQuiz
+    });
   }
 
   private mapMateri(data: any): Materi {
-    return null
+    let mt: Materi = new Materi();
+    Object.assign(mt, data, { divisi: JSON.stringify(data.divisi) });
+
+    return mt;
   }
 
   private saveMateri(): void {
-    console.log(this.detailForm.getRawValue());
-    // this.blockUI.start();
-    // this.materiServ.saveMateriHeader(this.mapMateri(this.detailForm.getRawValue())).subscribe(
-    //   resp => {
-    //     this.response = resp;
-    //   }, (err) => {
-    //     this.blockUI.stop();
-    //     this.globalMsgServ.changeMessage(err);
-    //   }, () => {
-    //     this.blockUI.stop();
-    //     this.checkResultAction();
-    //   }
-    // );
+    this.blockUI.start();
+    this.materiServ.saveMateriHeader(this.mapMateri(this.detailForm.getRawValue())).subscribe(
+      resp => {
+        this.response = resp;
+      }, (err) => {
+        this.blockUI.stop();
+        this.globalMsgServ.changeMessage(err);
+      }, () => {
+        this.blockUI.stop();
+        this.checkResultAction();
+      }
+    );
   }
 
   private checkResultAction(): void {

@@ -50,8 +50,17 @@ export class MateriListComponent implements OnInit {
         this.globalMsgServ.changeMessage(err);
       }, () => {
         this.blockUI.stop();
+        this.remaping();
       }
     )
+  }
+
+  private remaping(): void {
+    if(this.page.data) {
+      this.page.data.forEach(data => {
+        data.divisiDisplay = JSON.parse(data.divisi);
+      })
+    }
   }
 
   onSearch(): void { 
@@ -61,6 +70,10 @@ export class MateriListComponent implements OnInit {
 
   onAdd(): void { 
     this.router.navigate(['add'], { relativeTo: this.route });
+  }
+
+  onEditQuiz(id: string): void {
+    this.router.navigate(['edit', id], { relativeTo: this.route });
   }
 
   onNotify(idx: number): void {

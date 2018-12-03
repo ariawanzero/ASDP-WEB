@@ -13,6 +13,11 @@ export class MateriFilter {
 export class Materi {
     id: string;
     name: string;
-    nameFile: string[];
-    urlPreview: string;
+    divisi: string;
+    divisiDisplay: string;
+    startDate: Date;
+    endDate: Date;
+    totalQuiz: number;
+    description: string;
+    publish: boolean;
 }
