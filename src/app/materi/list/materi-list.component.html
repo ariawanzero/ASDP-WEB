@@ -43,9 +43,13 @@
         <th scope="row">{{ i + 1 }}</th>
         <td><a (click)="onEditQuiz(materi.id)">{{ materi.name }}</a></td>
         <td>
-          <p *ngFor="let divisi of materi.divisiDisplay">
-            - {{ divisi }}
-          </p>
+          <h5>
+            <ng-container *ngFor="let divisi of materi.divisiDisplay; let i = index">
+              <span class="badge badge-pill mr-1" [ngClass]="i % 2 == 0 ? ' badge-success' : ' badge-info'">
+                {{ divisi }}
+              </span>
+            </ng-container>
+          </h5>
         </td>
         <td class="text-center">
           <div class="btn-group mr-2">
