@@ -21,3 +21,13 @@ export class Materi {
     description: string;
     publish: boolean;
 }
+
+export class MateriQuestion {
+    id: string;
+    question: string;
+    choiceA: string;
+    choiceB: string;
+    choiceC: string;
+    choiceD: string;
+    answer: string;
+}

@@ -84,4 +84,8 @@ export class MateriListComponent implements OnInit {
   onGoToUpload(id: string): void {
     this.router.navigate(['upload', id], { relativeTo: this.route });
   }
+
+  onGoToQuestion(id: string): void {
+    this.router.navigate(['question', id], { relativeTo: this.route });
+  }
 }

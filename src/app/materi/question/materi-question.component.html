@@ -4,7 +4,7 @@
   <div class="form-group row">
     <label for="inputQuestion" class="col-sm-2 col-form-label required">Question</label>
     <div class="col-sm-10 editor-outer">
-      <quill-editor formControlName="question" [style]="{height: '250px'}"></quill-editor>
+      <quill-editor formControlName="question" [style]="{height: '200px'}"></quill-editor>
     </div>
   </div>
   <div class="form-group row">
@@ -16,30 +16,30 @@
   <div class="form-group row">
     <label for="inputChoiceB" class="col-sm-2 col-form-label required">Choice B</label>
     <div class="col-sm-10 editor-outer">
-      <quill-editor formControlName="choiceB" [style]="{height: '250px'}"></quill-editor>
+      <quill-editor formControlName="choiceB" [style]="{height: '200px'}"></quill-editor>
     </div>
   </div>
   <div class="form-group row">
     <label for="inputChoiceC" class="col-sm-2 col-form-label required">Choice C</label>
     <div class="col-sm-10 editor-outer">
-      <quill-editor formControlName="choiceC" [style]="{height: '250px'}"></quill-editor>
+      <quill-editor formControlName="choiceC" [style]="{height: '200px'}"></quill-editor>
     </div>
   </div>
   <div class="form-group row">
     <label for="inputChoiceD" class="col-sm-2 col-form-label required">Choice D</label>
     <div class="col-sm-10 editor-outer">
-      <quill-editor formControlName="choiceD" [style]="{height: '250px'}"></quill-editor>
+      <quill-editor formControlName="choiceD" [style]="{height: '200px'}"></quill-editor>
     </div>
   </div>
   <div class="form-group row">
     <label for="inputAnswer" class="col-sm-2 col-form-label required">Answer</label>
     <div class="col-sm-4">
-      <div>
+      <div [ngClass]="detailForm.controls.answer.errors && detailForm.controls.answer.touched ? 'input-error' : ''">
         <ng-select 
           [items]="answer"
           bindLabel="value"
           bindValue="code"
-          [multiple]="true"
+          [multiple]="false"
           formControlName="answer"
           placeholder="Select Answer">
         </ng-select>
@@ -54,11 +54,11 @@
       <div class="btn-group mr-2">
         <button type="submit" class="btn btn-primary" [disabled]="!detailForm.valid" (click)="onSave()"><i class="fa fa-save"> Save</i></button>
       </div>
-      <div class="btn-group">
+      <div class="btn-group mr-2">
         <button type="button" class="btn btn-secondary" (click)="onBack()"><i class="fa fa-ban"> Back</i></button>
       </div>
       <div class="btn-group">
-        <button type="button" class="btn btn-secondary" (click)="onClear()"><i class="fa fa-ban"> Clear</i></button>
+        <button type="button" class="btn btn-info" (click)="onClear()"><i class="fa fa-ban"> Clear</i></button>
       </div>
     </div>
   </div>
@@ -71,7 +71,6 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">Header</th>
-        <th scope="col">Action</th>
       </tr>
     </thead>
   </table>
