@@ -8,6 +8,7 @@ import { CommonResponseStatus } from '../../shared/class/common-response-status'
 import { ConfirmationMessage } from '../../shared/class/confirmation-message';
 import { TitleModal } from '../../shared/class/title-modal';
 import { SimpleObject } from '../../shared/class/simple-object';
+import { PagingData } from '../../shared/class/paging-data';
 
 import { ANSWER } from '../../shared/constant/answer';
 
@@ -18,7 +19,7 @@ import { GlobalMessageService } from '../../shared/service/global-message.servic
 
 import { MateriService } from '../materi.service';
 
-import { Materi } from '../materi';
+import { QuestionFilter, Materi, MateriQuestion } from '../materi';
 
 @Component({
   selector: 'asdp-materi-question',
@@ -31,9 +32,14 @@ export class MateriQuestionComponent implements OnInit {
 
   task: Task = Task.None;
   answer: SimpleObject[] = ANSWER;
-
+  
   isAdd: boolean;
+
   questionId: string;
+  filter: QuestionFilter;
+  page: PagingData<MateriQuestion[]>
+  
+  questions: MateriQuestion[];
 
   detailForm: FormGroup;
 
@@ -46,8 +52,11 @@ export class MateriQuestionComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.filter = new QuestionFilter();
+
     this.isAdd = true;
     this.setForm();
+    this.getIdFromParameter();
   }
 
   private setForm(): void {
@@ -62,24 +71,51 @@ export class MateriQuestionComponent implements OnInit {
     });
   }
 
-  private getListQuestion(): void {
+  private getIdFromParameter(): void {
+    this.route.params.subscribe(
+      params => { 
+        this.filter.id = params['id'];
+        this.getQuestions();
+      }, err => { 
+        this.globalMsgServ.changeMessage(err);
+      }
+    );
+  }
 
+  private getQuestions(): void {
+    this.blockUI.start();
+    this.materiServ.getFilteredQuestion(this.filter).subscribe(
+      data => {
+        this.page = data;
+      }, (err) => {
+        this.blockUI.stop();
+        this.globalMsgServ.changeMessage(err);
+      }, () => {
+        this.blockUI.stop();
+      }
+    )
+  }
+
+  private mapQuestion(data: any): MateriQuestion {
+    let mq: MateriQuestion = new MateriQuestion();
+    Object.assign(mq, data, { quizId: this.filter.id });
+
+    return mq
   }
 
   private saveQuestion(): void {
-    console.log(this.detailForm.getRawValue());
-    // this.blockUI.start();
-    // this.materiServ.saveMateriHeader(this.mapMateri(this.detailForm.getRawValue())).subscribe(
-    //   resp => {
-    //     this.response = resp;
-    //   }, (err) => {
-    //     this.blockUI.stop();
-    //     this.globalMsgServ.changeMessage(err);
-    //   }, () => {
-    //     this.blockUI.stop();
-    //     this.checkResultAction();
-    //   }
-    // );
+    this.blockUI.start();
+    this.materiServ.saveQuestion(this.mapQuestion(this.detailForm.getRawValue())).subscribe(
+      resp => {
+        this.response = resp;
+      }, (err) => {
+        this.blockUI.stop();
+        this.globalMsgServ.changeMessage(err);
+      }, () => {
+        this.blockUI.stop();
+        this.checkResultAction();
+      }
+    );
   }
 
   private checkResultAction(): void {
@@ -87,6 +123,9 @@ export class MateriQuestionComponent implements OnInit {
       this.globalMsgServ.changeMessage(this.response.responseDesc);
     } else {
       this.onClear();
+
+      this.filter.page = 0;
+      this.getQuestions();
     }
   }
 
@@ -109,7 +148,5 @@ export class MateriQuestionComponent implements OnInit {
 
   onBack(): void { this.router.navigate(['../' ], { relativeTo: this.route }); }
 
-  onClear(): void {
-    this.detailForm.reset()
-  }
+  onClear(): void { this.detailForm.reset(); }
 }

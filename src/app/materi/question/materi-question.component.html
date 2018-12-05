@@ -64,15 +64,23 @@
   </div>
 </form>
 <div class="line"></div>
-<h4>Materi List</h4>
+<h4>Materi Question</h4>
 <div class="table-responsive-sm">
   <table class="table table-sm">
     <thead>
       <tr>
         <th scope="col">#</th>
         <th scope="col">Header</th>
+        <th scope="col">Created Date</th>
       </tr>
     </thead>
+    <tbody *ngIf="page">
+      <tr *ngFor="let question of page.data; let i = index">
+        <td scope="row">{{ i + 1 }}</td>
+        <td>{{ question.id }}</td>
+        <td>{{ question.createdDate | dateTimeFormat }}</td>
+      </tr>
+    </tbody>
   </table>
 </div>
 <asdp-paging *ngIf="page" [pagingData]="page" (notify)="onNotify($event)"></asdp-paging>

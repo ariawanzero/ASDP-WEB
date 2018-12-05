@@ -17,6 +17,7 @@ import { RouterGuardService } from './service/router-guard.service';
 import { ModalService } from './service/modal.service';
 
 import { DateFormatPipe } from './pipe/date-format.pipe';
+import { DateTimeFormatPipe } from './pipe/date-time-format.pipe';
 
 @NgModule({
   imports: [
@@ -32,7 +33,8 @@ import { DateFormatPipe } from './pipe/date-format.pipe';
     FooterComponent,
     PagingComponent,
 
-    DateFormatPipe
+    DateFormatPipe,
+    DateTimeFormatPipe
   ], 
   providers: [ 
     SidebarService,
@@ -48,7 +50,8 @@ import { DateFormatPipe } from './pipe/date-format.pipe';
     FooterComponent,
     PagingComponent,
 
-    DateFormatPipe
+    DateFormatPipe,
+    DateTimeFormatPipe
   ]
 })
 export class SharedModule { }
