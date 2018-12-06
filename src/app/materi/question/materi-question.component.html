@@ -72,13 +72,17 @@
         <th scope="col">#</th>
         <th scope="col">Header</th>
         <th scope="col">Created Date</th>
+        <th scope="col">Action</th>
       </tr>
     </thead>
     <tbody *ngIf="page">
       <tr *ngFor="let question of page.data; let i = index">
         <td scope="row">{{ i + 1 }}</td>
-        <td>{{ question.id }}</td>
+        <td><a (click)="onEditQuestion(question)">{{ question.id }}</a></td>
         <td>{{ question.createdDate | dateTimeFormat }}</td>
+        <td>
+          <button type="button" class="btn btn-primary btn-sm" (click)="onDeleteQuestion(question)">Delete</button>
+        </td>
       </tr>
     </tbody>
   </table>

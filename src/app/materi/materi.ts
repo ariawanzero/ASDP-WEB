@@ -42,5 +42,6 @@ export class MateriQuestion {
     choiceC: string;
     choiceD: string;
     answer: string;
-    createdDate: number
+    createdDate: number;
+    valid: number;
 }

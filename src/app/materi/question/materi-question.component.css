@@ -17,6 +17,12 @@
     border-radius: 5px;
 }
 
+td a {
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
+}
+
 .editor-outer {
     width: 44em;
 }

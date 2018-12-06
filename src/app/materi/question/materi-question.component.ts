@@ -96,6 +96,11 @@ export class MateriQuestionComponent implements OnInit {
     )
   }
 
+  onNotify(idx: number): void {
+    this.filter.page = idx;
+    this.getQuestions();
+  }
+
   private mapQuestion(data: any): MateriQuestion {
     let mq: MateriQuestion = new MateriQuestion();
     Object.assign(mq, data, { quizId: this.filter.id });
@@ -116,6 +121,21 @@ export class MateriQuestionComponent implements OnInit {
         this.checkResultAction();
       }
     );
+  }
+
+  private deleteQuestion(question: MateriQuestion): void {
+    this.blockUI.start();
+    this.materiServ.saveQuestion(question).subscribe(
+      resp => {
+        this.response = resp;
+      }, (err) => {
+        this.blockUI.stop();
+        this.globalMsgServ.changeMessage(err);
+      }, () => {
+        this.blockUI.stop();
+        this.checkResultAction();
+      }
+    )
   }
 
   private checkResultAction(): void {
@@ -149,4 +169,28 @@ export class MateriQuestionComponent implements OnInit {
   onBack(): void { this.router.navigate(['../' ], { relativeTo: this.route }); }
 
   onClear(): void { this.detailForm.reset(); }
+
+  onEditQuestion(question: MateriQuestion): void {
+    this.detailForm.patchValue({
+      id: question.id,
+      question: question.question,
+      choiceA: question.choiceA,
+      choiceB: question.choiceB,
+      choiceC: question.choiceC,
+      choiceD: question.choiceD,
+      answer: question.answer
+    });
+  }
+
+  private invalidQuestion(question: MateriQuestion): MateriQuestion {
+    question.valid = 0;
+    return question;
+  }
+
+  onDeleteQuestion(question: MateriQuestion): void {
+    this.confirmServ.activate(ConfirmationMessage.DELETE, TitleModal.CONFIRM)
+      .then(result => {
+        if (result) { this.deleteQuestion(this.invalidQuestion(question)); }
+      });
+  }
 }

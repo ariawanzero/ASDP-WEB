@@ -53,6 +53,13 @@ export class MateriService {
       )
   }
 
+  deleteQuestion(value: MateriQuestion): Observable<any> {
+    return this.http.post(('/materi/deleteQuestion'), value)
+      .pipe(
+        map(this.respService.extractResultAction)
+      )
+  }
+
   uploadFile(file: File, id: string): Observable<HttpEvent<{}>> {
     const formData: FormData = new FormData();
     
