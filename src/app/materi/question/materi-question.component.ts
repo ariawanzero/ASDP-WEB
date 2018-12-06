@@ -166,7 +166,7 @@ export class MateriQuestionComponent implements OnInit {
 
   onSave(): void { this.task = Task.Save; }
 
-  onBack(): void { this.router.navigate(['../' ], { relativeTo: this.route }); }
+  onBack(): void { this.router.navigate(['../../' ], { relativeTo: this.route }); }
 
   onClear(): void { this.detailForm.reset(); }
 
