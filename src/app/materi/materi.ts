@@ -10,6 +10,16 @@ export class MateriFilter {
     }
 }
 
+export class QuestionFilter {
+    id: string;
+    page: number;
+    
+    constructor() {
+        this.id = "";
+        this.page = 0;
+    }
+}
+
 export class Materi {
     id: string;
     name: string;
@@ -20,4 +30,18 @@ export class Materi {
     totalQuiz: number;
     description: string;
     publish: boolean;
+    questionList: MateriQuestion[];
+}
+
+export class MateriQuestion {
+    quizId: string;
+    id: string;
+    question: string;
+    choiceA: string;
+    choiceB: string;
+    choiceC: string;
+    choiceD: string;
+    answer: string;
+    createdDate: number;
+    valid: number;
 }

@@ -35,6 +35,9 @@
         <th scope="col">#</th>
         <th scope="col">Header</th>
         <th scope="col">Divisi</th>
+        <th scope="col">Start Date</th>
+        <th scope="col">End Date</th>
+        <th scope="col">Status</th>
         <th scope="col" class="text-center">Action</th>
       </tr>
     </thead>
@@ -43,10 +46,22 @@
         <th scope="row">{{ i + 1 }}</th>
         <td><a (click)="onEditQuiz(materi.id)">{{ materi.name }}</a></td>
         <td>
-          <p *ngFor="let divisi of materi.divisiDisplay">
-            - {{ divisi }}
-          </p>
+          <h5>
+            <ng-container *ngFor="let divisi of materi.divisiDisplay; let i = index">
+              <span class="badge badge-pill mr-1" [ngClass]="i % 2 == 0 ? ' badge-success' : ' badge-info'">
+                {{ divisi }}
+              </span>
+            </ng-container>
+          </h5>
         </td>
+        <td>{{ materi.startDate | dateTimeFormat }}</td>
+        <td>{{ materi.endDate | dateTimeFormat }}</td>
+        <td *ngIf="materi.publish === true; else notPublished">
+          Published
+        </td>
+        <ng-template #notPublished>
+          Not Published
+        </ng-template>
         <td class="text-center">
           <div class="btn-group mr-2">
             <button type="button" class="btn btn-primary btn-sm" (click)="onGoToUpload(materi.id)"><i class="fa fa-cloud-upload" aria-hidden="true"> Upload File</i></button>

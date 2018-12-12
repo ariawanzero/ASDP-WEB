@@ -8,8 +8,7 @@ import { PagingData } from '../shared/class/paging-data';
 
 import { ResponseService } from '../shared/service/response.service';
 
-import { MateriFilter, Materi } from './materi';
-import { formDirectiveProvider } from '@angular/forms/src/directives/ng_form';
+import { MateriFilter, QuestionFilter, Materi, MateriQuestion } from './materi';
 
 @Injectable()
 export class MateriService {
@@ -26,6 +25,13 @@ export class MateriService {
       )
   }
 
+  getFilteredQuestion(value: QuestionFilter): Observable<PagingData<MateriQuestion[]>> { 
+    return this.http.post(('/materi/searchQuestion'), value)
+      .pipe(
+        map(this.respService.extractDataPaging)
+      )
+  }
+
   getDetailMateri(value: any): Observable<any> {
     return this.http.post(('/materi/findMateriDetail'), value)
       .pipe(
@@ -35,6 +41,20 @@ export class MateriService {
 
   saveMateriHeader(value: Materi): Observable<any> { 
     return this.http.post(('/materi/saveMateriHeader'), value)
+      .pipe(
+        map(this.respService.extractResultAction)
+      )
+  }
+
+  saveQuestion(value: MateriQuestion): Observable<any> {
+    return this.http.post(('/materi/saveQuestion'), value)
+      .pipe(
+        map(this.respService.extractResultAction)
+      )
+  }
+
+  deleteQuestion(value: MateriQuestion): Observable<any> {
+    return this.http.post(('/materi/deleteQuestion'), value)
       .pipe(
         map(this.respService.extractResultAction)
       )
