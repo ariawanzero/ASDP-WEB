@@ -29,6 +29,9 @@ const appRoutes: Routes = [
       }, {
         path: 'materi',
         loadChildren: 'src/app/materi/materi.module#MateriModule'
+      }, {
+        path: 'quiz',
+        loadChildren: 'src/app/quiz/quiz.module#QuizModule'
       }
     ],
     canActivate: [RouterGuardService],
