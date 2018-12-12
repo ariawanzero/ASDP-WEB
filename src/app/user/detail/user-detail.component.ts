@@ -70,7 +70,6 @@ export class UserDetailComponent implements OnInit {
       alamat: new FormControl('', [Validators.maxLength(255)]),
       jabatan: new FormControl('', [Validators.required]),
       divisi: new FormControl('', [Validators.required]),
-      unit: new FormControl('', [Validators.required, Validators.maxLength(150)]),
       userRoleId: new FormControl('', [Validators.required]),
       expiredDate: new FormControl('')
     });
@@ -113,7 +112,6 @@ export class UserDetailComponent implements OnInit {
       alamat: user.alamat,
       jabatan: user.jabatan,
       divisi: user.divisi,
-      unit: user.unit,
       userRoleId: user.userRoleId,
       expiredDate: new Date(user.expiredDate).toISOString().substring(0, 10)
     })

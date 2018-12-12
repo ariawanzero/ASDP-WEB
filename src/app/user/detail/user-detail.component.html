@@ -62,16 +62,6 @@
       </span>
     </div>
   </div>
-  <div class="form-group row">
-    <label for="inputUnit" class="col-sm-2 col-form-label required">Unit</label>
-    <div class="col-sm-4">
-      <input type="text" class="form-control" [ngClass]="detailForm.controls.unit.errors && detailForm.controls.unit.touched ? ' error' : ''" formControlName="unit" name="unit" placeholder="unit" maxlength="150" autocomplete="off">
-      <span class="text-danger invalidMessage" *ngIf="detailForm.controls.unit.touched && detailForm.controls.unit.errors">
-        <span *ngIf="detailForm.controls.unit.errors?.required">Unit required.</span>
-        <span *ngIf="detailForm.controls.unit.errors?.maxlength">Max Length of Unit 150.</span>
-      </span>
-    </div>
-  </div>
   <div class="line"></div>
   <div class="form-group row">
     <label for="inputRole" class="col-sm-2 col-form-label required">Role</label>
