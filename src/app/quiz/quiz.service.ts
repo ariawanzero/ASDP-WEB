@@ -8,6 +8,8 @@ import { PagingData } from '../shared/class/paging-data';
 
 import { ResponseService } from '../shared/service/response.service';
 
+import { Quiz } from './quiz';
+
 @Injectable()
 export class QuizService {
 
@@ -15,4 +17,11 @@ export class QuizService {
     private http: HttpClient,
     private respService: ResponseService
   ) { }
+
+  getFilteredQuiz(): Observable<PagingData<Quiz[]>> { 
+    return this.http.get(('/quiz/searchQuiz'))
+      .pipe(
+        map(this.respService.extractDataPaging)
+      )
+  }
 }

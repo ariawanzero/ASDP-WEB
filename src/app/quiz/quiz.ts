@@ -1,6 +1,9 @@
 export class Quiz {
+    id: string;
     name: string;
-    description: string;
     startDate: Date;
     endDate: Date;
+    description: string;
+    urlPreview: string;
+    nameFile: string[];
 }
