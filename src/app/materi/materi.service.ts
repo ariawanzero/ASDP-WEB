@@ -73,4 +73,11 @@ export class MateriService {
 
     return this.http.request(req);
   }
+
+  publishQuiz(value: any): Observable<any> { 
+    return this.http.post(('/materi/publishQuiz'), value)
+      .pipe(
+        map(this.respService.extractResultAction)
+      )
+  }
 }

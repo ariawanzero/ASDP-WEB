@@ -66,10 +66,10 @@
           <div class="btn-group mr-2">
             <button type="button" class="btn btn-primary btn-sm" (click)="onGoToUpload(materi.id)"><i class="fa fa-cloud-upload" aria-hidden="true"> Upload File</i></button>
           </div>
-          <div class="btn-group mr-2">
+          <div class="btn-group mr-2" *ngIf="materi.publish === false">
             <button type="button" class="btn btn-primary btn-sm" (click)="onGoToQuestion(materi.id)"><i class="fa fa-list" aria-hidden="true"> List Question</i></button>
           </div>
-          <div class="btn-group">
+          <div class="btn-group" *ngIf="materi.publish === false">
             <button type="button" class="btn btn-success btn-sm" (click)="onPublish(materi.id)"><i class="fa fa-bullhorn" aria-hidden="true"> Publish</i></button>
           </div>
         </td>
