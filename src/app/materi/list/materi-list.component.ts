@@ -13,6 +13,10 @@ import { GlobalMessageService } from '../../shared/service/global-message.servic
 import { MateriService } from '../materi.service';
 
 import { MateriFilter, Materi } from '../materi';
+import { ConfirmationMessage } from '../../shared/class/confirmation-message';
+import { TitleModal } from '../../shared/class/title-modal';
+import { ConfirmationDialogService } from '../../shared/service/confirmation-dialog.service';
+import { CommonResponseStatus } from '../../shared/class/common-response-status';
 
 @Component({
   selector: 'asdp-materi-list',
@@ -27,11 +31,15 @@ export class MateriListComponent implements OnInit {
   filter: MateriFilter;
   page: PagingData<Materi[]>
 
+  materi: string;
+  response: CommonResponseStatus;
+  
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private materiServ: MateriService,    
-    private globalMsgServ: GlobalMessageService
+    private globalMsgServ: GlobalMessageService,
+    private confirmServ: ConfirmationDialogService
   ) { }
 
   ngOnInit() {
@@ -87,5 +95,36 @@ export class MateriListComponent implements OnInit {
 
   onGoToQuestion(id: string): void {
     this.router.navigate(['question', id], { relativeTo: this.route });
+  }
+
+  onPublish(id: string): void {
+    this.confirmServ.activate(ConfirmationMessage.PUBLISH, TitleModal.CONFIRM).then(result => {
+      if (result) {
+        this.publishQuiz(id); 
+      }
+    });;
+  }
+
+  private publishQuiz(data: string): void {
+    this.blockUI.start();
+    this.materiServ.publishQuiz({ id: data }).subscribe(
+      resp => {
+        this.response = resp;
+      }, (err) => {
+        this.blockUI.stop();
+        this.globalMsgServ.changeMessage(err);
+      }, () => {
+        this.blockUI.stop();
+        this.checkResultAction();
+      }
+    );
+  }
+
+  private checkResultAction(): void {
+    if(this.response.responseCode !== "00") {
+      this.globalMsgServ.changeMessage(this.response.responseDesc);
+    } else {
+      this.getMateriList();
+    }
   }
 }
