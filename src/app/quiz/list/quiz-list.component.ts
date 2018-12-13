@@ -13,7 +13,7 @@ import { GlobalMessageService } from '../../shared/service/global-message.servic
 
 import { QuizService } from '../quiz.service';
 
-import { Quiz } from '../quiz';
+import { QuizFilter, Quiz } from '../quiz';
 
 declare let jQuery: any;
 
@@ -25,6 +25,7 @@ declare let jQuery: any;
 export class QuizListComponent implements OnInit {
   @BlockUI() blockUI: NgBlockUI;
 
+  filter: QuizFilter;
   page: PagingData<Quiz[]>
 
   constructor(
@@ -35,12 +36,14 @@ export class QuizListComponent implements OnInit {
     private confirmServ: ConfirmationDialogService) { }
 
   ngOnInit() {
-    this.getListQuiz();
+    this.filter = new QuizFilter();
+
+    this.getQuizList();
   }
 
-  private getListQuiz(): void {
+  private getQuizList(): void {
     this.blockUI.start();
-    this.quizService.getFilteredQuiz().subscribe(
+    this.quizService.getFilteredQuiz(this.filter).subscribe(
       resp => {
         this.page = resp;
       },(err) => {
@@ -50,6 +53,11 @@ export class QuizListComponent implements OnInit {
         this.blockUI.stop();
       }
     )
+  }
+
+  onNotify(idx: number): void {
+    this.filter.page = idx;
+    this.getQuizList();
   }
 
   onCollapse(id: string): void {
