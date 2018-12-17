@@ -8,5 +8,6 @@ export class ConfirmationMessage {
     public static UPLOAD = 'Are you sure want to upload?';
     public static CONFIRM = 'Are you sure want to confirm?';
     public static VERIFY = 'Are you sure want to verify?';
-    public static PUBLISH = 'Are you sure want to publish?';  
+    public static PUBLISH = 'Are you sure want to publish?';
+    public static ANSWER = 'Are you sure want to Start Answer Quiz?'; 
 }

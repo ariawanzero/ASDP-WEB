@@ -15,6 +15,7 @@ import { Oauth2AuthenticationInterceptor } from '../http-interceptor/oauth2-auth
 import { QuizService } from './quiz.service';
 
 import { QuizListComponent } from './list/quiz-list.component';
+import { QuizAnswerComponent } from './answer/quiz-answer.component';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { QuizListComponent } from './list/quiz-list.component';
     SharedModule
   ],
   declarations: [
-    QuizListComponent
+    QuizListComponent,
+    QuizAnswerComponent
   ],
   providers: [
     {

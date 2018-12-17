@@ -67,4 +67,11 @@ export class QuizListComponent implements OnInit {
     !state ? jQuery(id).collapse('show') : jQuery(id).collapse('hide')
     jQuery(id).attr("aria-expanded", !state);
   }
+
+  onStart(id: string): void {
+    this.confirmServ.activate(ConfirmationMessage.ANSWER, TitleModal.CONFIRM)
+      .then(result => {
+        if (result) { this.router.navigate(['answer', id], { relativeTo: this.route }); }
+      });
+  }
 }
