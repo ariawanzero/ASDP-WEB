@@ -13,6 +13,11 @@
           <div class="center col-sm-12" [innerHTML]="quiz.description"></div>
           <div class="center col-sm-12"><p>Waktu Mulai Kuis : {{ quiz.startDate | dateTimeFormat }} s/d {{ quiz.endDate | dateTimeFormat }} </p></div>
           <div class="center col-sm-12"><p>Jumlah Soal Kuis : {{ quiz.totalQuiz}} Soal</p></div>
+          <div class="left col-sm-12" *ngIf="quiz.nameFile">
+            <div *ngFor="let file of quiz.nameFile; let i = index">
+              <a (click)="onPreview(quiz.urlPreview + file)">{{ i + 1 }}. {{ file }}</a>
+            </div>
+          </div>
           <div class="center col-sm-12">
             <button type="button" class="btn" (click)="onStart(quiz.id)"><i class="fa fa-play" aria-hidden="true"> Start</i></button>
           </div>

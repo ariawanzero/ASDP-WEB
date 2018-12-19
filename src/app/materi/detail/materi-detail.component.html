@@ -3,7 +3,7 @@
 <form [formGroup]="detailForm" (ngSubmit)="onSubmit()">
   <div class="form-group row">
     <label for="inputNama" class="col-sm-2 col-form-label required">Nama</label>
-    <div class="col-sm-4">
+    <div class="col-sm-6">
       <input type="text" class="form-control" [ngClass]="detailForm.controls.name.errors && detailForm.controls.name.touched ? ' error' : ''" formControlName="name" name="name" placeholder="Name" autocomplete="off">
       <span class="text-danger invalidMessage" *ngIf="detailForm.controls.name.touched && detailForm.controls.name.errors">
         <span *ngIf="detailForm.controls.name.errors?.required">Name Required.</span>

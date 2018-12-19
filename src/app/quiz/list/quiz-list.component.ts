@@ -10,6 +10,7 @@ import { CommonResponseStatus } from '../../shared/class/common-response-status'
 
 import { ConfirmationDialogService } from '../../shared/service/confirmation-dialog.service';
 import { GlobalMessageService } from '../../shared/service/global-message.service';
+import { ModalService } from '../../shared/service/modal.service';
 
 import { QuizService } from '../quiz.service';
 
@@ -27,11 +28,13 @@ export class QuizListComponent implements OnInit {
 
   filter: QuizFilter;
   page: PagingData<Quiz[]>
+  urlFile: string;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private quizService: QuizService,
+    private modalServ: ModalService,
     private globalMsgServ: GlobalMessageService,
     private confirmServ: ConfirmationDialogService) { }
 
@@ -73,5 +76,10 @@ export class QuizListComponent implements OnInit {
       .then(result => {
         if (result) { this.router.navigate(['answer', id], { relativeTo: this.route }); }
       });
+  }
+
+  onPreview(url: string): void {
+    this.urlFile = url;
+    this.modalServ.openModal("modal-materi-file");
   }
 }
