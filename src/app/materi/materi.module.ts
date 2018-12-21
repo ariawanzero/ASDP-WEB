@@ -15,12 +15,10 @@ import { HttpErrorInterceptor } from '../http-interceptor/http-error-interceptor
 import { Oauth2AuthenticationInterceptor } from '../http-interceptor/oauth2-authentication-interceptor';
 
 import { MateriService } from './materi.service';
-import { ModalService } from '../shared/service/modal.service';
 
 import { MateriListComponent } from './list/materi-list.component';
 import { MateriDetailComponent } from './detail/materi-detail.component';
 import { MateriUploadComponent } from './upload/materi-upload.component';
-import { MateriFileComponent } from './modal/materi-file/materi-file.component';
 import { MateriQuestionComponent } from './question/materi-question.component';
 
 @NgModule({
@@ -40,7 +38,6 @@ import { MateriQuestionComponent } from './question/materi-question.component';
     MateriListComponent,
     MateriDetailComponent,
     MateriUploadComponent,
-    MateriFileComponent,
     MateriQuestionComponent
   ],
   providers: [
@@ -55,8 +52,7 @@ import { MateriQuestionComponent } from './question/materi-question.component';
       multi: true,
       deps: [ CookieService ]
     },
-    MateriService,
-    ModalService
+    MateriService
   ]
 })
 export class MateriModule { }

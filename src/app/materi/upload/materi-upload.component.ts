@@ -12,7 +12,7 @@ import { MateriService } from '../materi.service';
 import { Materi } from '../materi';
 
 @Component({
-  selector: 'app-materi-upload',
+  selector: 'asdp-materi-upload',
   templateUrl: './materi-upload.component.html',
   styleUrls: ['./materi-upload.component.css']
 })
@@ -89,6 +89,6 @@ export class MateriUploadComponent implements OnInit {
 
   onPreview(url: string): void {
     this.urlFile = url;
-    this.modalServ.openModal("modal-materi-file");
+    this.modalServ.openModal("modal-file");
   }
 }

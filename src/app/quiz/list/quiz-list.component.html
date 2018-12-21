@@ -1,25 +1,39 @@
-<div class="accordion" id="accordionExample" *ngIf="page">
+<div *ngIf="page">
   <div class="card" *ngFor="let quiz of page.data; let i = index">
     <div class="card-header">
       <h5 class="mb-0">
+        {{ i + 1 }}. 
         <button class="btn btn-link" type="button" (click)="onCollapse('#' + quiz.id)">
-          {{ quiz.name }}
+          {{ quiz.name | titlecase  }}
         </button>
       </h5>
     </div>
     <div id="{{ quiz.id }}" class="collapse" aria-expanded="false">
       <div class="card-body">
         <div class="row">
-          <div class="center col-sm-12" [innerHTML]="quiz.description"></div>
-          <div class="center col-sm-12"><p>Waktu Mulai Kuis : {{ quiz.startDate | dateTimeFormat }} s/d {{ quiz.endDate | dateTimeFormat }} </p></div>
-          <div class="center col-sm-12"><p>Jumlah Soal Kuis : {{ quiz.totalQuiz}} Soal</p></div>
-          <div class="left col-sm-12" *ngIf="quiz.nameFile">
-            <div *ngFor="let file of quiz.nameFile; let i = index">
-              <a (click)="onPreview(quiz.urlPreview + file)">{{ i + 1 }}. {{ file }}</a>
+          <div class="col-sm-8">
+            <div class="row col-sm-12 text-justify" [innerHTML]="quiz.description"></div>
+            <div class="row col-sm-12 text-left">
+              <p>Start Quiz : &nbsp;
+              <p>{{ quiz.startDate | dateTimeFormat }} s/d {{ quiz.endDate | dateTimeFormat }}</p>
+            </div>
+            <div class="row col-sm-12 text-left">
+              <p>Jumlah Soal: &nbsp;{{ quiz.totalQuiz}} Soal</p>
+            </div>
+            <div class="row col-sm-12 text-left">
+              <p>Materi Quiz : </p>
+            </div>
+            <div class="row" *ngIf="quiz.nameFile">
+              <div class="col-sm-12" *ngFor="let file of quiz.nameFile; let i = index">
+                {{ i + 1 }}.
+                <a (click)="onPreview(quiz.urlPreview + file)">{{ file }}</a>
+              </div>
             </div>
           </div>
-          <div class="center col-sm-12">
-            <button type="button" class="btn" (click)="onStart(quiz.id)"><i class="fa fa-play" aria-hidden="true"> Start</i></button>
+          <div class="col-sm-4 text-center">
+            <button type="button" class="btn btn-primary btn-circle btn-xl" (click)="onStart(quiz.id)">
+              <i class="fa fa-play" aria-hidden="true"></i>
+            </button>
           </div>
         </div>
       </div>
@@ -28,5 +42,4 @@
 </div>
 <br />
 <asdp-paging *ngIf="page" [pagingData]="page" (notify)="onNotify($event)"></asdp-paging>
-
-<asdp-modal-materi-file [urlFile]="urlFile"></asdp-modal-materi-file>
+<asdp-modal-file [urlFile]="urlFile"></asdp-modal-file>

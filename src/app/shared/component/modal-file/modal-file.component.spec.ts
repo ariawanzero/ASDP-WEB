@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModalService } from '../../../shared/service/modal.service';
+import { ModalService } from '../../service/modal.service';
 
-import { MateriFileComponent } from './materi-file.component';
+import { ModalFileComponent } from './modal-file.component';
 
 class MockModalService extends ModalService {
 
 }
 
-describe('MateriFileComponent', () => {
-  let component: MateriFileComponent;
-  let fixture: ComponentFixture<MateriFileComponent>;
+describe('ModalFileComponent', () => {
+  let component: ModalFileComponent;
+  let fixture: ComponentFixture<ModalFileComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MateriFileComponent ],
+      declarations: [ ModalFileComponent ],
       providers: [{
         provide: ModalService,
         useClass: MockModalService
@@ -24,7 +24,7 @@ describe('MateriFileComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MateriFileComponent);
+    fixture = TestBed.createComponent(ModalFileComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
