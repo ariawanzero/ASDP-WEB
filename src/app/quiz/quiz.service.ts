@@ -8,7 +8,7 @@ import { PagingData } from '../shared/class/paging-data';
 
 import { ResponseService } from '../shared/service/response.service';
 
-import { QuizFilter, Quiz } from './quiz';
+import { QuizFilter, Quiz, QuizResult } from './quiz';
 
 @Injectable()
 export class QuizService {
@@ -22,6 +22,13 @@ export class QuizService {
     return this.http.post(('/quiz/searchQuiz'), value)
       .pipe(
         map(this.respService.extractDataPaging)
+      )
+  }
+
+  getQuestionQuiz(value: string): Observable<QuizResult> {
+    return this.http.post(('/quiz/startQuiz'), { id: value })
+      .pipe(
+        map(this.respService.extractData)
       )
   }
 }

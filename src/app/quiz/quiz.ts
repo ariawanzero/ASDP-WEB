@@ -16,3 +16,19 @@ export class Quiz {
     urlPreview: string;
     nameFile: string[];
 }
+
+export class QuizResult {
+    id: string;
+    questions: QuizQuestion[];
+    quiz: string;
+}
+
+export class QuizQuestion {
+    id: string;
+    question: string;
+    choiceA: string;
+    choiceB: string;
+    choiceC: string;
+    choiceD: string;
+    valid: number;
+}
