@@ -42,8 +42,14 @@ export class QuizAnswerComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getIDQuizFromParamater();
     this.setForm();
+    this.getIDQuizFromParamater();
+  }
+
+  private setForm(): void {
+    this.answerForm = new FormGroup({
+      choice: new FormControl('', [Validators.required]),
+    });
   }
 
   private getIDQuizFromParamater(): void {
@@ -76,11 +82,19 @@ export class QuizAnswerComponent implements OnInit {
     this.quizes.questions = this.quizes.questions.filter(data => data.valid == 1);
     this.questionCount = this.quizes.questions.length - 1;
     this.question = this.quizes.questions.filter(data => data.valid == 1)[this.idx];
+
+    this.setValueQuestion();
   }
 
-  private setForm(): void {
-    this.answerForm = new FormGroup({
-      choice: new FormControl('', [Validators.required]),
+  private setValueQuestion(): void {
+    this.answerForm.patchValue({
+      choice: this.question.answer ? this.question.answer : ''
     });
+  }
+
+  onPrev(): void {
+    this.idx -= 1;
+    
+    this.getQuizQuestion();
   }
 }

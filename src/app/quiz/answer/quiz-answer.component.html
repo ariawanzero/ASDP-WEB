@@ -31,10 +31,10 @@
   </div>
   <div class="form-group row justify-content-sm-center">
     <div class="mr-2">
-      <button type="button" class="btn btn-secondary" [disabled]="idx == 0">Prev Question</button>
+      <button type="button" class="btn btn-secondary" [disabled]="idx == 0" (click)="onPrev()">Prev Question</button>
     </div>
     <div class="mr-2" *ngIf="questionCount > idx">
-      <button type="button" class="btn btn-primary" [disabled]="!answerForm.valid">Next Question</button>
+      <button type="button" class="btn btn-primary" [disabled]="!answerForm.valid" (click)="onNext()">Next Question</button>
     </div>
     <div *ngIf="questionCount == idx">
       <button type="button" class="btn btn-primary" [disabled]="!answerForm.valid">Finish Question</button>

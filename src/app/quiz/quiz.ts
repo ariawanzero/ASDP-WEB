@@ -30,5 +30,6 @@ export class QuizQuestion {
     choiceB: string;
     choiceC: string;
     choiceD: string;
+    answer: string;
     valid: number;
 }
