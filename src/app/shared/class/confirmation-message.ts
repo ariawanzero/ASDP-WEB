@@ -10,4 +10,5 @@ export class ConfirmationMessage {
     public static VERIFY = 'Are you sure want to verify?';
     public static PUBLISH = 'Are you sure want to publish?';
     public static ANSWER = 'Are you sure want to Start Answer Quiz?'; 
+    public static FINISH = 'Are you sure want to Finish Answer Quiz?'; 
 }

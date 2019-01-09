@@ -37,7 +37,7 @@
       <button type="button" class="btn btn-primary" [disabled]="!answerForm.valid" (click)="onNext()">Next Question</button>
     </div>
     <div *ngIf="questionCount == idx">
-      <button type="button" class="btn btn-primary" [disabled]="!answerForm.valid">Finish Question</button>
+      <button type="button" class="btn btn-primary" [disabled]="!answerForm.valid" (click)="onFinish()">Finish Question</button>
     </div>
   </div>
 </form>

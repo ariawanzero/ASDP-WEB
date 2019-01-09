@@ -28,6 +28,7 @@ export class QuizAnswerComponent implements OnInit {
   quizId: string;
   quizes: QuizResult;
   question: QuizQuestion;
+  finishQuiz: boolean = false;
 
   idx: number = 0;
   questionCount: number;
@@ -88,7 +89,7 @@ export class QuizAnswerComponent implements OnInit {
 
   private setValueQuestion(): void {
     this.answerForm.patchValue({
-      choice: this.question.answer ? this.question.answer : ''
+      choice: this.question.answerUser ? this.question.answerUser : ''
     });
   }
 
@@ -96,5 +97,44 @@ export class QuizAnswerComponent implements OnInit {
     this.idx -= 1;
     
     this.getQuizQuestion();
+  }
+
+  onNext(): void {
+    this.idx += 1;
+    let answer : any = this.answerForm.getRawValue();
+    this.question.answerUser = answer.choice;
+
+    this.answerQuiz();
+  }
+
+  onFinish(): void {
+    this.confirmServ.activate(ConfirmationMessage.FINISH, TitleModal.CONFIRM)
+      .then(result => {
+        this.question.finish = true;
+        this.finishQuiz = true;
+        let answer : any = this.answerForm.getRawValue();
+        this.question.answerUser = answer.choice;
+
+        this.answerQuiz();
+      });
+  }
+
+  private answerQuiz(): void {
+    this.blockUI.start();
+    this.quizService.answerQuiz(this.question).subscribe(
+      resp => {
+        this.quizes = resp;
+      },(err) => {
+        this.blockUI.stop();
+        this.globalMsgServ.changeMessage(err);
+      }, () => {
+        this.blockUI.stop();
+        if(this.finishQuiz){
+          this.router.navigate(['list'], { relativeTo: this.route });
+        }else {
+          this.getQuizQuestion();
+        }
+      }
+    )
   }
 }
