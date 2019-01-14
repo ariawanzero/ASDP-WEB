@@ -32,6 +32,9 @@ const appRoutes: Routes = [
       }, {
         path: 'quiz',
         loadChildren: 'src/app/quiz/quiz.module#QuizModule'
+      }, {
+        path: 'result',
+        loadChildren: 'src/app/result/result.module#ResultModule'
       }
     ],
     canActivate: [RouterGuardService],

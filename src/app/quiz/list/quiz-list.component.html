@@ -1,6 +1,6 @@
 <h4>Quiz</h4>
 <div *ngIf="page">
-  <div class="card" *ngFor="let quiz of page.data; let i = index">
+  <div class="card bg-light" *ngFor="let quiz of page.data; let i = index">
     <div class="card-header">
       <h5 class="mb-0">
         {{ i + 1 }}. 
@@ -32,8 +32,9 @@
             </div>
           </div>
           <div class="col-sm-4 text-center">
-            <button type="button" class="btn btn-primary btn-circle btn-xl" (click)="onStart(quiz.id)">
+            <button type="button" class="btn btn-success btn-circle btn-xl" (click)="onStart(quiz.id)">
               <i class="fa fa-play" aria-hidden="true"></i>
+              <p>Start</p>
             </button>
           </div>
         </div>
