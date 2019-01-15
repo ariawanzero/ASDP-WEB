@@ -14,8 +14,6 @@ import { Oauth2AuthenticationInterceptor } from '../http-interceptor/oauth2-auth
 
 import { ResultService } from './result.service';
 
-import { QuizComponent } from './quiz/quiz.component';
-
 
 @NgModule({
   imports: [
@@ -28,9 +26,7 @@ import { QuizComponent } from './quiz/quiz.component';
 
     SharedModule
   ],
-  declarations: [
-    QuizComponent
-  ],
+  declarations: [],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

@@ -121,7 +121,7 @@ export class QuizAnswerComponent implements OnInit {
 
   private answerQuiz(): void {
     this.blockUI.start();
-    this.quizService.answerQuiz(this.question).subscribe(
+    this.quizService.sendAnswerQuiz(this.question).subscribe(
       resp => {
         this.quizes = resp;
       },(err) => {

@@ -1,4 +1,12 @@
-<h4>Quiz</h4>
+<div class="row">
+  <div class="col-sm-6">
+    <h4>Quiz</h4>
+  </div>
+  <div class="col-sm-6 text-right">
+    <button type="button" class="btn btn-info" (click)="onResult()"><i class="fa fa-list-alt"> Result</i></button>
+  </div>
+</div>
+
 <div *ngIf="page">
   <div class="card bg-light" *ngFor="let quiz of page.data; let i = index">
     <div class="card-header">

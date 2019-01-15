@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { QuizListComponent } from './list/quiz-list.component';
 import { QuizAnswerComponent } from './answer/quiz-answer.component';
+import { QuizResultComponent } from './result/quiz-result.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,9 @@ const routes: Routes = [
   }, {
     path: 'list',
     component: QuizListComponent
+  }, {
+    path: 'result',
+    component: QuizResultComponent
   }
 ];
 
