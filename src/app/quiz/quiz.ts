@@ -20,7 +20,7 @@ export class Quiz {
 export class QuizResult {
     id: string;
     questions: QuizQuestion[];
-    quiz: string;
+    quizName: string;
     score: number;
 }
 
