@@ -2,3 +2,27 @@
     width: 100%;
     min-height:25em;
 }
+
+@media (max-width: 575.98px) { 
+    .object-data {
+        display: none;
+    }
+}
+
+@media (max-width: 767.98px) { 
+    .object-data {
+        display: none;
+    }
+}
+
+@media (max-width: 991.98px) { 
+    .object-data {
+        display: none;
+    }
+}
+
+@media (max-width: 1199.98px) {
+    .download-link {
+        display: none;
+    }
+}
