@@ -14,6 +14,8 @@ import { Oauth2AuthenticationInterceptor } from '../http-interceptor/oauth2-auth
 
 import { ResultService } from './result.service';
 
+import { ResultListComponent } from './list/result-list.component';
+
 
 @NgModule({
   imports: [
@@ -26,7 +28,9 @@ import { ResultService } from './result.service';
 
     SharedModule
   ],
-  declarations: [],
+  declarations: [
+    ResultListComponent
+  ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
