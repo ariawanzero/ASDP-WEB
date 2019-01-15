@@ -130,7 +130,7 @@ export class QuizAnswerComponent implements OnInit {
       }, () => {
         this.blockUI.stop();
         if(this.finishQuiz){
-          this.router.navigate(['/home/result/quiz']);
+          this.router.navigate(['../result'], { relativeTo: this.route });
         }else {
           this.getQuizQuestion();
         }
