@@ -38,7 +38,7 @@
                 <a (click)="onPreview(quiz.urlPreview + file)">{{ file }}</a>
               </div>
             </div><br/>
-            <div class="col-sm-12 text-center">
+            <div class="col-sm-12 text-center" *ngIf="quiz.alreadyStart">
               <button type="button" class="btn btn-success btn-circle btn-xl" (click)="onStart(quiz.id)">
                 <i class="fa fa-play" aria-hidden="true"></i>
                 <p>Start</p>

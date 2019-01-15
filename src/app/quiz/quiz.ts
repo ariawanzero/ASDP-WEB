@@ -15,12 +15,13 @@ export class Quiz {
     description: string;
     urlPreview: string;
     nameFile: string[];
+    alreadyStart: boolean;
 }
 
 export class QuizResult {
     id: string;
     questions: QuizQuestion[];
-    quiz: string;
+    quizName: string;
     score: number;
 }
 
