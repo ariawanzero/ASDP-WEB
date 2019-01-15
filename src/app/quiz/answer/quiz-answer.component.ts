@@ -72,6 +72,7 @@ export class QuizAnswerComponent implements OnInit {
       },(err) => {
         this.blockUI.stop();
         this.globalMsgServ.changeMessage(err);
+        this.router.navigate(['../..'], { relativeTo: this.route });
       }, () => {
         this.blockUI.stop();
         this.getQuizQuestion();

@@ -15,6 +15,7 @@ export class Quiz {
     description: string;
     urlPreview: string;
     nameFile: string[];
+    alreadyStart: boolean;
 }
 
 export class QuizResult {
