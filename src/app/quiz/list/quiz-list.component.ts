@@ -79,6 +79,7 @@ export class QuizListComponent implements OnInit {
 
   onPreview(url: string): void {
     this.urlFile = url;
+    console.log(url);
     this.modalServ.openModal("modal-file");
   }
 }
