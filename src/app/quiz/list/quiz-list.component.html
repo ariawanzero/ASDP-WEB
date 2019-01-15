@@ -20,30 +20,30 @@
     <div id="{{ quiz.id }}" class="collapse" aria-expanded="false">
       <div class="card-body">
         <div class="row">
-          <div class="col-sm-8">
-            <div class="row col-sm-12 text-justify" [innerHTML]="quiz.description"></div>
-            <div class="row col-sm-12 text-left">
+          <div class="col-sm-12">
+            <div class="col-sm-12 text-center" [innerHTML]="quiz.description"></div>
+            <div class="col-sm-12 text-center">
               <p>Start Quiz : &nbsp;
               <p>{{ quiz.startDate | dateTimeFormat }} s/d {{ quiz.endDate | dateTimeFormat }}</p>
             </div>
-            <div class="row col-sm-12 text-left">
+            <div class="col-sm-12 text-center">
               <p>Jumlah Soal: &nbsp;{{ quiz.totalQuiz}} Soal</p>
             </div>
-            <div class="row col-sm-12 text-left">
+            <div class="col-sm-12 text-center">
               <p>Materi Quiz : </p>
             </div>
-            <div class="row" *ngIf="quiz.nameFile">
+            <div class="row text-center" *ngIf="quiz.nameFile">
               <div class="col-sm-12" *ngFor="let file of quiz.nameFile; let i = index">
                 {{ i + 1 }}.
                 <a (click)="onPreview(quiz.urlPreview + file)">{{ file }}</a>
               </div>
+            </div><br/>
+            <div class="col-sm-12 text-center">
+              <button type="button" class="btn btn-success btn-circle btn-xl" (click)="onStart(quiz.id)">
+                <i class="fa fa-play" aria-hidden="true"></i>
+                <p>Start</p>
+              </button>
             </div>
-          </div>
-          <div class="col-sm-4 text-center">
-            <button type="button" class="btn btn-success btn-circle btn-xl" (click)="onStart(quiz.id)">
-              <i class="fa fa-play" aria-hidden="true"></i>
-              <p>Start</p>
-            </button>
           </div>
         </div>
       </div>
