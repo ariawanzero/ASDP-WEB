@@ -16,6 +16,7 @@ import { QuizService } from './quiz.service';
 
 import { QuizListComponent } from './list/quiz-list.component';
 import { QuizAnswerComponent } from './answer/quiz-answer.component';
+import { QuizResultComponent } from './result/quiz-result.component';
 
 @NgModule({
   imports: [
@@ -30,7 +31,8 @@ import { QuizAnswerComponent } from './answer/quiz-answer.component';
   ],
   declarations: [
     QuizListComponent,
-    QuizAnswerComponent
+    QuizAnswerComponent,
+    QuizResultComponent
   ],
   providers: [
     {

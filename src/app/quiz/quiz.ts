@@ -21,6 +21,7 @@ export class QuizResult {
     id: string;
     questions: QuizQuestion[];
     quiz: string;
+    score: number;
 }
 
 export class QuizQuestion {

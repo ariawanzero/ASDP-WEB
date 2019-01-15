@@ -32,10 +32,17 @@ export class QuizService {
       )
   }
 
-  answerQuiz(value: QuizQuestion): Observable<QuizResult> {
+  sendAnswerQuiz(value: QuizQuestion): Observable<QuizResult> {
     return this.http.post(('/quiz/answerQuiz'), value )
       .pipe(
         map(this.respService.extractData)
+      )
+  }
+
+  getResultQuiz(value: QuizFilter): Observable<PagingData<QuizResult[]>> {
+    return this.http.post(('/quiz/resultQuiz'), value)
+      .pipe (
+        map(this.respService.extractDataPaging)
       )
   }
 }

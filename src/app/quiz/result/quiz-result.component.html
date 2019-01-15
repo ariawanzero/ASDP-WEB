@@ -1,0 +1,15 @@
+<h4>Result Quiz</h4>
+
+<div class="card" *ngFor="let result of page.data; let i = index">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-sm-5">
+        <h5>{{ result.quiz }}</h5>
+      </div>
+      <div class="col-sm-7">
+      </div>
+    </div>
+  </div>
+</div>
+
+<asdp-paging *ngIf="page" [pagingData]="page" (notify)="onNotify($event)"></asdp-paging>

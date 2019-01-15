@@ -8,6 +8,8 @@ import { PagingData } from '../shared/class/paging-data';
 
 import { ResponseService } from '../shared/service/response.service';
 
+import { ResultQuizFilter, ResultQuiz } from './result';
+
 @Injectable()
 export class ResultService {
 
@@ -15,4 +17,11 @@ export class ResultService {
     private http: HttpClient,
     private respService: ResponseService
   ) { }  
+
+  getFilteredResultQuiz(value: ResultQuizFilter): Observable<PagingData<ResultQuiz[]>> { 
+    return this.http.post(('/result/searchResultQuiz'), value)
+      .pipe(
+        map(this.respService.extractDataPaging)
+      )
+  }
 }

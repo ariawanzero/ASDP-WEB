@@ -1,6 +1,16 @@
+export class ResultQuizFilter {
+    name: string;
+    page: number;
+
+    constructor() {
+        this.name = "";
+        this.page = 0;
+    }
+}
+
 export class ResultQuiz {
     id: string;
-    username: string;
-    quiz: string;
-    score: string;
+    name: string;
+    startDate: Date;
+    endDate: Date;
 }

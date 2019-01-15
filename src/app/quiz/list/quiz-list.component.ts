@@ -82,4 +82,8 @@ export class QuizListComponent implements OnInit {
     console.log(url);
     this.modalServ.openModal("modal-file");
   }
+
+  onResult(): void {
+    this.router.navigate(['result'], { relativeTo: this.route });
+  }
 }
