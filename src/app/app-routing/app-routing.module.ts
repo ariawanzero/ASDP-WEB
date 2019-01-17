@@ -31,13 +31,8 @@ const appRoutes: Routes = [
         loadChildren: 'src/app/materi/materi.module#MateriModule'
       }, {
         path: 'document',
-        data: { pending: false },
         loadChildren: 'src/app/document/document.module#DocumentModule'
-      }, {
-        path: 'document-pending',
-        data: { pending: true },
-        loadChildren: 'src/app/document/document.module#DocumentModule'
-       }, { 
+      }, { 
         path: 'quiz',
         loadChildren: 'src/app/quiz/quiz.module#QuizModule'
       }, {
