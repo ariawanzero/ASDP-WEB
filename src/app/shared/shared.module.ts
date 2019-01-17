@@ -8,6 +8,7 @@ import { NavbarTopComponent } from './component/navbar-top/navbar-top.component'
 import { NavbarSidebarComponent } from './component/navbar-sidebar/navbar-sidebar.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { PagingComponent } from './component/paging/paging.component';
+import { ModalFileComponent } from './component/modal-file/modal-file.component';
 
 import { SidebarService } from './service/sidebar.service';
 import { ResponseService } from './service/response.service';
@@ -32,6 +33,7 @@ import { DateTimeFormatPipe } from './pipe/date-time-format.pipe';
     NavbarSidebarComponent,
     FooterComponent,
     PagingComponent,
+    ModalFileComponent,
 
     DateFormatPipe,
     DateTimeFormatPipe
@@ -49,6 +51,7 @@ import { DateTimeFormatPipe } from './pipe/date-time-format.pipe';
     NavbarSidebarComponent,
     FooterComponent,
     PagingComponent,
+    ModalFileComponent,
 
     DateFormatPipe,
     DateTimeFormatPipe

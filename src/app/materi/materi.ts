@@ -30,7 +30,9 @@ export class Materi {
     totalQuiz: number;
     description: string;
     publish: boolean;
+    urlPreview: string;
     questionList: MateriQuestion[];
+    nameFile: string[];
 }
 
 export class MateriQuestion {

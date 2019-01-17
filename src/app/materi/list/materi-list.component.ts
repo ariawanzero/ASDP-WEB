@@ -5,18 +5,19 @@ import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 import { SimpleObject } from '../../shared/class/simple-object';
 import { PagingData } from '../../shared/class/paging-data';
+import { ConfirmationMessage } from '../../shared/class/confirmation-message';
+import { TitleModal } from '../../shared/class/title-modal';
+import { CommonResponseStatus } from '../../shared/class/common-response-status';
+
+import { ConfirmationDialogService } from '../../shared/service/confirmation-dialog.service';
+import { GlobalMessageService } from '../../shared/service/global-message.service';
 
 import { DIVISI } from '../../shared/constant/divisi';
-
-import { GlobalMessageService } from '../../shared/service/global-message.service';
 
 import { MateriService } from '../materi.service';
 
 import { MateriFilter, Materi } from '../materi';
-import { ConfirmationMessage } from '../../shared/class/confirmation-message';
-import { TitleModal } from '../../shared/class/title-modal';
-import { ConfirmationDialogService } from '../../shared/service/confirmation-dialog.service';
-import { CommonResponseStatus } from '../../shared/class/common-response-status';
+
 
 @Component({
   selector: 'asdp-materi-list',
