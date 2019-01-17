@@ -1,0 +1,45 @@
+<h4>Result Filter</h4>
+<div class="line"></div>
+<form>
+  <div class="form-group row">
+    <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" [(ngModel)]="filter.name" name="name" placeholder="Name" autocomplete="off">
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-10 offset-sm-2">
+      <div class="btn-group mr-2">
+        <button type="button" class="btn btn-info" (click)="onSearch()"><i class="fa fa-search"> Search</i></button>
+      </div>
+    </div>
+  </div>
+</form>
+<h4>Result List</h4>
+<div class="table-responsive-sm">
+  <table class="table table-sm">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Start Date</th>
+        <th scope="col">End Date</th>
+        <th scope="col" class="text-center">Action</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="page">
+      <tr *ngFor="let result of page.data; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ result.name }}</td>
+        <td>{{ result.startDate | dateTimeFormat }}</td>
+        <td>{{ result.endDate | dateTimeFormat }}</td>
+        <td class="text-center">
+          <div class="btn-group mr-2">
+            <button type="button" class="btn btn-primary btn-sm" (click)="onDownloadFile(result.id)"><i class="fa fa-cloud-upload" aria-hidden="true"> Download File</i></button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<asdp-paging *ngIf="page" [pagingData]="page" (notify)="onNotify($event)"></asdp-paging>

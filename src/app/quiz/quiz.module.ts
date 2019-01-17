@@ -3,23 +3,20 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import { NgSelectModule } from '@ng-select/ng-select';
-import { QuillModule } from 'ngx-quill'
 import { CookieService } from 'ngx-cookie-service';
 
-import { SharedModule } from '../shared/shared.module';
+import { QuizRoutingModule } from './quiz-routing.module';
 
-import { MateriRoutingModule } from './materi-routing.module';
+import { SharedModule } from '../shared/shared.module';
 
 import { HttpErrorInterceptor } from '../http-interceptor/http-error-interceptor';
 import { Oauth2AuthenticationInterceptor } from '../http-interceptor/oauth2-authentication-interceptor';
 
-import { MateriService } from './materi.service';
+import { QuizService } from './quiz.service';
 
-import { MateriListComponent } from './list/materi-list.component';
-import { MateriDetailComponent } from './detail/materi-detail.component';
-import { MateriUploadComponent } from './upload/materi-upload.component';
-import { MateriQuestionComponent } from './question/materi-question.component';
+import { QuizListComponent } from './list/quiz-list.component';
+import { QuizAnswerComponent } from './answer/quiz-answer.component';
+import { QuizResultComponent } from './result/quiz-result.component';
 
 @NgModule({
   imports: [
@@ -27,18 +24,15 @@ import { MateriQuestionComponent } from './question/materi-question.component';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    MateriRoutingModule,
 
-    QuillModule,
-    NgSelectModule,
+    QuizRoutingModule,
 
     SharedModule
   ],
   declarations: [
-    MateriListComponent,
-    MateriDetailComponent,
-    MateriUploadComponent,
-    MateriQuestionComponent
+    QuizListComponent,
+    QuizAnswerComponent,
+    QuizResultComponent
   ],
   providers: [
     {
@@ -52,7 +46,7 @@ import { MateriQuestionComponent } from './question/materi-question.component';
       multi: true,
       deps: [ CookieService ]
     },
-    MateriService
+    QuizService
   ]
 })
-export class MateriModule { }
+export class QuizModule { }

@@ -1,0 +1,26 @@
+<h4>Result Quiz</h4>
+
+<div class="card">
+  <div class="card-header">
+    <div class="row">
+      <div class="col-sm-6">
+        <h5>Name Quiz</h5>
+      </div>
+      <div class="col-sm-6">
+        <h5>Score</h5>
+      </div>
+    </div>
+  </div>
+  <div class="card-body" *ngFor="let result of page.data; let i = index">
+    <div class="row">
+      <div class="col-sm-6">
+        <h5>{{ result.quizName }}</h5>
+      </div>
+      <div class="col-sm-6">
+          <h5>{{ result.score }}</h5>
+      </div>
+    </div>
+  </div>
+</div>
+
+<asdp-paging *ngIf="page" [pagingData]="page" (notify)="onNotify($event)"></asdp-paging>

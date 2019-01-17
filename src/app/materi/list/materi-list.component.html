@@ -44,7 +44,12 @@
     <tbody *ngIf="page">
       <tr *ngFor="let materi of page.data; let i = index">
         <th scope="row">{{ i + 1 }}</th>
-        <td><a (click)="onEditQuiz(materi.id)">{{ materi.name }}</a></td>
+        <td *ngIf="materi.publish === false">
+          <a (click)="onEditQuiz(materi.id)">{{ materi.name }}</a>
+        </td>
+        <td *ngIf="materi.publish === true">
+          {{ materi.name }}
+        </td>
         <td>
           <h5>
             <ng-container *ngFor="let divisi of materi.divisiDisplay; let i = index">

@@ -37,6 +37,12 @@ const appRoutes: Routes = [
         path: 'document-pending',
         data: { pending: true },
         loadChildren: 'src/app/document/document.module#DocumentModule'
+       }, { 
+        path: 'quiz',
+        loadChildren: 'src/app/quiz/quiz.module#QuizModule'
+      }, {
+        path: 'result',
+        loadChildren: 'src/app/result/result.module#ResultModule'
       }
     ],
     canActivate: [RouterGuardService],
