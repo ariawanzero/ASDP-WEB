@@ -1,0 +1,43 @@
+<h4 class="text-center">Question</h4>
+<div class="line"></div>
+<div class="row" *ngIf="question">
+  <div class="col-sm-1">{{ idx + 1 }}.</div>
+  <div class="col-sm-11" [innerHTML]="question.question"></div>
+</div>
+<form *ngIf="question" [formGroup]="answerForm">
+  <div class="form-group row">
+    <div class="col-sm-1 offset-sm-1">
+      <input type="radio" value="A" formControlName="choice">
+    </div>
+    <div class="col-sm-10" [innerHTML]="question.choiceA"></div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-1 offset-sm-1">
+      <input type="radio" value="B" formControlName="choice">
+    </div>
+    <div class="col-sm-10" [innerHTML]="question.choiceB"></div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-1 offset-sm-1">
+      <input type="radio" value="C" formControlName="choice">
+    </div>
+    <div class="col-sm-10" [innerHTML]="question.choiceC"></div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-1 offset-sm-1">
+      <input type="radio" value="D" formControlName="choice">
+    </div>
+    <div class="col-sm-10" [innerHTML]="question.choiceD"></div>
+  </div>
+  <div class="form-group row justify-content-sm-center">
+    <div class="mr-2">
+      <button type="button" class="btn btn-secondary" [disabled]="idx == 0" (click)="onPrev()">Prev Question</button>
+    </div>
+    <div class="mr-2" *ngIf="questionCount > idx">
+      <button type="button" class="btn btn-primary" [disabled]="!answerForm.valid" (click)="onNext()">Next Question</button>
+    </div>
+    <div *ngIf="questionCount == idx">
+      <button type="button" class="btn btn-primary" [disabled]="!answerForm.valid" (click)="onFinish()">Finish Question</button>
+    </div>
+  </div>
+</form>

@@ -1,10 +1,11 @@
-<div id="modal-materi-file" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+<div id="modal-file" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
           <h6 class="modal-title">Materi Preview</h6>
       </div>
       <div class="modal-body">
+        <p class="download-link">Your browser doesn't support click this <a target="_blank" [href]="urlFile">download</a></p>
         <object class="object-data" *ngIf="urlFile" [data]='sanitizer.bypassSecurityTrustResourceUrl(urlFile)' type="application/pdf"></object>
       </div>
       <div class="modal-footer">
