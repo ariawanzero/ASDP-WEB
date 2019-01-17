@@ -7,8 +7,55 @@ import { map } from 'rxjs/operators';
 import { PagingData } from '../shared/class/paging-data';
 
 import { ResponseService } from '../shared/service/response.service';
+import { Document, DocumentFilter } from './document';
 
+@Injectable()
 export class DocumentService {
 
-  constructor() { }
+  constructor(
+    private http: HttpClient,
+    private respService: ResponseService
+  ) { }
+
+  saveDocument(value: Document): Observable<any> { 
+    return this.http.post(('/document/saveDocument'), value)
+      .pipe(
+        map(this.respService.extractResultAction)
+      )
+  }
+
+  getFilteredDocument(value: DocumentFilter): Observable<PagingData<Document[]>> { 
+    return this.http.post(('/document/searchDocument'), value)
+      .pipe(
+        map(this.respService.extractDataPaging)
+      )
+  }
+
+  getDetailDocument(value: any): Observable<any> {
+    return this.http.post(('/document/findDocumentDetail'), value)
+      .pipe(
+        map(this.respService.extractData)
+      )
+  }
+
+  getReadDetailDocument(value: any): Observable<any> {
+    return this.http.post(('/document/readDocumentDetail'), value)
+      .pipe(
+        map(this.respService.extractData)
+      )
+  }
+
+  uploadFile(file: File, id: string): Observable<HttpEvent<{}>> {
+    const formData: FormData = new FormData();
+    
+    formData.append('file', file);
+    formData.append('id', id);
+
+    const req = new HttpRequest('POST', '/document/uploadDocument', formData, {
+      reportProgress: true,
+      responseType: 'json'
+    })
+
+    return this.http.request(req);
+  }
 }

@@ -18,6 +18,9 @@ import { ModalService } from '../shared/service/modal.service';
 import { DocumentService } from './document.service';
 
 import { DocumentListComponent } from './list/document-list.component';
+import { DocumentInputComponent } from './input/document-input.component';
+import { DocumentUploadComponent } from './upload/document-upload.component';
+import { DocumentDetailComponent } from './detail/document-detail.component';
 
 
 @NgModule({
@@ -34,7 +37,10 @@ import { DocumentListComponent } from './list/document-list.component';
     SharedModule
   ],
   declarations: [
-    DocumentListComponent
+    DocumentListComponent,
+    DocumentInputComponent,
+    DocumentUploadComponent,
+    DocumentDetailComponent
   ],
   providers: [
     {
@@ -48,7 +54,7 @@ import { DocumentListComponent } from './list/document-list.component';
       multi: true,
       deps: [ CookieService ]
     },
-    ModalService
+    DocumentService
   ]
 })
 export class DocumentModule { }

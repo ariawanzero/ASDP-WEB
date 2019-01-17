@@ -1,3 +1,109 @@
-<p>
-  document-input works!
-</p>
+<h4>Document Form</h4>
+<div class="line"></div>
+<form [formGroup]="detailForm" (ngSubmit)="onSubmit()">
+  <div class="form-group row">
+    <label for="inputNama" class="col-sm-2 col-form-label required">Nama</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" [ngClass]="detailForm.controls.name.errors && detailForm.controls.name.touched ? ' error' : ''" formControlName="name" name="name" placeholder="Name" autocomplete="off">
+      <span class="text-danger invalidMessage" *ngIf="detailForm.controls.name.touched && detailForm.controls.name.errors">
+        <span *ngIf="detailForm.controls.name.errors?.required">Name Required.</span>
+        <span *ngIf="detailForm.controls.name.errors?.maxlength">Max Length of Name 100.</span>
+      </span>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputDivisi" class="col-sm-2 col-form-label required">Divisi</label>
+     <div class="col-sm-4">
+       <div [ngClass]="detailForm.controls.divisi.errors && detailForm.controls.divisi.touched ? 'input-error' : ''">
+         <ng-select 
+           [items]="divisi"
+           bindLabel="value"
+           bindValue="code"
+           [multiple]="true"
+           formControlName="divisi"
+           placeholder="Select divisi">
+         </ng-select>
+       </div>
+       <span class="text-danger invalidMessage" *ngIf="detailForm.controls.divisi.touched && detailForm.controls.divisi.errors">
+         <span *ngIf="detailForm.controls.divisi.errors?.required">Required at Least 1.</span>
+       </span>
+     </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputType" class="col-sm-2 col-form-label required">Type Document</label>
+    <div class="col-sm-4">
+      <select class="form-control" [ngClass]="detailForm.controls.type.errors && detailForm.controls.type.touched ? ' error' : ''" formControlName="type" name="type" (change)="onChangeType($event.target.value)">
+        <option value="" selected>-- Choose --</option>
+        <option *ngFor="let tp of type;" [value]="tp.code">{{ tp.value }}</option>
+      </select>
+      <span class="text-danger invalidMessage" *ngIf="detailForm.controls.type.touched && detailForm.controls.type.errors">
+        <span *ngIf="detailForm.controls.type.errors?.required">Type must be Choosen.</span>
+      </span>
+    </div>
+  </div>
+  <div class="form-group row" *ngIf="typeValue === 'SOP'">
+    <label for="inputSop" class="col-sm-2 col-form-label required">Nama SOP</label>
+    <div class="col-sm-4">
+      <select class="form-control" [ngClass]="detailForm.controls.sop.errors && detailForm.controls.sop.touched ? ' error' : ''" formControlName="sop" name="sop">
+        <option value="" selected>-- Choose --</option>
+        <option *ngFor="let sp of sop;" [value]="sp.code">{{ sp.value }}</option>
+      </select>
+      <span class="text-danger invalidMessage" *ngIf="detailForm.controls.sop.touched && detailForm.controls.sop.errors">
+        <span *ngIf="detailForm.controls.sop.errors?.required">Sop must be Choosen.</span>
+      </span>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputCategory" class="col-sm-2 col-form-label required">Category Document</label>
+    <div class="col-sm-4">
+      <select class="form-control" [ngClass]="detailForm.controls.category.errors && detailForm.controls.category.touched ? ' error' : ''" formControlName="category" name="category">
+        <option value="" selected>-- Choose --</option>
+        <option *ngFor="let ct of category;" [value]="ct.code">{{ ct.value }}</option>
+      </select>
+      <span class="text-danger invalidMessage" *ngIf="detailForm.controls.category.touched && detailForm.controls.category.errors">
+        <span *ngIf="detailForm.controls.category.errors?.required">Category must be Choosen.</span>
+      </span>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputTanggal" class="col-sm-2 col-form-label required">Show Document From</label>
+    <div class="col-sm-4">
+      <input type="date" formControlName="startDate" class="form-control" name="startDate" autocomplete="off">
+    </div>
+    <label for="inputTanggal" class="col-sm-2 col-form-label required">To</label>
+    <div class="col-sm-4">
+      <input type="date" formControlName="endDate" class="form-control" name="endDate" autocomplete="off">
+    </div>
+  </div>
+  <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="show">Publish in</label>
+      <div class="col-sm-1">
+          <input type="checkbox" class="form-control" formControlName="facebook" name="facebook" ng-model="checkboxModel.value1">
+      </div>
+      <label class="col-sm-1 col-form-label" for="facebook">Facebook</label>
+      <div class="col-sm-1">
+          <input type="checkbox" class="form-control" formControlName="twitter" name="twitter" ng-model="checkboxModel.value1">
+      </div>
+      <label class="col-sm-1 col-form-label" for="twitter">Twitter</label>
+      <div class="col-sm-1">
+          <input type="checkbox" class="form-control" formControlName="instagram" name="instagram" ng-model="checkboxModel.value1">
+      </div>
+      <label class="col-sm-1 col-form-label" for="instagram">Instagram</label>
+  </div>
+  <div class="form-group row">
+    <label for="inputDescription" class="col-sm-2 col-form-label">Description</label>
+    <div class="col-sm-10 editor-outer">
+      <quill-editor formControlName="description" [style]="{height: '250px'}"></quill-editor>  
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-10 offset-sm-2">
+      <div class="btn-group mr-2">
+        <button type="submit" class="btn btn-primary" [disabled]="!detailForm.valid" (click)="onSave()"><i class="fa fa-save"> Save</i></button>
+      </div>
+      <div class="btn-group">
+        <button type="button" class="btn btn-secondary" (click)="onCancel()"><i class="fa fa-ban"> Cancel</i></button>
+      </div>
+    </div>
+  </div>
+</form>
