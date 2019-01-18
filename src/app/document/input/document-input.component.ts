@@ -16,6 +16,8 @@ import { CATEGORY } from '../../shared/constant/category';
 import { Document } from '../document';
 import { ConfirmationMessage } from '../../shared/class/confirmation-message';
 import { TitleModal } from '../../shared/class/title-modal';
+import { resolve } from 'dns';
+import { reject } from 'q';
 
 @Component({
   selector: 'app-document-input',
@@ -70,6 +72,7 @@ export class DocumentInputComponent implements OnInit {
       category: new FormControl([], [Validators.required]),
       startDate: new FormControl(''),
       endDate: new FormControl(''),
+      file: new FormControl(null),
       facebook: new FormControl(false),
       twitter: new FormControl(false),
       instagram: new FormControl(false)
@@ -218,4 +221,20 @@ export class DocumentInputComponent implements OnInit {
     }
   }
 
+  onSelectFile(event: any): void {
+    let reader = new FileReader();
+    
+    if(event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+
+      reader.onload = () => {
+        this.detailForm.patchValue({
+          file: reader.result
+        })
+      }
+    }
+
+    console.log(this.detailForm);
+  }
 }
