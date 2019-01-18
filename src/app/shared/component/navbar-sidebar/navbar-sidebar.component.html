@@ -6,7 +6,7 @@
   <ul class="list-unstyled components" *ngIf="menuList">
     <p>Welcome, {{ user }}</p>
     <li>
-      <a><i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</a>
+      <a (click)="goToPage('dashboard')"><i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</a>
     </li>
     <li *ngFor="let menu of menuList;">
       <a href="{{'#page'+menu.value}}" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="{{menu.icon}}" aria-hidden="true"></i> {{ menu.value }}</a>

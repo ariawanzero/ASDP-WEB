@@ -21,6 +21,9 @@ const appRoutes: Routes = [
     component: HomeComponent,
     children: [
       {
+        path: 'dashboard',
+        loadChildren: 'src/app/dashboard/dashboard.module#DashboardModule',
+      }, {
         path: 'user',
         loadChildren: 'src/app/user/user.module#UserModule',
       }, {

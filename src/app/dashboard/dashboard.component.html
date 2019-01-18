@@ -1,38 +1,82 @@
 <div class="row">
-  <div class="col-sm-6">
-    <div class="card">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="card-img-bottom">
-            </div>
+  <div class="col-sm-12">
+    <div class="form-group">
+      <form>
+        <div class="form-row">
+          <div class="col-sm-2 col-form-label">
+            <label for="search">Search</label>
           </div>
-          <div class="col-sm-6">
-            <div class="card-block">
-              <h4 class="card-title">Curabitur gravida vestibulum imperdiet.</h4>
-              <p class="card-text">Cras convallis ut turpis vitae facilisis. Morbi eu augue vel quam efficitur rhoncus vitae eget lectus. Cras augue ligula, aliquam ut enim ut, feugiat imperdiet sem. Integer sed mi quis nisl eleifend interdum.</p>
-              <p class="card-text">Cras convallis ut turpis vitae facilisis. Morbi eu augue vel quam efficitur rhoncus vitae eget lectus. Cras augue ligula, aliquam ut enim ut, feugiat imperdiet sem.</p>
-              <a href="#" class="btn btn-primary">Read More</a>
-            </div>
+          <div class="col-sm-5">
+            <input type="text" [(ngModel)]="filter.keyword" name="keyword" class="form-control" placeholder="Title News">
           </div>
-        </div>
-      </div>
-  </div>
-  <div class="col-sm-6">
-    <div class="card">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="card-img-bottom">
-            </div>
+          <div class="col-sm-3">
+            <button type="submit" class="btn btn-primary mb-2" (click)="onSearch()">Search</button>
           </div>
-          <div class="col-sm-6">
-            <div class="card-block">
-              <h4 class="card-title">Curabitur gravida vestibulum imperdiet.</h4>
-              <p class="card-text">Cras convallis ut turpis vitae facilisis. Morbi eu augue vel quam efficitur rhoncus vitae eget lectus. Cras augue ligula, aliquam ut enim ut, feugiat imperdiet sem. Integer sed mi quis nisl eleifend interdum.</p>
-              <p class="card-text">Cras convallis ut turpis vitae facilisis. Morbi eu augue vel quam efficitur rhoncus vitae eget lectus. Cras augue ligula, aliquam ut enim ut, feugiat imperdiet sem.</p>
-              <a href="#" class="btn btn-primary">Read More</a>
-            </div>
+          <div class="col-sm-2">
+            <ng-select 
+              name="type"
+              [items]="news"
+              [clearable]="false"
+              [(ngModel)]="filter.type"
+              bindLabel="value"
+              bindValue="code"
+              placeholder="Select Type">
+            </ng-select>
           </div>
         </div>
+      </form>
+    </div>
+    <h6><span>News</span></h6>
+    <div class="form-group">
+      <div class="card">
+          <div class="row no-gutters">
+              <div class="col-auto">
+                  <img src="//placehold.it/200" class="img-fluid" alt="">
+              </div>
+              <div class="col">
+                  <div class="card-block px-2">
+                      <h4 class="card-title">Title</h4>
+                      <p class="card-text">Description</p>
+                      <a href="#" class="btn btn-primary">BUTTON</a>
+                  </div>
+              </div>
+          </div>
       </div>
+    </div>
+    <div class="form-group">
+      <div class="card">
+          <div class="row no-gutters">
+              <div class="col-auto">
+                  <img src="//placehold.it/200" class="img-fluid" alt="">
+              </div>
+              <div class="col">
+                  <div class="card-block px-2">
+                      <h4 class="card-title">Title</h4>
+                      <p class="card-text">Description</p>
+                      <a href="#" class="btn btn-primary">BUTTON</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="card">
+          <div class="row no-gutters">
+              <div class="col-auto">
+                  <img src="//placehold.it/200" class="img-fluid" alt="">
+              </div>
+              <div class="col">
+                  <div class="card-block px-2">
+                      <h4 class="card-title">Title</h4>
+                      <p class="card-text">Description</p>
+                      <a href="#" class="btn btn-primary">BUTTON</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
   </div>
 </div>
+
+
+

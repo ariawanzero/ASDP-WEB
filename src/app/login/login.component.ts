@@ -96,6 +96,6 @@ export class LoginComponent implements OnInit {
   }
 
   private goToDashboard(): void { 
-    this.router.navigate(['home']);
+    this.router.navigate(['/home/dashboard']);
   }
 }
