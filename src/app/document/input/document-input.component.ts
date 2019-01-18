@@ -231,7 +231,6 @@ export class DocumentInputComponent implements OnInit {
           thumbnail: reader.result
         })
       }
-
     }
   }
 }
