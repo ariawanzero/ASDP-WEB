@@ -21,6 +21,7 @@ import { DocumentListComponent } from './list/document-list.component';
 import { DocumentInputComponent } from './input/document-input.component';
 import { DocumentUploadComponent } from './upload/document-upload.component';
 import { DocumentDetailComponent } from './detail/document-detail.component';
+import { DocumentPendingComponent } from './pending/document-pending.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { DocumentDetailComponent } from './detail/document-detail.component';
     DocumentListComponent,
     DocumentInputComponent,
     DocumentUploadComponent,
-    DocumentDetailComponent
+    DocumentDetailComponent,
+    DocumentPendingComponent
   ],
   providers: [
     {

@@ -31,6 +31,13 @@ export class DocumentService {
       )
   }
 
+  getFilteredDocumentPending(value: DocumentFilter): Observable<PagingData<Document[]>> { 
+    return this.http.post(('/document/searchDocumentPending'), value)
+      .pipe(
+        map(this.respService.extractDataPaging)
+      )
+  }
+
   getDetailDocument(value: any): Observable<any> {
     return this.http.post(('/document/findDocumentDetail'), value)
       .pipe(

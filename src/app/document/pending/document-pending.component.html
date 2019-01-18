@@ -1,0 +1,76 @@
+<h4>Document Pending Approval</h4>
+<div class="line"></div>
+<form>
+  <div class="form-group row">
+    <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" [(ngModel)]="filter.name" name="name" placeholder="Name" autocomplete="off">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputDivisi" class="col-sm-2 col-form-label">Divisi</label>
+    <div class="col-sm-4">
+      <select class="form-control" [(ngModel)]="filter.divisi" name="divisi">
+        <option value="" selected>All</option>
+        <option *ngFor="let dv of divisi;" [value]="dv.code">{{ dv.value }}</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputType" class="col-sm-2 col-form-label">Type</label>
+    <div class="col-sm-4">
+      <select class="form-control" [(ngModel)]="filter.type" name="type">
+        <option value="" selected>All</option>
+        <option *ngFor="let tp of type;" [value]="tp.code">{{ tp.value }}</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-10 offset-sm-2">
+      <div class="btn-group mr-2">
+        <button type="button" class="btn btn-info" (click)="onSearch()"><i class="fa fa-search"> Search</i></button>
+      </div>
+    </div>
+  </div>
+</form>
+<h4>Document List</h4>
+<div class="table-responsive-sm">
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Description</th>
+          <th scope="col">Start Date</th>
+          <th scope="col">End Date</th>
+          <th scope="col">Status</th>
+          <th scope="col" class="text-center">Action</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="page">
+        <tr *ngFor="let document of page.data; let i = index">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>
+              {{ document.name }}
+          </td>
+          <td>
+              {{ document.descriptionNoTag }}
+          </td>
+          <td>{{ document.startDate | dateFormat }}</td>
+          <td>{{ document.endDate | dateFormat }}</td>
+          <td>{{ document.status }}</td>
+          <td class="text-center">
+            <div class="btn-group mr-2" *ngIf="document.view === false">
+              <div class="btn-group mr-1">
+                  <button type="button" class="btn btn-primary btn-sm" (click)="onGoToDetail(document.id)"><i class="fa fa-cloud-read" aria-hidden="true">Preview</i></button>
+              </div>
+            </div>
+            <div class="btn-group mr-2" *ngIf="document.view === true">
+                <button type="button" class="btn btn-primary btn-sm" (click)="onGoToDetail(document.id)"><i class="fa fa-cloud-read" aria-hidden="true">Read More</i></button>
+              </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+<asdp-paging *ngIf="page" [pagingData]="page" (notify)="onNotify($event)"></asdp-paging>

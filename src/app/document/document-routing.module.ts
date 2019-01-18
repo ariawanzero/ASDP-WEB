@@ -5,11 +5,15 @@ import { DocumentListComponent } from './list/document-list.component';
 import { DocumentInputComponent } from './input/document-input.component';
 import { DocumentUploadComponent } from './upload/document-upload.component';
 import { DocumentDetailComponent } from './detail/document-detail.component';
+import { DocumentPendingComponent } from './pending/document-pending.component';
 
 const routes: Routes = [
   {
     path: '',
     component: DocumentListComponent
+  }, {
+    path: 'pending',
+    component: DocumentPendingComponent
   }, {
     path: 'add',
     data: { state: 'add' },
