@@ -7,7 +7,7 @@
             <label for="search">Search</label>
           </div>
           <div class="col-sm-5">
-            <input type="text" [(ngModel)]="filter.keyword" name="keyword" class="form-control" placeholder="Title News">
+            <input type="text" [(ngModel)]="filter.name" name="name" class="form-control" placeholder="Title News">
           </div>
           <div class="col-sm-3">
             <button type="submit" class="btn btn-primary mb-2" (click)="onSearch()">Search</button>
@@ -17,17 +17,19 @@
               name="type"
               [items]="news"
               [clearable]="false"
-              [(ngModel)]="filter.type"
+              [(ngModel)]="filter.name"
               bindLabel="value"
               bindValue="code"
-              placeholder="Select Type">
+              placeholder="Select Type"
+              (change)=onSearch()>
             </ng-select>
           </div>
         </div>
       </form>
     </div>
     <h6><span>News</span></h6>
-    <div class="form-group">
+  <div *ngIf="page">
+    <div class="form-group" *ngFor="let document of page.data; let i = index">
       <div class="card">
           <div class="row no-gutters">
               <div class="col-auto">
@@ -35,46 +37,15 @@
               </div>
               <div class="col">
                   <div class="card-block px-2">
-                      <h4 class="card-title">Title</h4>
-                      <p class="card-text">Description</p>
-                      <a href="#" class="btn btn-primary">BUTTON</a>
+                      <h4 class="card-title text-center">{{document.name}}</h4>
+                      <p class="card-text  text-justify" [innerHTML]="document.descriptionNoTag"></p>
+                      <a (click)="onGoToDetail(document.id)" class="btn btn-primary">Read More</a>
                   </div>
               </div>
           </div>
       </div>
     </div>
-    <div class="form-group">
-      <div class="card">
-          <div class="row no-gutters">
-              <div class="col-auto">
-                  <img src="//placehold.it/200" class="img-fluid" alt="">
-              </div>
-              <div class="col">
-                  <div class="card-block px-2">
-                      <h4 class="card-title">Title</h4>
-                      <p class="card-text">Description</p>
-                      <a href="#" class="btn btn-primary">BUTTON</a>
-                  </div>
-              </div>
-          </div>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="card">
-          <div class="row no-gutters">
-              <div class="col-auto">
-                  <img src="//placehold.it/200" class="img-fluid" alt="">
-              </div>
-              <div class="col">
-                  <div class="card-block px-2">
-                      <h4 class="card-title">Title</h4>
-                      <p class="card-text">Description</p>
-                      <a href="#" class="btn btn-primary">BUTTON</a>
-                  </div>
-              </div>
-          </div>
-      </div>
-    </div>
+  </div>
   </div>
 </div>
 

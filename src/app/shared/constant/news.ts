@@ -1,4 +1,4 @@
 export const NEWS = [
-    { code: "POPULER", value: "Populer" },
-    { code: "NEW", value: "New" }
+    { code: "popular", value: "popular" },
+    { code: "new", value: "new" }
 ]

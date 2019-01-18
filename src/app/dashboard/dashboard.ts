@@ -1,11 +1,9 @@
 export class DasboardFilter {
-    keyword: string;
-    type: string;
+    name: string;
     page: number;
 
     constructor() {
-        this.keyword = "";
-        this.type = "NEW";
+        this.name = "new";
         this.page = 0;
     }
 }
