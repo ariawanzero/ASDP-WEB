@@ -4,6 +4,10 @@ div a {
     cursor: pointer;
 }
 
+h4 {
+   display: inline-block;
+}
+
 .btn-circle.btn-xl {
     width: 150px;
     height: 150px;
