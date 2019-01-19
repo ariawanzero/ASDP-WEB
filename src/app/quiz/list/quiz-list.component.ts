@@ -28,6 +28,9 @@ export class QuizListComponent implements OnInit {
   filter: QuizFilter;
   page: PagingData<Quiz[]>
   urlFile: string;
+  
+  timers: any[];
+  cd: string[];
 
   constructor(
     private router: Router,
@@ -39,6 +42,9 @@ export class QuizListComponent implements OnInit {
 
   ngOnInit() {
     this.filter = new QuizFilter();
+
+    this.timers = new Array();
+    this.cd = new Array();
 
     this.getQuizList();
   }
@@ -53,8 +59,35 @@ export class QuizListComponent implements OnInit {
         this.globalMsgServ.changeMessage(err);
       }, () => {
         this.blockUI.stop();
+        this.setIntervalCountdown();
       }
     )
+  }
+
+  private setIntervalCountdown(): void {
+    this.page.data.forEach(
+      (data, index) => {
+        let countDownDate: number = new Date(data.startDate).getTime();
+        this.timers[index] = setInterval(() => {
+          let now: number = new Date().getTime();
+          let distance: number = countDownDate - now;
+
+          if (distance < 0) {
+            clearInterval(this.timers[index]);
+            this.onSetStartQuiz(index);
+          } else {
+            let days: number = Math.floor(distance / (1000 * 60 * 60 * 24));
+            let hours: number = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            let minutes: number = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            let seconds: number = Math.floor((distance % (1000 * 60)) / 1000);
+          }
+        }, 1000);
+      }      
+    )
+  }
+
+  private onSetStartQuiz(idx: number): void {
+    this.page.data[idx].alreadyStart = true;
   }
 
   onNotify(idx: number): void {
