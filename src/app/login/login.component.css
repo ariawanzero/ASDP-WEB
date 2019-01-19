@@ -18,12 +18,7 @@ h3 {
     border-radius: 0.50rem !important
 }
 
-.img-login {
-    display: none;
-}
-
-.img-logo {
-    display: block;
+.img-logo {    
     margin: auto;
     max-width: 50%;
 }
@@ -41,25 +36,21 @@ h3 {
     width: 100%;
 }
 
-.block-header {
+.card-news {
     display: none;
 }
 
-@media only screen and (min-width: 768px) {
-    .img-login { 
-        display: block;
-    }
-    
-    .img-logo {
-        display: none;
-    }
+.img-header {
+    width: 40%;
+}
 
-    .login-header h1 {
-        font-size: 2rem;
+@media only screen and (min-width: 768px) {
+    .card-news {
+        display: block;
     }
 
     .img-header {
-        width: 25%;
+        width: 30%;
     }
 
     .container {
@@ -68,10 +59,6 @@ h3 {
 }
 
 @media only screen and (min-width: 992px) { 
-    .block-header {
-        display: block;
-    }
-
     .container {
         max-width: 950px;
     }
