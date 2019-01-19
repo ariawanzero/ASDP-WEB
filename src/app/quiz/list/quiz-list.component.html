@@ -1,9 +1,9 @@
 <div class="row">
-  <div class="col-sm-6">
+  <div class="col-sm">
     <h4>Quiz</h4>
-  </div>
-  <div class="col-sm-6 text-right">
-    <button type="button" class="btn btn-info" (click)="onResult()"><i class="fa fa-list-alt"> Result</i></button>
+    <div class="pull-right mb-2">
+      <button type="button" class="btn btn-info" (click)="onResult()"><i class="fa fa-list-alt"> Result</i></button>
+    </div>
   </div>
 </div>
 
@@ -23,7 +23,7 @@
           <div class="col-sm-12">
             <div class="col-sm-12 text-center" [innerHTML]="quiz.description"></div>
             <div class="col-sm-12 text-center">
-              <p>Start Quiz : &nbsp;
+              <p>Open Quiz : </p>
               <p>{{ quiz.startDate | dateTimeFormat }} s/d {{ quiz.endDate | dateTimeFormat }}</p>
             </div>
             <div class="col-sm-12 text-center">
