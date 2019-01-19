@@ -1,4 +1,11 @@
-<h4 class="text-center">Question</h4>
+<div class="row">
+  <div class="col-sm">
+    <h4>Question</h4>
+    <div class="pull-right mb-2 text-danger" *ngIf="cd">
+      CountDown : {{ cd }}
+    </div>
+  </div>
+</div>
 <div class="line"></div>
 <div class="row" *ngIf="question">
   <div class="col-sm-1 pr-0">{{ idx + 1 }}.</div>

@@ -23,6 +23,7 @@ export class QuizResult {
     questions: QuizQuestion[];
     quizName: string;
     score: number;
+    endDateQuiz: Date;
 }
 
 export class QuizQuestion {

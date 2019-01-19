@@ -8,3 +8,7 @@
 .col-sm-1 {
     max-width: 30px;
 }
+
+h4 {
+    display: inline-block;
+}
