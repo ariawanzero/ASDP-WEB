@@ -94,7 +94,8 @@ export class QuizAnswerComponent implements OnInit {
       choice: this.question.answerUser ? this.question.answerUser : ''
     });
 
-    this.setIntervalStart();
+    if(!this.timers) this.setIntervalStart();
+    this.setProgressQuiz();
   }
 
   private setIntervalStart(): void {
@@ -114,9 +115,17 @@ export class QuizAnswerComponent implements OnInit {
             let seconds: number = Math.floor((distance % (1000 * 60)) / 1000);
 
             this.cd = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
-            console.log(this.cd);
           }
         }, 1000);
+  }
+
+  private setProgressQuiz(): void {
+    let count: number = 100 / this.quizes.questions.length
+    this.quizes.questions.forEach(
+      (data) => {
+        data.width = count.toString() + "%";
+      }
+    )
   }
 
   onPrev(): void {

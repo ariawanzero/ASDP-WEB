@@ -36,4 +36,5 @@ export class QuizQuestion {
     answerUser: string;
     valid: number;
     finish: boolean;
+    width: string;
 }
