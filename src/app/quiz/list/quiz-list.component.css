@@ -4,15 +4,19 @@ div a {
     cursor: pointer;
 }
 
+h4 {
+   display: inline-block;
+}
+
 .btn-circle.btn-xl {
-    width: 150px;
-    height: 150px;
-    padding: 10px 16px;
+    width: 130px;
+    height: 130px;
+    padding: 10px 16px 0 21px;
     border-radius: 50%;
 }
 
 .btn-circle.btn-xl i{
-    font-size: 40px;
+    font-size: 30px;
     line-height: 1.3;
 }
 
