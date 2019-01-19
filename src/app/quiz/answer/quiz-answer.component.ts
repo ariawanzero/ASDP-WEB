@@ -37,7 +37,6 @@ export class QuizAnswerComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private quizService: QuizService,
-    private modalServ: ModalService,
     private globalMsgServ: GlobalMessageService,
     private confirmServ: ConfirmationDialogService
   ) { }
@@ -111,9 +110,10 @@ export class QuizAnswerComponent implements OnInit {
   onFinish(): void {
     this.confirmServ.activate(ConfirmationMessage.FINISH, TitleModal.CONFIRM)
       .then(result => {
-        this.question.finish = true;
         this.finishQuiz = true;
+
         let answer : any = this.answerForm.getRawValue();
+        this.question.finish = true;
         this.question.answerUser = answer.choice;
 
         this.answerQuiz();
@@ -130,11 +130,7 @@ export class QuizAnswerComponent implements OnInit {
         this.globalMsgServ.changeMessage(err);
       }, () => {
         this.blockUI.stop();
-        if(this.finishQuiz){
-          this.router.navigate(['../result'], { relativeTo: this.route });
-        }else {
-          this.getQuizQuestion();
-        }
+        this.finishQuiz ? this.router.navigate(['../result'], { relativeTo: this.route }) : this.getQuizQuestion();
       }
     )
   }

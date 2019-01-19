@@ -59,12 +59,12 @@ export class QuizListComponent implements OnInit {
         this.globalMsgServ.changeMessage(err);
       }, () => {
         this.blockUI.stop();
-        this.setIntervalCountdown();
+        this.setIntervalStart()
       }
     )
   }
 
-  private setIntervalCountdown(): void {
+  private setIntervalStart(): void {
     this.page.data.forEach(
       (data, index) => {
         let countDownDate: number = new Date(data.startDate).getTime();
@@ -88,6 +88,29 @@ export class QuizListComponent implements OnInit {
 
   private onSetStartQuiz(idx: number): void {
     this.page.data[idx].alreadyStart = true;
+    this.onSetIntervalClose(idx);
+  }
+
+  private onSetIntervalClose(idx: number): void {
+    let countDownDate: number = new Date(this.page.data[idx].endDate).getTime();
+    this.timers[idx] = setInterval(() => {
+      let now: number = new Date().getTime();
+      let distance: number = countDownDate - now;
+
+      if (distance < 0) {
+        clearInterval(this.timers[idx]);
+        this.onSetCloseStatus(idx);
+      } else {
+        let days: number = Math.floor(distance / (1000 * 60 * 60 * 24));
+        let hours: number = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        let minutes: number = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        let seconds: number = Math.floor((distance % (1000 * 60)) / 1000);
+      }
+    }, 1000);
+  }
+
+  private onSetCloseStatus(idx: number): void {
+    this.page.data[idx].alreadyStart = false;
   }
 
   onNotify(idx: number): void {

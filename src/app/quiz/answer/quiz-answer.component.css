@@ -4,3 +4,7 @@
     border-bottom: 1px solid #ddd;
     margin: 15px 0;
 }
+
+.col-sm-1 {
+    max-width: 30px;
+}
