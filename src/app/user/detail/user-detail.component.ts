@@ -20,6 +20,8 @@ import { GlobalMessageService } from '../../shared/service/global-message.servic
 import { UserService } from '../user.service';
 
 import { UserDetail } from '../user';
+import { SysParam } from '../../shared/class/sysparam';
+import { SysParamService } from '../../shared/service/sysparam.service';
 
 @Component({
   selector: 'asdp-user-detail',
@@ -31,14 +33,15 @@ export class UserDetailComponent implements OnInit {
   response: CommonResponseStatus;
 
   role: SimpleObject[] = ROLE;
-  jabatan: SimpleObject[] = JABATAN;
-  divisi: SimpleObject[] = DIVISI;
+  jabatan: SimpleObject[];
+  divisi: SimpleObject[];
 
   task: Task = Task.None;
 
   isAdd: boolean;
   userId: string;
   user: UserDetail;
+  paramReq: SysParam;
 
   detailForm: FormGroup;
 
@@ -47,12 +50,40 @@ export class UserDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private confirmServ: ConfirmationDialogService,
     private globalMsgServ: GlobalMessageService,
-    private userServ: UserService
+    private userServ: UserService,
+    private sysparamServ: SysParamService
   ) { }
 
   ngOnInit() {
     let state = this.route.snapshot.data['state'];
+    this.paramReq = new SysParam();
+    this.getSysParamDivisi();
+    this.getSysParamJabatan();
     this.checkStateAction(state);
+  }
+
+  private getSysParamJabatan(): void {
+    this.paramReq.type='JABATAN';
+    this.sysparamServ.getSysParamByType(this.paramReq).subscribe(
+      resp => {
+        this.jabatan = resp;
+      },(err) => {
+        this.blockUI.stop();
+        this.globalMsgServ.changeMessage(err);
+      }
+    )
+  }
+
+  private getSysParamDivisi(): void {
+    this.paramReq.type='DIVISI';
+    this.sysparamServ.getSysParamByType(this.paramReq).subscribe(
+      resp => {
+        this.divisi = resp;
+      },(err) => {
+        this.blockUI.stop();
+        this.globalMsgServ.changeMessage(err);
+      }
+    )
   }
 
   private checkStateAction(action: string): void {

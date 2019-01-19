@@ -17,6 +17,7 @@ import { Oauth2AuthenticationInterceptor } from '../http-interceptor/oauth2-auth
 import { UserListComponent } from './list/user-list.component';
 import { UserDetailComponent } from './detail/user-detail.component';
 import { UserHistoryComponent } from './history/user-history.component';
+import { SysParamService } from '../shared/service/sysparam.service';
 
 @NgModule({
   imports: [
@@ -45,7 +46,8 @@ import { UserHistoryComponent } from './history/user-history.component';
       multi: true,
       deps: [ CookieService ]
     },
-    UserService
+    UserService,
+    SysParamService
   ]
 })
 

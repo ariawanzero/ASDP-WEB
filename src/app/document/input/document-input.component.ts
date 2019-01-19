@@ -16,6 +16,8 @@ import { CATEGORY } from '../../shared/constant/category';
 import { Document } from '../document';
 import { ConfirmationMessage } from '../../shared/class/confirmation-message';
 import { TitleModal } from '../../shared/class/title-modal';
+import { SysParam } from '../../shared/class/sysparam';
+import { SysParamService } from '../../shared/service/sysparam.service';
 
 @Component({
   selector: 'app-document-input',
@@ -28,13 +30,15 @@ export class DocumentInputComponent implements OnInit {
 
   task: Task = Task.None;
 
-  divisi: SimpleObject[] = DIVISI;
-  type: SimpleObject[] = TYPE;
+  divisi: SimpleObject[];
+  type: SimpleObject[];
   status: SimpleObject[] = STATS;
-  sop: SimpleObject[] = SOP;
-  category: SimpleObject[] = CATEGORY;
+  sop: SimpleObject[];
+  category: SimpleObject[];
+  paramReq: SysParam;
 
   isAdd: boolean;
+  isAddUser: boolean;
   documentId: string;
   typeValue: string;
   dtMateri: Document;
@@ -46,16 +50,71 @@ export class DocumentInputComponent implements OnInit {
     private route: ActivatedRoute,
     private confirmServ: ConfirmationDialogService,
     private globalMsgServ: GlobalMessageService,
-    private documentServ: DocumentService
+    private documentServ: DocumentService,
+    private sysparamServ: SysParamService
   ) { }
 
   ngOnInit() {
     let state = this.route.snapshot.data['state'];
+    this.paramReq = new SysParam();
+    this.getSysParamDivisi();
+    this.getSysParamSop();
+    this.getSysParamType();
+    this.getSysParamCategory();
     this.checkStateAction(state);
+  }
+
+  private getSysParamSop(): void {
+    this.paramReq.type='SOP';
+    this.sysparamServ.getSysParamByType(this.paramReq).subscribe(
+      resp => {
+        this.sop = resp;
+      },(err) => {
+        this.blockUI.stop();
+        this.globalMsgServ.changeMessage(err);
+      }
+    )
+  }
+
+  private getSysParamCategory(): void {
+    this.paramReq.type='CATEGORY';
+    this.sysparamServ.getSysParamByType(this.paramReq).subscribe(
+      resp => {
+        this.category = resp;
+      },(err) => {
+        this.blockUI.stop();
+        this.globalMsgServ.changeMessage(err);
+      }
+    )
+  }
+
+  private getSysParamType(): void {
+    this.paramReq.type='TYPE';
+    this.sysparamServ.getSysParamByType(this.paramReq).subscribe(
+      resp => {
+        this.type = resp;
+      },(err) => {
+        this.blockUI.stop();
+        this.globalMsgServ.changeMessage(err);
+      }
+    )
+  }
+
+  private getSysParamDivisi(): void {
+    this.paramReq.type='DIVISI';
+    this.sysparamServ.getSysParamByType(this.paramReq).subscribe(
+      resp => {
+        this.divisi = resp;
+      },(err) => {
+        this.blockUI.stop();
+        this.globalMsgServ.changeMessage(err);
+      }
+    )
   }
 
   private checkStateAction(action: string): void {
     this.isAdd = action === "add" ? true : false;
+    this.isAddUser = action === "addUser" ? true : false;
     this.setForm();
   }
 
@@ -212,7 +271,9 @@ export class DocumentInputComponent implements OnInit {
   private onGoToList(): void {
     if (this.isAdd) {
       this.router.navigate(['../' ], { relativeTo: this.route });
-    } else if (!this.isAdd) {
+    } else if (this.isAddUser) {
+      this.router.navigate(['../pending' ], { relativeTo: this.route });
+    } else if (!this.isAdd && !this.isAddUser) {
       this.router.navigate(['../../' ], { relativeTo: this.route });
     } else {
       this.router.navigate(['/home']);

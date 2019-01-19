@@ -8,7 +8,7 @@
           <p>views : {{document.countRead}}</p>
         </div>
         <div class="col-sm-12 text-justify" [innerHTML]="document.description"></div>
-        <div class="col-sm-12 text-left">
+        <div class="col-sm-12 text-left" *ngIf="document.nameFile">
           <h5>Attacment Document : </h5>
         </div>
         <div class="col-sm-12row text-left" *ngIf="document.nameFile">

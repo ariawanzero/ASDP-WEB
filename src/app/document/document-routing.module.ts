@@ -19,6 +19,10 @@ const routes: Routes = [
     data: { state: 'add' },
     component: DocumentInputComponent
   }, {
+    path: 'addUser',
+    data: { state: 'addUser' },
+    component: DocumentInputComponent
+  },{
     path: 'edit/:id',
     data: { state: 'edit' },
     component: DocumentInputComponent

@@ -16,6 +16,8 @@ import { GlobalMessageService } from '../../shared/service/global-message.servic
 import { UserService } from '../user.service';
 
 import { UserFilter, User } from '../user';
+import { SysParam } from '../../shared/class/sysparam';
+import { SysParamService } from '../../shared/service/sysparam.service';
 
 @Component({
   selector: 'asdp-user-list',
@@ -26,9 +28,10 @@ export class UserListComponent implements OnInit {
   @BlockUI() blockUI: NgBlockUI;
 
   role: SimpleObject[] = ROLE;
-  jabatan: SimpleObject[] = JABATAN;
-  divisi: SimpleObject[] = DIVISI;
+  jabatan: SimpleObject[];
+  divisi: SimpleObject[];
   stats: SimpleObject[] = STATS;
+  paramReq: SysParam;
 
   filter: UserFilter;
   page: PagingData<User[]>;
@@ -37,13 +40,40 @@ export class UserListComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private userServ: UserService,
-    private globalMsgServ: GlobalMessageService
+    private globalMsgServ: GlobalMessageService,
+    private sysparamServ: SysParamService
   ) { }
 
   ngOnInit() {
     this.filter = new UserFilter();
-    
+    this.paramReq = new SysParam();
+    this.getSysParamDivisi();
+    this.getSysParamJabatan();
     this.getUserList();
+  }
+
+  private getSysParamJabatan(): void {
+    this.paramReq.type='JABATAN';
+    this.sysparamServ.getSysParamByType(this.paramReq).subscribe(
+      resp => {
+        this.jabatan = resp;
+      },(err) => {
+        this.blockUI.stop();
+        this.globalMsgServ.changeMessage(err);
+      }
+    )
+  }
+
+  private getSysParamDivisi(): void {
+    this.paramReq.type='DIVISI';
+    this.sysparamServ.getSysParamByType(this.paramReq).subscribe(
+      resp => {
+        this.divisi = resp;
+      },(err) => {
+        this.blockUI.stop();
+        this.globalMsgServ.changeMessage(err);
+      }
+    )
   }
 
   private getUserList(): void {

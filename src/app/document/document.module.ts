@@ -22,6 +22,7 @@ import { DocumentInputComponent } from './input/document-input.component';
 import { DocumentUploadComponent } from './upload/document-upload.component';
 import { DocumentDetailComponent } from './detail/document-detail.component';
 import { DocumentPendingComponent } from './pending/document-pending.component';
+import { SysParamService } from '../shared/service/sysparam.service';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { DocumentPendingComponent } from './pending/document-pending.component';
       multi: true,
       deps: [ CookieService ]
     },
-    DocumentService
+    DocumentService,
+    SysParamService
   ]
 })
 export class DocumentModule { }

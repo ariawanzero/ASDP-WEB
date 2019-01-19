@@ -93,6 +93,12 @@ export class LoginComponent implements OnInit {
   private generateClient(): void {
     this.localStorageServ.insertValue('client-email', this.responseAuth.clientEmail);
     this.localStorageServ.insertValue('client-name', this.responseAuth.clientName);
+    if(this.responseAuth.clientJabatan != null){
+      this.localStorageServ.insertValue('client-jabatan', this.responseAuth.clientJabatan);
+    }if(this.responseAuth.clientExpiredDate != null){
+      this.localStorageServ.insertValue('client-expired-date', this.responseAuth.clientExpiredDate);
+    }
+    this.localStorageServ.insertValue('client-role-name', this.responseAuth.clientRoleName);
   }
 
   private goToDashboard(): void { 

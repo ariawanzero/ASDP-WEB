@@ -11,9 +11,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ConfirmationDialogService } from '../../shared/service/confirmation-dialog.service';
 import { DocumentService } from '../document.service';
 import { GlobalMessageService } from '../../shared/service/global-message.service';
-import { SysParamService } from '../../shared/service/sysparam.service';
-import { SysParam } from '../../shared/class/sysparam';
-import { LocalStorageService } from '../../shared/service/local-storage.service';
 
 @Component({
   selector: 'asdp-document-list',
@@ -22,11 +19,9 @@ import { LocalStorageService } from '../../shared/service/local-storage.service'
 })
 export class DocumentListComponent implements OnInit {
   @BlockUI() blockUI: NgBlockUI;
-  paramReq: SysParam;
-  divisi: SimpleObject[];
-  type: SimpleObject[];
+  divisi: SimpleObject[] = DIVISI;
+  type: SimpleObject[] = TYPE;
   status: SimpleObject[] = STATS;
-  role: string;
 
   filter: DocumentFilter;
   page: PagingData<Document[]>
@@ -35,43 +30,13 @@ export class DocumentListComponent implements OnInit {
     private route: ActivatedRoute,
     private documentServ: DocumentService,    
     private globalMsgServ: GlobalMessageService,
-    private confirmServ: ConfirmationDialogService,
-    private sysparamServ: SysParamService,
-    private localStorageServ: LocalStorageService
+    private confirmServ: ConfirmationDialogService
   ) { }
 
   ngOnInit() {
     this.filter = new DocumentFilter();
-    this.paramReq = new SysParam();
-    this.role = this.localStorageServ.getValue('client-role-name');
-    
-    this.getSysParamType();
-    this.getSysParamDivisi();
+
     this.getDocumentList();
-  }
-
-  private getSysParamType(): void {
-    this.paramReq.type='TYPE';
-    this.sysparamServ.getSysParamByType(this.paramReq).subscribe(
-      resp => {
-        this.type = resp;
-      },(err) => {
-        this.blockUI.stop();
-        this.globalMsgServ.changeMessage(err);
-      }
-    )
-  }
-
-  private getSysParamDivisi(): void {
-    this.paramReq.type='DIVISI';
-    this.sysparamServ.getSysParamByType(this.paramReq).subscribe(
-      resp => {
-        this.divisi = resp;
-      },(err) => {
-        this.blockUI.stop();
-        this.globalMsgServ.changeMessage(err);
-      }
-    )
   }
 
   private getDocumentList(): void {
@@ -120,11 +85,7 @@ export class DocumentListComponent implements OnInit {
   }
 
   onAdd(): void { 
-    if(this.role === 'USER'){
-      this.router.navigate(['addUser'], { relativeTo: this.route });
-    }else{
-      this.router.navigate(['add'], { relativeTo: this.route });
-    }
+    this.router.navigate(['add'], { relativeTo: this.route });
   }
 
 }

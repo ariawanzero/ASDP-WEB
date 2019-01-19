@@ -19,6 +19,8 @@ import { GlobalMessageService } from '../../shared/service/global-message.servic
 import { MateriService } from '../materi.service';
 
 import { Materi } from '../materi';
+import { SysParam } from '../../shared/class/sysparam';
+import { SysParamService } from '../../shared/service/sysparam.service';
 
 @Component({
   selector: 'asdp-materi-detail',
@@ -36,6 +38,7 @@ export class MateriDetailComponent implements OnInit {
   isAdd: boolean;
   materiId: string;
   dtMateri: Materi;
+  paramReq: SysParam;
 
   detailForm: FormGroup;
 
@@ -44,12 +47,27 @@ export class MateriDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private confirmServ: ConfirmationDialogService,
     private globalMsgServ: GlobalMessageService,
-    private materiServ: MateriService
+    private materiServ: MateriService,
+    private sysparamServ: SysParamService
   ) { }
 
   ngOnInit() { 
     let state = this.route.snapshot.data['state'];
+    this.paramReq = new SysParam();
+    this.getSysParamDivisi();
     this.checkStateAction(state);
+  }
+
+  private getSysParamDivisi(): void {
+    this.paramReq.type='DIVISI';
+    this.sysparamServ.getSysParamByType(this.paramReq).subscribe(
+      resp => {
+        this.divisi = resp;
+      },(err) => {
+        this.blockUI.stop();
+        this.globalMsgServ.changeMessage(err);
+      }
+    )
   }
 
   private checkStateAction(action: string): void {

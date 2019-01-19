@@ -29,7 +29,7 @@
             <div class="col-sm-12 text-center">
               <p>Jumlah Soal: &nbsp;{{ quiz.totalQuiz}} Soal</p>
             </div>
-            <div class="col-sm-12 text-center">
+            <div class="col-sm-12 text-center" *ngIf="quiz.nameFile">
               <p>Materi Quiz : </p>
             </div>
             <div class="row text-center" *ngIf="quiz.nameFile">

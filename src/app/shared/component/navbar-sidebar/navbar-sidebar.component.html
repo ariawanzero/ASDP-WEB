@@ -4,7 +4,11 @@
   </div>
 
   <ul class="list-unstyled components" *ngIf="menuList">
-    <p>Welcome, {{ user }}</p>
+    <p class="text-center">Welcome, {{ user }}<br/>
+      <ng-container *ngIf="jabatan">{{ jabatan }}<br/></ng-container>
+      as {{ role }}<br/>
+      <ng-container *ngIf="expiredDate">expired {{ expiredDate }}</ng-container>
+    </p>
     <li>
       <a (click)="goToPage('dashboard')"><i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</a>
     </li>

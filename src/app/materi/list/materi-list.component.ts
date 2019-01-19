@@ -17,6 +17,8 @@ import { DIVISI } from '../../shared/constant/divisi';
 import { MateriService } from '../materi.service';
 
 import { MateriFilter, Materi } from '../materi';
+import { SysParam } from '../../shared/class/sysparam';
+import { SysParamService } from '../../shared/service/sysparam.service';
 
 
 @Component({
@@ -27,26 +29,41 @@ import { MateriFilter, Materi } from '../materi';
 export class MateriListComponent implements OnInit {
   @BlockUI() blockUI: NgBlockUI;
 
-  divisi: SimpleObject[] = DIVISI;
+  divisi: SimpleObject[];
 
   filter: MateriFilter;
   page: PagingData<Materi[]>
 
   materi: string;
   response: CommonResponseStatus;
+  paramReq: SysParam;
   
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private materiServ: MateriService,    
     private globalMsgServ: GlobalMessageService,
-    private confirmServ: ConfirmationDialogService
+    private confirmServ: ConfirmationDialogService,
+    private sysparamServ: SysParamService
   ) { }
 
   ngOnInit() {
     this.filter = new MateriFilter();
-  
+    this.paramReq = new SysParam();
+    this.getSysParamDivisi();
     this.getMateriList();
+  }
+
+  private getSysParamDivisi(): void {
+    this.paramReq.type='DIVISI';
+    this.sysparamServ.getSysParamByType(this.paramReq).subscribe(
+      resp => {
+        this.divisi = resp;
+      },(err) => {
+        this.blockUI.stop();
+        this.globalMsgServ.changeMessage(err);
+      }
+    )
   }
 
   private getMateriList(): void {
