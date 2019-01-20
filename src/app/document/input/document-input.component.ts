@@ -64,6 +64,7 @@ export class DocumentInputComponent implements OnInit {
     this.getSysParamType();
     this.getSysParamCategory();
     this.checkStateAction(state);
+    
   }
 
   private getSysParamSop(): void {
@@ -281,10 +282,10 @@ export class DocumentInputComponent implements OnInit {
   }
 
   private onGoToList(): void {
-    if (this.isAdd) {
-      this.router.navigate(['../' ], { relativeTo: this.route });
-    } else if (this.isAddUser) {
+    if (this.isAddUser) {
       this.router.navigate(['../pending' ], { relativeTo: this.route });
+    } else if (this.isAdd) {
+      this.router.navigate(['../' ], { relativeTo: this.route });
     } else if (!this.isAdd && !this.isAddUser) {
       this.router.navigate(['../../' ], { relativeTo: this.route });
     } else {

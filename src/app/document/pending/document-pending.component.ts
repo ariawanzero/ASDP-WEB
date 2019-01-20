@@ -107,6 +107,10 @@ export class DocumentPendingComponent implements OnInit {
       this.router.navigate(['../upload', id], { relativeTo: this.route });
   }
 
+  onEditDocument(id: string): void {
+    this.router.navigate(['../edit', id], { relativeTo: this.route });
+  }
+
   onNotify(idx: number): void {
     this.filter.page = idx;
     this.getDocumentList();

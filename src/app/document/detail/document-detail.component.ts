@@ -2,13 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { NgBlockUI, BlockUI } from 'ng-block-ui';
 import { CommonResponseStatus } from '../../shared/class/common-response-status';
 import { Task } from '../../shared/enum/task.enum';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DocumentService } from '../document.service';
 import { GlobalMessageService } from '../../shared/service/global-message.service';
 import { ConfirmationDialogService } from '../../shared/service/confirmation-dialog.service';
 import { Document } from '../document';
 import { ModalService } from '../../shared/service/modal.service';
 import { LocalStorageService } from '../../shared/service/local-storage.service';
+import { ConfirmationMessage } from '../../shared/class/confirmation-message';
+import { TitleModal } from '../../shared/class/title-modal';
 
 @Component({
   selector: 'asdp-document-detail',
@@ -31,7 +33,8 @@ export class DocumentDetailComponent implements OnInit {
     private globalMsgServ: GlobalMessageService,
     private confirmServ: ConfirmationDialogService,
     private modalServ: ModalService,
-    private localStorageServ: LocalStorageService
+    private localStorageServ: LocalStorageService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -76,6 +79,46 @@ export class DocumentDetailComponent implements OnInit {
     if(this.document) {
       this.document.divisiDisplay = JSON.parse(this.document.divisi);
     }
+  }
+
+  onApproved(): void {
+    this.confirmServ.activate(ConfirmationMessage.APPROVE, TitleModal.CONFIRM).then(
+      result => {
+        if (result) {
+          this.documentServ.approveDocument(this.document).subscribe(
+          resp => {
+            this.response = resp;
+          },(err) => {
+            this.blockUI.stop();
+            this.globalMsgServ.changeMessage(err);
+          }, () => {
+            this.blockUI.stop(); 
+            this.router.navigate(['../../' ], { relativeTo: this.route });
+          }
+          )
+        }
+      }
+    )
+  }
+
+  onRejected(): void {
+    this.confirmServ.activate(ConfirmationMessage.REJECT, TitleModal.CONFIRM).then(
+      result => {
+        if (result) {
+          this.documentServ.rejectedDocument(this.document).subscribe(
+          resp => {
+            this.response = resp;
+          },(err) => {
+            this.blockUI.stop();
+            this.globalMsgServ.changeMessage(err);
+          }, () => {
+            this.blockUI.stop(); 
+            this.router.navigate(['../../' ], { relativeTo: this.route });
+          }
+          )
+        }
+      }
+    )
   }
 
 }

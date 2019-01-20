@@ -65,4 +65,18 @@ export class DocumentService {
 
     return this.http.request(req);
   }
+
+  approveDocument(value: any): Observable<any> {
+    return this.http.post(('/document/approveDocument'), value)
+      .pipe(
+        map(this.respService.extractResultAction)
+      )
+  }
+
+  rejectedDocument(value: any): Observable<any> {
+    return this.http.post(('/document/rejectedDocument'), value)
+      .pipe(
+        map(this.respService.extractResultAction)
+      )
+  }
 }

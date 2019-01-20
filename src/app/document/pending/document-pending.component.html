@@ -50,8 +50,8 @@
       <tbody *ngIf="page">
         <tr *ngFor="let document of page.data; let i = index">
           <th scope="row">{{ i + 1 }}</th>
-          <td>
-              {{ document.name }}
+          <td *ngIf="document.status != 'ACTIVE'">
+            <a (click)="onEditDocument(document.id)">{{ document.name }}</a>
           </td>
           <td>
               {{ document.descriptionNoTag }}
