@@ -26,3 +26,8 @@
         width: -webkit-fill-available;
     }
 }
+
+.thumbnail{
+    width:200px;
+    height:200px;
+}

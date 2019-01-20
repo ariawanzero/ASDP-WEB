@@ -9,3 +9,7 @@ h6 span {
     background:#fff; 
     padding:0 10px; 
 }
+.thumbnail{
+    width:200px;
+    height:200px;
+}

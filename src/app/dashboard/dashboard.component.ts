@@ -14,6 +14,7 @@ import { DashboardService } from './dashboard.service';
 
 import { DasboardFilter } from './dashboard';
 import { Document } from '../document/document';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'asdp-dashboard',
@@ -33,6 +34,7 @@ export class DashboardComponent implements OnInit {
     private route: ActivatedRoute,
     private dashboardServ: DashboardService,
     private globalMsgServ: GlobalMessageService,
+    private sanitizer : DomSanitizer
   ) { }
 
   ngOnInit() {

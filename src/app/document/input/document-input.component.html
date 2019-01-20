@@ -67,8 +67,9 @@
   </div>
 
   <div class="form-group row">
-    <label for="inputCategory" class="col-sm-2 col-form-label required">Thumbnail</label>
+    <label for="inputTumbnail" class="col-sm-2 col-form-label required">Thumbnail</label>
     <div class="col-sm-4">
+        <img [src]="showTumbnail" class="thumbnail" alt="">
       <input type="file" (change)="onSelectFile($event)" accept="image/x-png,image/jpeg">
     </div>
   </div>
