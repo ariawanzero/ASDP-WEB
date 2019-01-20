@@ -48,6 +48,15 @@
         <span *ngIf="detailForm.controls.totalQuiz.errors?.required">Total Quiz Required.</span>
       </span>
     </div>
+    <label for="inputQuestion" class="col-sm-2 col-form-label required">Pass Score</label>
+    <div class="col-sm-4">
+      <input type="number" class="form-control" [ngClass]="detailForm.controls.passScore.errors && detailForm.controls.passScore.touched ? ' error' : ''" formControlName="passScore" name="passScore" placeholder="0" autocomplete="off">
+      <span class="text-danger invalidMessage" *ngIf="detailForm.controls.passScore.touched && detailForm.controls.passScore.errors">
+        <span *ngIf="detailForm.controls.passScore.errors?.required">Pass Score Required.</span>
+        <span *ngIf="detailForm.controls.passScore.errors?.maxLength">Pass Score maximum length is 3.</span>
+        <span *ngIf="detailForm.controls.passScore.errors?.invalidScore">Pass Score must between 0 - 100.</span>
+      </span>
+    </div>
   </div>
   <div class="form-group row">
     <label for="inputDescription" class="col-sm-2 col-form-label">Description</label>
