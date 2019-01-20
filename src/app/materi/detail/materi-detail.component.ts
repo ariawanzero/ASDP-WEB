@@ -127,7 +127,7 @@ export class MateriDetailComponent implements OnInit {
       startDate: new Date(materi.startDate).toISOString().slice(0, -8),
       endDate: new Date(materi.endDate).toISOString().slice(0, -8),
       totalQuiz: materi.totalQuiz,
-      passScore: materi.passedScore
+      passedScore: materi.passedScore
     });
   }
 
