@@ -28,6 +28,7 @@ export class Materi {
     startDate: Date;
     endDate: Date;
     totalQuiz: number;
+    passedScore: number;
     description: string;
     startDateDisplay: string;
     endDateDisplay: string;
