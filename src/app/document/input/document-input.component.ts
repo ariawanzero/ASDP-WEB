@@ -135,7 +135,7 @@ export class DocumentInputComponent implements OnInit {
       instagram: new FormControl(false)
     });
 
-    if(!this.isAdd) { this.getIdFromParameter(); }
+    if(!this.isAdd && !this.isAddUser) { this.getIdFromParameter(); }
   }
 
   private getIdFromParameter(): void {
@@ -263,7 +263,13 @@ export class DocumentInputComponent implements OnInit {
   onCancel(): void {
     this.confirmServ.activate(ConfirmationMessage.CANCEL, TitleModal.CONFIRM).then(
       result => {
-        if (result) { this.onGoToList();}
+        if (this.isAddUser) {
+          this.isAddUser = false;
+          this.isAdd = true;
+          if (result) { this.onGoToList();}
+        }else{
+          if (result) { this.onGoToList();}
+        }
       }
     )
   }

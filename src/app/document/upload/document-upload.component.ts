@@ -10,6 +10,7 @@ import { ModalService } from '../../shared/service/modal.service';
 import { DocumentService } from '../document.service';
 
 import { Document } from '../document';
+import { LocalStorageService } from '../../shared/service/local-storage.service';
 
 @Component({
   selector: 'asdp-document-upload',
@@ -22,6 +23,7 @@ export class DocumentUploadComponent implements OnInit {
   documentId: string;
   dtDocument: Document;
   urlFile: string;
+  isUploadUser: boolean;
 
   selectedFiles: FileList;
   currentFile: File;
@@ -32,10 +34,12 @@ export class DocumentUploadComponent implements OnInit {
     private route: ActivatedRoute,
     private documentServ: DocumentService,
     private modalServ: ModalService,
-    private globalMsgServ: GlobalMessageService
+    private globalMsgServ: GlobalMessageService,
+    private localStorageServ: LocalStorageService
   ) { }
 
   ngOnInit() {
+    this.isUploadUser = this.localStorageServ.getValue('client-role-name') === "USER" ? true : false;
     this.getIdFromParameter();
   }
 
@@ -85,7 +89,13 @@ export class DocumentUploadComponent implements OnInit {
     )
   }
 
-  onBack(): void { this.router.navigate(['../../'], { relativeTo: this.route }) }
+  onBack(): void { 
+    if(this.isUploadUser){
+      this.router.navigate(['../../pending'], { relativeTo: this.route }) ;
+    }else{
+      this.router.navigate(['../../'], { relativeTo: this.route });
+    }
+  }
 
   onPreview(url: string): void {
     this.urlFile = url;

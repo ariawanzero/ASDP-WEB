@@ -11,6 +11,8 @@ export class Document {
     tumbnail: string;
     startDate: string;
     endDate: string;
+    startDateDisplay: string;
+    endDateDisplay: string;
     nameFileJson: string;
     status: string;
     twitter: boolean;
@@ -19,6 +21,8 @@ export class Document {
     view: boolean;
     countRead: number;
     createdDate: string;
+    createdBy: string;
+    createdDateDisplay: string;
     nameFile: string[];
 }
 

@@ -29,10 +29,12 @@ export class Materi {
     endDate: Date;
     totalQuiz: number;
     description: string;
+    startDateDisplay: string;
+    endDateDisplay: string;
     publish: boolean;
     urlPreview: string;
     questionList: MateriQuestion[];
-    nameFile: string[];
+    nameFile: string[]; 
 }
 
 export class MateriQuestion {

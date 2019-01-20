@@ -71,8 +71,8 @@
           <td>
               {{ document.descriptionNoTag }}
           </td>
-          <td>{{ document.startDate | dateFormat }}</td>
-          <td>{{ document.endDate | dateFormat }}</td>
+          <td>{{ document.startDateDisplay}}</td>
+          <td>{{ document.endDateDisplay}}</td>
           <td>{{ document.status }}</td>
           <td class="text-center">
             <div class="btn-group mr-2" *ngIf="document.view === false">

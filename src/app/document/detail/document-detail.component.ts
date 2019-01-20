@@ -8,6 +8,7 @@ import { GlobalMessageService } from '../../shared/service/global-message.servic
 import { ConfirmationDialogService } from '../../shared/service/confirmation-dialog.service';
 import { Document } from '../document';
 import { ModalService } from '../../shared/service/modal.service';
+import { LocalStorageService } from '../../shared/service/local-storage.service';
 
 @Component({
   selector: 'asdp-document-detail',
@@ -22,18 +23,21 @@ export class DocumentDetailComponent implements OnInit {
   document: Document;
   documentId: string;
   urlFile: string;
+  role: string;
 
   constructor(
     private route: ActivatedRoute,
     private documentServ: DocumentService,    
     private globalMsgServ: GlobalMessageService,
     private confirmServ: ConfirmationDialogService,
-    private modalServ: ModalService
+    private modalServ: ModalService,
+    private localStorageServ: LocalStorageService
   ) { }
 
   ngOnInit() {
     this.getIdFromParameter();
     this.getDocument();
+    this.role = this.localStorageServ.getValue('client-role-name');
   }
 
   private getIdFromParameter(): void {
@@ -52,13 +56,12 @@ export class DocumentDetailComponent implements OnInit {
     this.documentServ.getReadDetailDocument({ id: this.documentId }).subscribe(
       resp => {
         this.document = resp;
-        console.log(this.document.name);
-        
       }, err => {
         this.blockUI.stop();
         this.globalMsgServ.changeMessage(err);
       }, () => {
         this.blockUI.stop();
+        this.remaping();
       }
     )
   }
@@ -67,6 +70,12 @@ export class DocumentDetailComponent implements OnInit {
     this.urlFile = url;
     console.log(url);
     this.modalServ.openModal("modal-file");
+  }
+
+  private remaping(): void {
+    if(this.document) {
+      this.document.divisiDisplay = JSON.parse(this.document.divisi);
+    }
   }
 
 }

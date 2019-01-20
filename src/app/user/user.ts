@@ -56,5 +56,7 @@ export class UserHistoryFilter {
 
 export class UserHistory {
     username: string;
+    divisi: string;
+    dateLoginDisplay: string;
     dateLogin: number;
 }

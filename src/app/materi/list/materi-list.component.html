@@ -59,8 +59,8 @@
             </ng-container>
           </h5>
         </td>
-        <td>{{ materi.startDate | dateTimeFormat }}</td>
-        <td>{{ materi.endDate | dateTimeFormat }}</td>
+        <td>{{ materi.startDateDisplay }}</td>
+        <td>{{ materi.endDateDisplay }}</td>
         <td *ngIf="materi.publish === true; else notPublished">
           Published
         </td>

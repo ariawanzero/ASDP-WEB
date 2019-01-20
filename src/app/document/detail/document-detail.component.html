@@ -3,18 +3,39 @@
 <div *ngIf="document">
     <div class="col-sm-12">
         <div class="col-sm-12 text-left" *ngIf="document">
-          <h6>{{ document.createdDate | dateTimeFormat}}</h6>
-          <h3>{{document.name}}</h3>
-          <p>views : {{document.countRead}}</p>
+          <h6>{{ document.createdDateDisplay}}<br/>
+            <ng-container *ngIf="document.createdBy != 'superuser'">
+              {{ document.createdBy}}
+            </ng-container>
+            <ng-container *ngIf="document.createdBy === 'superuser'">
+              Administrator
+            </ng-container>
+          </h6>
+          <h3><b>{{document.name}}</b></h3>
+          <p>views : {{document.countRead}}<br/>
+            divisi :
+            <ng-container *ngFor="let divisi of document.divisiDisplay; let i = index">
+              {{divisi}}
+            </ng-container>
+            <br/>
+            category : {{document.category}}</p>
         </div>
         <div class="col-sm-12 text-justify" [innerHTML]="document.description"></div>
         <div class="col-sm-12 text-left" *ngIf="document.nameFile">
           <h5>Attacment Document : </h5>
         </div>
-        <div class="col-sm-12row text-left" *ngIf="document.nameFile">
+        <div class="col-sm-12 row text-left" *ngIf="document.nameFile">
           <div class="col-sm-12" *ngFor="let file of document.nameFile; let i = index">
             {{ i + 1 }}.
             <a (click)="onPreview(document.urlPreview + file)">{{ file }}</a>
+          </div>
+        </div>
+        <div class="col-sm-12 text-center" *ngIf="document.status === 'PENDING' && role != 'USER'">
+          <div class="btn-group mr-1">
+              <button type="button" class="btn btn-primary btn-sm" (click)="onGoToUpload(document.id)"><i class="fa fa-cloud-approve" aria-hidden="true">Approve</i></button>
+          </div>
+          <div class="btn-group mr-1">
+              <button type="button" class="btn btn-primary btn-sm" (click)="onGoToDetail(document.id)"><i class="fa fa-cloud-rejected" aria-hidden="true">Rejected</i></button>
           </div>
         </div>
       </div>
