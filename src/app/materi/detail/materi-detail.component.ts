@@ -16,6 +16,8 @@ import { Task } from '../../shared/enum/task.enum';
 import { ConfirmationDialogService } from '../../shared/service/confirmation-dialog.service';
 import { GlobalMessageService } from '../../shared/service/global-message.service';
 
+import { ScoreValidator } from '../../shared/validator/score.validator';
+
 import { MateriService } from '../materi.service';
 
 import { Materi } from '../materi';
@@ -81,9 +83,10 @@ export class MateriDetailComponent implements OnInit {
       name: new FormControl('', [Validators.required, Validators.maxLength(100)]),
       description: new FormControl(''),
       divisi: new FormControl([], [Validators.required]),
-      startDate: new FormControl(''),
-      endDate: new FormControl(''),
-      totalQuiz: new FormControl('', [Validators.required])
+      startDate: new FormControl('', [Validators.required]),
+      endDate: new FormControl('', [Validators.required]),
+      totalQuiz: new FormControl('', [Validators.required]),
+      passedScore: new FormControl('', [Validators.required, Validators.maxLength(3), ScoreValidator.validateScore])
     });
 
     if(!this.isAdd) { this.getIdFromParameter(); }
@@ -115,15 +118,16 @@ export class MateriDetailComponent implements OnInit {
     )
   }
 
-  private setValueForm(user: Materi): void {
+  private setValueForm(materi: Materi): void {
     this.detailForm.patchValue({
-      id: user.id,
-      name: user.name,
-      divisi: JSON.parse(user.divisi),
-      description: user.description,
-      startDate: new Date(user.startDate).toISOString().slice(0, -8),
-      endDate: new Date(user.endDate).toISOString().slice(0, -8),
-      totalQuiz: user.totalQuiz
+      id: materi.id,
+      name: materi.name,
+      divisi: JSON.parse(materi.divisi),
+      description: materi.description,
+      startDate: new Date(materi.startDate).toISOString().slice(0, -8),
+      endDate: new Date(materi.endDate).toISOString().slice(0, -8),
+      totalQuiz: materi.totalQuiz,
+      passScore: materi.passedScore
     });
   }
 
