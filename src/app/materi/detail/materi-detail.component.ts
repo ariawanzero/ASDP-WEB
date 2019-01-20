@@ -68,7 +68,7 @@ export class MateriDetailComponent implements OnInit {
       startDate: new FormControl('', [Validators.required]),
       endDate: new FormControl('', [Validators.required]),
       totalQuiz: new FormControl('', [Validators.required]),
-      passScore: new FormControl('', [Validators.required, Validators.maxLength(3), ScoreValidator.validateScore])
+      passedScore: new FormControl('', [Validators.required, Validators.maxLength(3), ScoreValidator.validateScore])
     });
 
     if(!this.isAdd) { this.getIdFromParameter(); }
@@ -109,7 +109,7 @@ export class MateriDetailComponent implements OnInit {
       startDate: new Date(materi.startDate).toISOString().slice(0, -8),
       endDate: new Date(materi.endDate).toISOString().slice(0, -8),
       totalQuiz: materi.totalQuiz,
-      passScore: materi.passScore
+      passScore: materi.passedScore
     });
   }
 
