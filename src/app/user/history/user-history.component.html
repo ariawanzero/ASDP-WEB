@@ -27,6 +27,7 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">User</th>
+        <th scope="col">Divisi</th>
         <th scope="col">Login Date</th>
       </tr>
     </thead>
@@ -34,7 +35,8 @@
         <tr *ngFor="let hist of page.data; let i = index">
           <th scope="row">{{ i + 1 }}</th>
           <td>{{ hist.username }}</td>
-          <td>{{ hist.dateLogin | dateFormat }}</td>
+          <td>{{ hist.divisi }}</td>
+          <td>{{ hist.dateLoginDisplay}}</td>
         </tr>
       </tbody>
   </table>

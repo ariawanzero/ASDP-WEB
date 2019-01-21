@@ -12,6 +12,8 @@ export class Quiz {
     name: string;
     startDate: Date;
     endDate: Date;
+    startDateDisplay: string;
+    endDateDisplay: string;
     description: string;
     urlPreview: string;
     nameFile: string[];

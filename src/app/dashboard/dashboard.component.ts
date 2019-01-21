@@ -52,8 +52,8 @@ export class DashboardComponent implements OnInit {
   constructor(
     private router: Router,
     private dashboardServ: DashboardService,
-    private globalMsgServ: GlobalMessageService,
-  ) { console.log(this.multiUserLogin) }
+    private globalMsgServ: GlobalMessageService
+  ) { }
 
   ngOnInit() {
     this.filter = new DasboardFilter();

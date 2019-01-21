@@ -56,11 +56,14 @@
           <td>
               {{ document.descriptionNoTag }}
           </td>
-          <td>{{ document.startDate | dateFormat }}</td>
-          <td>{{ document.endDate | dateFormat }}</td>
+          <td>{{ document.startDateDisplay }}</td>
+          <td>{{ document.endDateDisplay }}</td>
           <td>{{ document.status }}</td>
           <td class="text-center">
             <div class="btn-group mr-2" *ngIf="document.view === false">
+              <div class="btn-group mr-1">
+                <button type="button" class="btn btn-primary btn-sm" (click)="onGoToUpload(document.id)"><i class="fa fa-cloud-upload" aria-hidden="true"> Upload File</i></button>
+              </div>
               <div class="btn-group mr-1">
                   <button type="button" class="btn btn-primary btn-sm" (click)="onGoToDetail(document.id)"><i class="fa fa-cloud-read" aria-hidden="true">Preview</i></button>
               </div>

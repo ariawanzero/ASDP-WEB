@@ -11,6 +11,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ConfirmationDialogService } from '../../shared/service/confirmation-dialog.service';
 import { DocumentService } from '../document.service';
 import { GlobalMessageService } from '../../shared/service/global-message.service';
+import { SysParam } from '../../shared/class/sysparam';
+import { SysParamService } from '../../shared/service/sysparam.service';
+import { LocalStorageService } from '../../shared/service/local-storage.service';
 
 @Component({
   selector: 'asdp-document-pending',
@@ -22,6 +25,7 @@ export class DocumentPendingComponent implements OnInit {
   divisi: SimpleObject[] = DIVISI;
   type: SimpleObject[] = TYPE;
   status: SimpleObject[] = STATS;
+  paramReq: SysParam;
 
   filter: DocumentFilter;
   page: PagingData<Document[]>
@@ -30,13 +34,41 @@ export class DocumentPendingComponent implements OnInit {
     private route: ActivatedRoute,
     private documentServ: DocumentService,    
     private globalMsgServ: GlobalMessageService,
-    private confirmServ: ConfirmationDialogService
+    private confirmServ: ConfirmationDialogService,
+    private sysparamServ: SysParamService,
+    private localStorageServ: LocalStorageService
   ) { }
 
   ngOnInit() {
     this.filter = new DocumentFilter();
-
+    this.paramReq = new SysParam();
+    this.getSysParamDivisi();
+    this.getSysParamType();
     this.getDocumentList();
+  }
+
+  private getSysParamType(): void {
+    this.paramReq.type='TYPE';
+    this.sysparamServ.getSysParamByType(this.paramReq).subscribe(
+      resp => {
+        this.type = resp;
+      },(err) => {
+        this.blockUI.stop();
+        this.globalMsgServ.changeMessage(err);
+      }
+    )
+  }
+
+  private getSysParamDivisi(): void {
+    this.paramReq.type='DIVISI';
+    this.sysparamServ.getSysParamByType(this.paramReq).subscribe(
+      resp => {
+        this.divisi = resp;
+      },(err) => {
+        this.blockUI.stop();
+        this.globalMsgServ.changeMessage(err);
+      }
+    )
   }
 
   private getDocumentList(): void {
@@ -69,6 +101,10 @@ export class DocumentPendingComponent implements OnInit {
 
   onGoToDetail(id: string): void {
     this.router.navigate(['../detail', id], { relativeTo: this.route });
+  }
+
+  onGoToUpload(id: string): void {
+      this.router.navigate(['../upload', id], { relativeTo: this.route });
   }
 
   onNotify(idx: number): void {

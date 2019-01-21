@@ -36,12 +36,14 @@ export class DocumentInputComponent implements OnInit {
   sop: SimpleObject[];
   category: SimpleObject[];
   paramReq: SysParam;
+  showTumbnail: string;
 
   isAdd: boolean;
   isAddUser: boolean;
   documentId: string;
   typeValue: string;
   dtMateri: Document;
+
 
   detailForm: FormGroup;
 
@@ -129,13 +131,13 @@ export class DocumentInputComponent implements OnInit {
       category: new FormControl([], [Validators.required]),
       startDate: new FormControl(''),
       endDate: new FormControl(''),
-      thumbnail: new FormControl(''),
+      tumbnail: new FormControl(''),
       facebook: new FormControl(false),
       twitter: new FormControl(false),
       instagram: new FormControl(false)
     });
 
-    if(!this.isAdd) { this.getIdFromParameter(); }
+    if(!this.isAdd && !this.isAddUser) { this.getIdFromParameter(); }
   }
 
   private getIdFromParameter(): void {
@@ -206,11 +208,15 @@ export class DocumentInputComponent implements OnInit {
       endDate: new Date(doc.endDate).toISOString().substring(0, 10),
       sop: doc.sop,
       type: doc.type,
-      category: doc.category  ,
+      category: doc.category ,
       facebook: doc.facebook,
       twitter: doc.twitter,
+      tumbnail: doc.tumbnail,
       instagram: doc.instagram
     });
+    if(doc.tumbnail != null){
+      this.showTumbnail = doc.tumbnail;
+    }
   }
 
   onSave(): void { this.task = Task.Save; }
@@ -263,7 +269,13 @@ export class DocumentInputComponent implements OnInit {
   onCancel(): void {
     this.confirmServ.activate(ConfirmationMessage.CANCEL, TitleModal.CONFIRM).then(
       result => {
-        if (result) { this.onGoToList();}
+        if (this.isAddUser) {
+          this.isAddUser = false;
+          this.isAdd = true;
+          if (result) { this.onGoToList();}
+        }else{
+          if (result) { this.onGoToList();}
+        }
       }
     )
   }
@@ -289,8 +301,9 @@ export class DocumentInputComponent implements OnInit {
 
       reader.onload = () => {
         this.detailForm.patchValue({
-          thumbnail: reader.result
+          tumbnail: reader.result
         })
+        this.showTumbnail = reader.result;
       }
     }
   }
