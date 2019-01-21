@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
@@ -15,6 +15,8 @@ import { DashboardService } from './dashboard.service';
 import { DasboardFilter } from './dashboard';
 import { Document } from '../document/document';
 
+import { USER_LOGIN, DOCUMENT_VIEW, QUIZ_DIVISI } from './data';
+
 @Component({
   selector: 'asdp-dashboard',
   templateUrl: './dashboard.component.html',
@@ -28,12 +30,30 @@ export class DashboardComponent implements OnInit {
   filter: DasboardFilter;
   page: PagingData<Document[]>
 
+  // charts
+  singleQuizDivisi: any[] = QUIZ_DIVISI;
+  multiUserLogin: any[] = USER_LOGIN;
+  multiDocumentView: any[] = DOCUMENT_VIEW;
+
+  view: any[] = [355, 300];
+
+  // options
+  showXAxis = true;
+  showYAxis = true;
+  gradient = false;
+  showLegend = true;
+  showXAxisLabel = true;
+  xAxisLabel = 'Divisi';
+
+  colorScheme = {
+    domain: ['#A8385D', '#7AA3E5','#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+  };
+
   constructor(
     private router: Router,
-    private route: ActivatedRoute,
     private dashboardServ: DashboardService,
     private globalMsgServ: GlobalMessageService,
-  ) { }
+  ) { console.log(this.multiUserLogin) }
 
   ngOnInit() {
     this.filter = new DasboardFilter();
