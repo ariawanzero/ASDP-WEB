@@ -1,4 +1,4 @@
-<h4>Document</h4>
+<h4>Document History</h4>
 <div class="line"></div>
 <form>
   <div class="form-group row">
@@ -39,20 +39,17 @@
       <div class="btn-group mr-2">
         <button type="button" class="btn btn-info" (click)="onSearch()"><i class="fa fa-search"> Search</i></button>
       </div>
-      <div class="btn-group">
-        <button type="button" class="btn btn-secondary" (click)="onAdd()"><i class="fa fa-plus"> Add</i></button>
-      </div>
     </div>
   </div>
 </form>
-<h4>Document List</h4>
+<h4>Document History List</h4>
 <div class="table-responsive-sm">
     <table class="table table-sm">
       <thead>
         <tr>
           <th scope="col">#</th>
           <th scope="col">Name</th>
-          <th scope="col">Description</th>
+          <th scope="col">Total Views</th>
           <th scope="col">Start Date</th>
           <th scope="col">End Date</th>
           <th scope="col">Status</th>
@@ -62,30 +59,19 @@
       <tbody *ngIf="page">
         <tr *ngFor="let document of page.data; let i = index">
           <th scope="row">{{ i + 1 }}</th>
-          <td *ngIf="document.view === false">
-            <a (click)="onEditDocument(document.id)">{{ document.name }}</a>
-          </td>
-          <td *ngIf="document.view === true">
+          <td>
               {{ document.name }}
           </td>
           <td>
-              {{ document.descriptionNoTag }}
+              {{ document.countRead }}
           </td>
           <td>{{ document.startDate | dateFormat }}</td>
           <td>{{ document.endDate | dateFormat }}</td>
           <td>{{ document.status }}</td>
-          <td class="text-center">
-            <div class="btn-group mr-2" *ngIf="document.view === false">
-              <div class="btn-group mr-1">
-                  <button type="button" class="btn btn-primary btn-sm" (click)="onGoToUpload(document.id)"><i class="fa fa-cloud-upload" aria-hidden="true"> Upload File</i></button>
-              </div>
-              <div class="btn-group mr-1">
-                  <button type="button" class="btn btn-primary btn-sm" (click)="onGoToDetail(document.id)"><i class="fa fa-cloud-read" aria-hidden="true">Preview</i></button>
-              </div>
+          <td>
+            <div class="btn-group mr-2">
+              <button type="button" class="btn btn-primary btn-sm" (click)="onGoToDetailHistory(document.id)"><i class="fa fa-detail" aria-hidden="true">Detail</i></button>
             </div>
-            <div class="btn-group mr-2" *ngIf="document.view === true">
-                <button type="button" class="btn btn-primary btn-sm" (click)="onGoToDetail(document.id)"><i class="fa fa-cloud-read" aria-hidden="true">Read More</i></button>
-              </div>
           </td>
         </tr>
       </tbody>

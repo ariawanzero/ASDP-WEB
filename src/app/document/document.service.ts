@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
 import { PagingData } from '../shared/class/paging-data';
 
 import { ResponseService } from '../shared/service/response.service';
-import { Document, DocumentFilter } from './document';
+import { Document, DocumentFilter, DocumentHistory } from './document';
 
 @Injectable()
 export class DocumentService {
@@ -26,6 +26,20 @@ export class DocumentService {
 
   getFilteredDocument(value: DocumentFilter): Observable<PagingData<Document[]>> { 
     return this.http.post(('/document/searchDocument'), value)
+      .pipe(
+        map(this.respService.extractDataPaging)
+      )
+  }
+
+  getFilteredDocumentHistory(value: DocumentFilter): Observable<PagingData<Document[]>> { 
+    return this.http.post(('/document/searchDocumentHistory'), value)
+      .pipe(
+        map(this.respService.extractDataPaging)
+      )
+  }
+
+  getFilteredDetailDocumentHistory(value: DocumentFilter): Observable<PagingData<DocumentHistory[]>> { 
+    return this.http.post(('/document/searchDetailDocumentHistory'), value)
       .pipe(
         map(this.respService.extractDataPaging)
       )

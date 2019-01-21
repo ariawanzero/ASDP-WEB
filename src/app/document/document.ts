@@ -26,16 +26,25 @@ export class Document {
     nameFile: string[];
 }
 
+export class DocumentHistory {
+    id: string;
+    username: string;
+    divisi: string;
+    readDateDisplay: string;
+}
+
 export class DocumentFilter {
     name: string;
     divisi: string;
     type: string;
+    id: string;
     status: string;
     page: number;
     
     constructor() {
         this.name = "";
         this.divisi = "";
+        this.id = "";
         this.type = "";
         this.status = "";
         this.page = 0;

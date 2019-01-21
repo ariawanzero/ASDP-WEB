@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DocumentListComponent } from './document-list.component';
+import { DocumentHistoryComponent } from './document-history.component';
 
-describe('DocumentListComponent', () => {
-  let component: DocumentListComponent;
-  let fixture: ComponentFixture<DocumentListComponent>;
+describe('DocumentHistoryComponent', () => {
+  let component: DocumentHistoryComponent;
+  let fixture: ComponentFixture<DocumentHistoryComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DocumentListComponent ]
+      declarations: [ DocumentHistoryComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DocumentListComponent);
+    fixture = TestBed.createComponent(DocumentHistoryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

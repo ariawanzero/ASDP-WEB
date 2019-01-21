@@ -13,11 +13,11 @@ import { DocumentService } from '../document.service';
 import { GlobalMessageService } from '../../shared/service/global-message.service';
 
 @Component({
-  selector: 'asdp-document-list',
-  templateUrl: './document-list.component.html',
-  styleUrls: ['./document-list.component.css']
+  selector: 'asdp-document-history',
+  templateUrl: './document-history.component.html',
+  styleUrls: ['./document-history.component.css']
 })
-export class DocumentListComponent implements OnInit {
+export class DocumentHistoryComponent implements OnInit {
   @BlockUI() blockUI: NgBlockUI;
   divisi: SimpleObject[] = DIVISI;
   type: SimpleObject[] = TYPE;
@@ -41,7 +41,7 @@ export class DocumentListComponent implements OnInit {
 
   private getDocumentList(): void {
     this.blockUI.start();
-    this.documentServ.getFilteredDocument(this.filter).subscribe(
+    this.documentServ.getFilteredDocumentHistory(this.filter).subscribe(
       resp => {
         this.page = resp;
       },(err) => {
@@ -67,25 +67,13 @@ export class DocumentListComponent implements OnInit {
     this.getDocumentList();
   }
 
-  onEditDocument(id: string): void {
-    this.router.navigate(['edit', id], { relativeTo: this.route });
-  }
-
-  onGoToDetail(id: string): void {
-    this.router.navigate(['detail', id], { relativeTo: this.route });
+  onGoToDetailHistory(id: string): void {
+    this.router.navigate(['../detailHistory', id], { relativeTo: this.route });
   }
 
   onNotify(idx: number): void {
     this.filter.page = idx;
     this.getDocumentList();
-  }
-
-  onGoToUpload(id: string): void {
-    this.router.navigate(['upload', id], { relativeTo: this.route });
-  }
-
-  onAdd(): void { 
-    this.router.navigate(['add'], { relativeTo: this.route });
   }
 
 }

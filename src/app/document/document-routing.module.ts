@@ -6,6 +6,8 @@ import { DocumentInputComponent } from './input/document-input.component';
 import { DocumentUploadComponent } from './upload/document-upload.component';
 import { DocumentDetailComponent } from './detail/document-detail.component';
 import { DocumentPendingComponent } from './pending/document-pending.component';
+import { DocumentHistoryComponent } from './history/document-history.component';
+import { DocumentDetailHistoryComponent } from './detailHistory/document-detail-history.component';
 
 const routes: Routes = [
   {
@@ -14,6 +16,12 @@ const routes: Routes = [
   }, {
     path: 'pending',
     component: DocumentPendingComponent
+  }, {
+    path: 'history',
+    component: DocumentHistoryComponent
+  }, {
+    path: 'detailHistory/:id',
+    component: DocumentDetailHistoryComponent
   }, {
     path: 'add',
     data: { state: 'add' },

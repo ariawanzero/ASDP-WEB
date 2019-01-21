@@ -23,6 +23,8 @@ import { DocumentUploadComponent } from './upload/document-upload.component';
 import { DocumentDetailComponent } from './detail/document-detail.component';
 import { DocumentPendingComponent } from './pending/document-pending.component';
 import { SysParamService } from '../shared/service/sysparam.service';
+import { DocumentHistoryComponent } from './history/document-history.component';
+import { DocumentDetailHistoryComponent } from './detailHistory/document-detail-history.component';
 
 
 @NgModule({
@@ -43,7 +45,9 @@ import { SysParamService } from '../shared/service/sysparam.service';
     DocumentInputComponent,
     DocumentUploadComponent,
     DocumentDetailComponent,
-    DocumentPendingComponent
+    DocumentPendingComponent,
+    DocumentHistoryComponent,
+    DocumentDetailHistoryComponent
   ],
   providers: [
     {
