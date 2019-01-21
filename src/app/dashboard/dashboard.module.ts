@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 import { NgSelectModule } from '@ng-select/ng-select';
 import { QuillModule } from 'ngx-quill'
@@ -24,6 +25,8 @@ import { DashboardComponent } from './dashboard.component';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    NgxChartsModule,
+
     DashboardRoutingModule,
 
     QuillModule,
