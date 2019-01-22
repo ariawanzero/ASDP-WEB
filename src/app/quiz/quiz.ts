@@ -24,6 +24,7 @@ export class QuizResult {
     id: string;
     questions: QuizQuestion[];
     quizName: string;
+    passQuiz: string;
     score: number;
     endDateQuiz: Date;
 }

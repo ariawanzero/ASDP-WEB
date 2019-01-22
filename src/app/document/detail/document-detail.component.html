@@ -45,6 +45,9 @@
             <a (click)="onPreview(document.urlPreview + file)">{{ file }}</a>
           </div>
         </div>
+        <div class="col-sm-12 text-left" *ngIf="document">
+          <h3 *ngIf="document.status === 'REJECTED' && document.reason">Reason : {{ document.reason}}</h3>
+        </div>
       </div>
       <br/>
     <form *ngIf="document.status === 'PENDING' && role != 'USER'">
