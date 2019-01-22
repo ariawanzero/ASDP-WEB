@@ -24,12 +24,12 @@
             <div class="col-sm-12 text-center" [innerHTML]="quiz.description"></div>
             <div class="col-sm-12 text-center">
               <p>Open Quiz : </p>
-              <p>{{ quiz.startDate | dateTimeFormat }} s/d {{ quiz.endDate | dateTimeFormat }}</p>
+              <p>{{ quiz.startDateDisplay }} s/d {{ quiz.endDateDisplay }}</p>
             </div>
             <div class="col-sm-12 text-center">
               <p>Jumlah Soal: &nbsp;{{ quiz.totalQuiz}} Soal</p>
             </div>
-            <div class="col-sm-12 text-center">
+            <div class="col-sm-12 text-center" *ngIf="quiz.nameFile">
               <p>Materi Quiz : </p>
             </div>
             <div class="row text-center" *ngIf="quiz.nameFile">

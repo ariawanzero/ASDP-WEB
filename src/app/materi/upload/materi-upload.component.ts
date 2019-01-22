@@ -64,7 +64,7 @@ export class MateriUploadComponent implements OnInit {
     )
   }
 
-  onSelectFile(event): void {
+  onSelectFile(event: any): void {
     this.selectedFiles = event.target.files;
   }
 

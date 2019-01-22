@@ -21,6 +21,9 @@ const appRoutes: Routes = [
     component: HomeComponent,
     children: [
       {
+        path: 'dashboard',
+        loadChildren: 'src/app/dashboard/dashboard.module#DashboardModule',
+      }, {
         path: 'user',
         loadChildren: 'src/app/user/user.module#UserModule',
       }, {
@@ -30,6 +33,9 @@ const appRoutes: Routes = [
         path: 'materi',
         loadChildren: 'src/app/materi/materi.module#MateriModule'
       }, {
+        path: 'document',
+        loadChildren: 'src/app/document/document.module#DocumentModule'
+      }, { 
         path: 'quiz',
         loadChildren: 'src/app/quiz/quiz.module#QuizModule'
       }, {

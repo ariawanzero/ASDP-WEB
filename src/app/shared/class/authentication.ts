@@ -9,4 +9,7 @@ export class Authentication {
     token_type: string;
     clientEmail: string;
     clientName: string;
+    clientRoleName: string;
+    clientJabatan: string;
+    clientExpiredDate: string;
 }

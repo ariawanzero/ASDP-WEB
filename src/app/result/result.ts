@@ -13,4 +13,6 @@ export class ResultQuiz {
     name: string;
     startDate: Date;
     endDate: Date;
+    startDateDisplay: string;
+    endDateDisplay: string;
 }

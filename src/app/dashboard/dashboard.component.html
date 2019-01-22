@@ -1,0 +1,54 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="form-group">
+      <form>
+        <div class="form-row">
+          <div class="col-sm-2 col-form-label">
+            <label for="search">Search</label>
+          </div>
+          <div class="col-sm-5">
+            <input type="text" [(ngModel)]="filter.name" name="name" class="form-control" placeholder="Title News">
+          </div>
+          <div class="col-sm-3">
+            <button type="submit" class="btn btn-primary mb-2" (click)="onSearch()">Search</button>
+          </div>
+          <div class="col-sm-2">
+            <ng-select 
+              name="type"
+              [items]="news"
+              [clearable]="false"
+              [(ngModel)]="filter.name"
+              bindLabel="value"
+              bindValue="code"
+              placeholder="Select Type"
+              (change)=onSearch()>
+            </ng-select>
+          </div>
+        </div>
+      </form>
+    </div>
+    <h6><span>News</span></h6>
+  <div *ngIf="page">
+    <div class="form-group" *ngFor="let document of page.data; let i = index">
+      <div class="card">
+          <div class="row no-gutters">
+              <div class="col-auto">
+                  <img [src]="document.tumbnail" class="thumbnail" alt="">
+              </div>
+              <div class="col">
+                  <div class="card-block px-2">
+                      <h4 class="card-title text-center">{{document.name}}</h4>
+                      <p class="card-text  text-justify" [innerHTML]="document.descriptionNoTag"></p>
+                      <a (click)="onGoToDetail(document.id)" class="btn btn-primary">Read More</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+<asdp-paging *ngIf="page" [pagingData]="page" (notify)="onNotify($event)"></asdp-paging>
+
+
+

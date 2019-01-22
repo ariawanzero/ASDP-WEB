@@ -21,6 +21,9 @@ export class NavbarSidebarComponent implements OnInit {
   isOpen: boolean = false;
   menuList: Menu[];
   user: string;
+  jabatan: string;
+  expiredDate: string;
+  role: string;
 
   constructor(
     private authServ: AuthenticationService,
@@ -34,6 +37,9 @@ export class NavbarSidebarComponent implements OnInit {
   ngOnInit() {
     this.menuList = JSON.parse(this.localStorageServ.getValue('menu'));
     this.user = this.localStorageServ.getValue('client-name');
+    this.jabatan = this.localStorageServ.getValue('client-jabatan');
+    this.expiredDate = this.localStorageServ.getValue('client-expired-date');
+    this.role = this.localStorageServ.getValue('client-role-name');
     this.changeToogleSidebar();
   }
 

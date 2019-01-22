@@ -20,6 +20,7 @@ import { MateriListComponent } from './list/materi-list.component';
 import { MateriDetailComponent } from './detail/materi-detail.component';
 import { MateriUploadComponent } from './upload/materi-upload.component';
 import { MateriQuestionComponent } from './question/materi-question.component';
+import { SysParamService } from '../shared/service/sysparam.service';
 
 @NgModule({
   imports: [
@@ -52,7 +53,8 @@ import { MateriQuestionComponent } from './question/materi-question.component';
       multi: true,
       deps: [ CookieService ]
     },
-    MateriService
+    MateriService,
+    SysParamService
   ]
 })
 export class MateriModule { }
