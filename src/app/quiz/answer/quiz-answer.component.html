@@ -35,9 +35,11 @@
   <br/>
   <div class="row" *ngIf="quizes">
     <div class="col-sm-1" *ngFor="let item of quizes.questions; let i = index">
-      <div class="round round-lg" [style.background-color]="item.answerUser != ' ' && item.answerUser ? '#28a745' : '#dc3545'">
-        {{ i + 1 }}
-      </div>
+      <a (click)=onSpecificQuestion(i)>
+        <div class="round round-lg" [style.background-color]="item.answerUser != ' ' && item.answerUser ? '#28a745' : '#dc3545'">
+          {{ i + 1 }}
+        </div>
+      </a>
     </div>
   </div>
   <br/>
@@ -45,11 +47,11 @@
     <div class="mr-2">
       <button type="button" class="btn btn-secondary" [disabled]="idx == 0" (click)="onPrev()">Prev Question</button>
     </div>
-    <div class="mr-2" *ngIf="questionCount > idx">
-      <button type="button" class="btn btn-primary" [disabled]="!answerForm.valid" (click)="onNext()">Next Question</button>
+    <div class="mr-2">
+      <button type="button" class="btn btn-primary" [disabled]="questionCount == idx" (click)="onNext()">Next Question</button>
     </div>
-    <div *ngIf="questionCount == idx">
-      <button type="button" class="btn btn-primary" [disabled]="!answerForm.valid" (click)="onFinish()">Finish Question</button>
+    <div *ngIf="questionCount == answeredCount">
+      <button type="button" class="btn btn-primary" (click)="onFinish()">Finish Question</button>
     </div>
   </div>
 </form>

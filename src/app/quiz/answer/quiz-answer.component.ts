@@ -9,7 +9,6 @@ import { TitleModal } from '../../shared/class/title-modal';
 
 import { ConfirmationDialogService } from '../../shared/service/confirmation-dialog.service';
 import { GlobalMessageService } from '../../shared/service/global-message.service';
-import { ModalService } from '../../shared/service/modal.service';
 
 import { QuizService } from '../quiz.service';
 
@@ -32,6 +31,7 @@ export class QuizAnswerComponent implements OnInit {
 
   idx: number = 0;
   questionCount: number;
+  answeredCount: number = 0;
   cd: string;
   timers: any;
 
@@ -85,6 +85,7 @@ export class QuizAnswerComponent implements OnInit {
     this.quizes.questions = this.quizes.questions.filter(data => data.valid == 1);
     this.questionCount = this.quizes.questions.length - 1;
     this.question = this.quizes.questions.filter(data => data.valid == 1)[this.idx];
+    this.answeredCount = this.quizes.questions.filter(data => data.answerUser && data.answerUser != ' ').length;
 
     this.setValueQuestion();
   }
@@ -109,12 +110,11 @@ export class QuizAnswerComponent implements OnInit {
             this.globalMsgServ.changeMessage("Waktu Mengerjakan Quiz Telah Habis");
             this.prepSaveQuiz();
           } else {
-            let days: number = Math.floor(distance / (1000 * 60 * 60 * 24));
             let hours: number = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             let minutes: number = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             let seconds: number = Math.floor((distance % (1000 * 60)) / 1000);
 
-            this.cd = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+            this.cd = hours + "h " + minutes + "m " + seconds + "s ";
           }
         }, 1000);
   }
@@ -130,17 +130,20 @@ export class QuizAnswerComponent implements OnInit {
 
   onPrev(): void {
     this.idx -= 1;
-    
-    this.getQuizQuestion();
+    this.saveAnswer();
   }
 
   onNext(): void {
     this.idx += 1;
-    let answer : any = this.answerForm.getRawValue();
-    this.question.answerUser = answer.choice;
-
-    this.answerQuiz();
+    this.saveAnswer();
   }
+
+  onSpecificQuestion(qz: number): void {
+    this.idx = qz + 1;
+    this.saveAnswer();
+  }
+
+  
 
   onFinish(): void {
     this.confirmServ.activate(ConfirmationMessage.FINISH, TitleModal.CONFIRM)
@@ -149,14 +152,21 @@ export class QuizAnswerComponent implements OnInit {
       });
   }
 
+  private saveAnswer(): void {
+    let answer : any = this.answerForm.getRawValue();
+    if(answer.choice) {
+      this.question.answerUser = answer.choice;
+      this.answerQuiz();
+    } else {
+      this.getQuizQuestion();
+    }
+  }
+
   private prepSaveQuiz(): void {
     this.finishQuiz = true;
-
-    let answer : any = this.answerForm.getRawValue();
     this.question.finish = true;
-    this.question.answerUser = answer.choice;
 
-    this.answerQuiz();
+    this.saveAnswer();
   }
 
   private answerQuiz(): void {
