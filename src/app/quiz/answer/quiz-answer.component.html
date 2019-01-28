@@ -33,10 +33,12 @@
       <div class="col-sm-4" [innerHTML]="question.choiceD"></div>
   </div>
   <br/>
-  <div class="progress" *ngIf="quizes">
-    <ng-container *ngFor="let item of quizes.questions; let i = index">
-      <div class="progress-bar" [style.background-color]="item.answerUser != ' ' && item.answerUser ? '#28a745' : '#dc3545'" [style.width]="item.width" aria-valuemax="100">{{ i + 1 }}</div>
-    </ng-container>
+  <div class="row" *ngIf="quizes">
+    <div class="col-sm-1" *ngFor="let item of quizes.questions; let i = index">
+      <div class="round round-lg" [style.background-color]="item.answerUser != ' ' && item.answerUser ? '#28a745' : '#dc3545'">
+        {{ i + 1 }}
+      </div>
+    </div>
   </div>
   <br/>
   <div class="form-group row justify-content-center">
