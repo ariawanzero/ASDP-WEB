@@ -48,7 +48,7 @@
     <div class="mr-2">
       <button type="button" class="btn btn-primary" [disabled]="questionCount == idx" (click)="onNext()">Next Question</button>
     </div>
-    <div *ngIf="questionCount == answeredCount">
+    <div *ngIf="questionCount == idx">
       <button type="button" class="btn btn-primary" (click)="onFinish()">Finish Question</button>
     </div>
   </div>

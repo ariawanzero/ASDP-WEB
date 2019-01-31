@@ -184,5 +184,8 @@ export class QuizAnswerComponent implements OnInit {
     )
   }
 
-  private onGoToResult(): void { this.router.navigate(['../result'], { relativeTo: this.route }) }
+  private onGoToResult(): void { 
+    console.log("masuk sini");
+    this.router.navigate(['../../'], { relativeTo: this.route }) 
+  }
 }

@@ -84,8 +84,9 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  onSearch(): void { 
+  onSearch(type : string): void { 
     this.filter.page = 0;
+    this.filter.type = type;
     this.getDocumentList();
   }
 

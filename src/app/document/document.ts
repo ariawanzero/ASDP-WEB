@@ -2,7 +2,7 @@ export class Document {
     id: string;
     name: string;
     description: string;
-    descriptionNoTag: string;
+    descriptionNoTagShow: string;
     type: string;
     sop: string;
     category: string;

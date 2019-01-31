@@ -17,10 +17,10 @@
       <div class="col-sm-10 offset-sm-2">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" [ngClass]="filter.type === 'All' ? 'active' : ''" href="#">All</a>
+            <a (click)="onSearch('All')"class="nav-link" [ngClass]="filter.type === 'All' ? 'active' : ''" >All</a>
           </li>
           <li class="nav-item" *ngFor="let tp of type; let i = index">
-            <a class="nav-link" [ngClass]="filter.type === 'tp.code' ? 'active' : ''" href="#">{{ tp.code }}</a>
+            <a (click)="onSearch(tp.code)" class="nav-link" [ngClass]="filter.type === tp.code ? 'active' : ''" >{{ tp.code }}</a>
           </li>
         </ul>
       </div>
@@ -35,7 +35,7 @@
               <div class="col">
                   <div class="card-block px-2">
                       <h4 class="card-title text-center">{{document.name}}</h4>
-                      <p class="card-text  text-justify" [innerHTML]="document.descriptionNoTag"></p>
+                      <p class="card-text  text-justify" [innerHTML]="document.descriptionNoTagShow"></p>
                       <a (click)="onGoToDetail(document.id)" class="btn btn-primary">Read More</a>
                   </div>
               </div>
