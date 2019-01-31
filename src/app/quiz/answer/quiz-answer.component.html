@@ -8,38 +8,36 @@
 </div>
 <div class="line"></div>
 <div class="row" *ngIf="question">
-  <div class="col-sm-1 pr-0">{{ idx + 1 }}.</div>
+  <div class="col-sm-1 answer pr-0">{{ idx + 1 }}.</div>
   <div class="col-sm-11" [innerHTML]="question.question"></div>
 </div>
 <form *ngIf="question" [formGroup]="answerForm">
   <div class="row">
-    <div class="col-sm-1 ml-4">
+    <div class="col-sm-1 answer ml-4">
       <input type="radio" value="A" formControlName="choice">
     </div>
     <div class="col-sm-4" [innerHTML]="question.choiceA"></div>
-    <div class="col-sm-1 ml-4">
+    <div class="col-sm-1 answer ml-4">
       <input type="radio" value="B" formControlName="choice">
     </div>
     <div class="col-sm-4" [innerHTML]="question.choiceB"></div>
   </div>  
   <div class="row">
-    <div class="col-sm-1 ml-4">
+    <div class="col-sm-1 answer ml-4">
       <input type="radio" value="C" formControlName="choice">
     </div>
     <div class="col-sm-4" [innerHTML]="question.choiceC"></div>
-    <div class="col-sm-1 ml-4">
+    <div class="col-sm-1 answer ml-4">
         <input type="radio" value="D" formControlName="choice">
       </div>
       <div class="col-sm-4" [innerHTML]="question.choiceD"></div>
   </div>
   <br/>
-  <div class="row" *ngIf="quizes">
+  <div class="row justify-content-center" *ngIf="quizes">
     <div class="col-sm-1" *ngFor="let item of quizes.questions; let i = index">
-      <a (click)=onSpecificQuestion(i)>
-        <div class="round round-lg" [style.background-color]="item.answerUser != ' ' && item.answerUser ? '#28a745' : '#dc3545'">
-          {{ i + 1 }}
-        </div>
-      </a>
+      <div class="round round-lg bullet" [style.background-color]="item.answerUser != ' ' && item.answerUser ? '#28a745' : '#dc3545'" (click)=onSpecificQuestion(i)>
+        {{ i + 1 }}
+      </div>      
     </div>
   </div>
   <br/>

@@ -139,7 +139,7 @@ export class QuizAnswerComponent implements OnInit {
   }
 
   onSpecificQuestion(qz: number): void {
-    this.idx = qz + 1;
+    this.idx = qz;
     this.saveAnswer();
   }
 

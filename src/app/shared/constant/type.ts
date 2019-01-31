@@ -1,5 +1,7 @@
 export const TYPE = [
+    { code: 'CATEGORY', value: 'CATEGORY' },
+    { code: 'DIVISI', value: 'DIVISI' },
+    { code: 'JABATAN', value: 'JABATAN' },
     { code: 'SOP', value: 'SOP' },
-    { code: 'ANGLEB', value: 'Angleb' },
-    { code: 'EBOOK', value: 'EBook' }
+    { code: 'TYPE', value: 'TYPE' }
 ]

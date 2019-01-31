@@ -1,0 +1,52 @@
+<h4>System Parameter Filter</h4>
+<div class="line"></div>
+<form>
+  <div class="form-group row">
+    <label for="inputCode" class="col-sm-2 col-form-label">Code</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" [(ngModel)]="filter.code" name="code" placeholder="Code" autocomplete="off">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputType" class="col-sm-2 col-form-label">Type</label>
+    <div class="col-sm-4">
+      <select class="form-control" [(ngModel)]="filter.type" name="type">
+        <option value="" selected>All</option>
+        <option *ngFor="let tp of type;" [value]="tp.code">{{ tp.value }}</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-10 offset-sm-2">
+      <div class="btn-group mr-2">
+        <button type="button" class="btn btn-info" (click)="onSearch()"><i class="fa fa-search"> Search</i></button>
+      </div>
+      <div class="btn-group">
+        <button type="button" class="btn btn-secondary" (click)="onAdd()"><i class="fa fa-plus"> Add</i></button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<br/>
+
+<h4>System Parameter List</h4>
+<div class="table-responsive-sm">
+  <table class="table table-sm">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Code</th>
+        <th scope="col">Type</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="page">
+      <tr *ngFor="let sysparam of page.data; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ sysparam.value }}</td>
+        <td>{{ sysparam.type }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<asdp-paging *ngIf="page" [pagingData]="page" (notify)="onNotify($event)"></asdp-paging>

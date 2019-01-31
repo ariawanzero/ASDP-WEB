@@ -14,6 +14,8 @@ import { DashboardService } from './dashboard.service';
 
 import { DasboardFilter } from './dashboard';
 import { Document } from '../document/document';
+import { SysParam } from '../shared/class/sysparam';
+import { SysParamService } from '../shared/service/sysparam.service';
 
 @Component({
   selector: 'asdp-dashboard',
@@ -26,16 +28,33 @@ export class DashboardComponent implements OnInit {
   news: SimpleObject[] = NEWS;
 
   filter: DasboardFilter;
+  type: SimpleObject[];
+  paramReq: SysParam;
   page: PagingData<Document[]>
 
   constructor(
     private router: Router,
     private dashboardServ: DashboardService,
+    private sysparamServ: SysParamService,
     private globalMsgServ: GlobalMessageService
   ) { }
 
   ngOnInit() {
     this.filter = new DasboardFilter();
+    this.paramReq = new SysParam();
+    this.getSysParamType();
+  }
+
+  private getSysParamType(): void {
+    this.paramReq.type='TYPE';
+    this.sysparamServ.getSysParamByType(this.paramReq).subscribe(
+      resp => {
+        this.type = resp;
+      },(err) => {
+        this.blockUI.stop();
+        this.globalMsgServ.changeMessage(err);
+      }
+    )
   }
 
   onKeydown(event: any) {

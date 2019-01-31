@@ -2,23 +2,18 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
 
-import { NgSelectModule } from '@ng-select/ng-select';
-import { QuillModule } from 'ngx-quill'
 import { CookieService } from 'ngx-cookie-service';
 
 import { SharedModule } from '../shared/shared.module';
 
-import { DashboardRoutingModule } from './dashboard-routing.module';
-
 import { HttpErrorInterceptor } from '../http-interceptor/http-error-interceptor';
 import { Oauth2AuthenticationInterceptor } from '../http-interceptor/oauth2-authentication-interceptor';
 
-import { DashboardService } from './dashboard.service';
-
-import { DashboardComponent } from './dashboard.component';
-import { SysParamService } from '../shared/service/sysparam.service';
+import { SysParamService } from './sysparam.service';
+import { SysParamListComponent } from './list/sysparam-list.component';
+import { SysParamDetailComponent } from './detail/sysparam-detail.component';
+import { SysParamRoutingModule } from './sysparam-routing.module';
 
 @NgModule({
   imports: [
@@ -26,17 +21,13 @@ import { SysParamService } from '../shared/service/sysparam.service';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    NgxChartsModule,
-
-    DashboardRoutingModule,
-
-    QuillModule,
-    NgSelectModule,
+    SysParamRoutingModule,
 
     SharedModule
   ],
   declarations: [
-    DashboardComponent
+    SysParamListComponent,
+    SysParamDetailComponent,
   ],
   providers: [
     {
@@ -50,8 +41,8 @@ import { SysParamService } from '../shared/service/sysparam.service';
       multi: true,
       deps: [ CookieService ]
     },
-    DashboardService,
     SysParamService
   ]
 })
-export class DashboardModule { }
+
+export class SysParamModule { }

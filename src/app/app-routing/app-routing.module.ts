@@ -39,6 +39,9 @@ const appRoutes: Routes = [
         path: 'quiz',
         loadChildren: 'src/app/quiz/quiz.module#QuizModule'
       }, {
+        path: 'sysparam',
+        loadChildren: 'src/app/sysparam/sysparam.module#SysParamModule'
+      }, {
         path: 'result',
         loadChildren: 'src/app/result/result.module#ResultModule'
       }
