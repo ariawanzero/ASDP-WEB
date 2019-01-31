@@ -142,9 +142,7 @@ export class QuizAnswerComponent implements OnInit {
     this.idx = qz;
     this.saveAnswer();
   }
-
   
-
   onFinish(): void {
     this.confirmServ.activate(ConfirmationMessage.FINISH, TitleModal.CONFIRM)
       .then(result => {
@@ -185,7 +183,6 @@ export class QuizAnswerComponent implements OnInit {
   }
 
   private onGoToResult(): void { 
-    console.log("masuk sini");
     this.router.navigate(['../../'], { relativeTo: this.route }) 
   }
 }
