@@ -1,10 +1,21 @@
-.showmargincolor{
-    background: whitesmoke;
-    margin: 0px 20px 20px 20px;
-    border-radius: 25px;
+.template-document{
+    background: ghostwhite;
+    border-radius: 5%;
 }
+
 div a {
     text-decoration: underline;
     color: blue;
     cursor: pointer;
+}
+
+@media only screen and (max-width: 575.98px) {
+    .detail-document {
+        order: 2;
+    }
+
+    .system-document {
+        order: 1;
+        text-align: left !important;
+    }
 }

@@ -1,73 +1,69 @@
-
-  
-<div *ngIf="document" class="showmargincolor">
-    <div class="col-sm-12">
-        <div class="col-sm-12 text-left" *ngIf="document">
-          <h1><b>{{document.name}}</b></h1>
-          <h6 class="fa fa-calendar" > {{ document.createdDateDisplay}} WIB</h6>
-          &nbsp;
-          <h6 class="fa fa-user"> 
-            <ng-container *ngIf="document.createdBy != 'superuser'">
-              {{ document.createdBy}}
-            </ng-container>
-            <ng-container class="fa fa-user" *ngIf="document.createdBy === 'superuser'">
-              Administrator
-            </ng-container>
-            &nbsp;<p class="fa fa-eye">
-              {{document.countRead}}
-            </p>
-          </h6>         
-          <p>
-            Divisi :
-            <ng-container *ngFor="let divisi of document.divisiDisplay; let i = index">
-              {{divisi}}
-            </ng-container>
-            <br/>
-
-            Type : {{document.type}}
-
-            <ng-container *ngIf="document.type == 'SOP'">
-              <br/>
-              SOP : {{document.sop}}
-            </ng-container>
-            <br/>
-
-            Category : {{document.category}}
-          </p>
-        </div>
-        <div class="col-sm-12 text-justify" [innerHTML]="document.description"></div>
-        <div class="col-sm-12 text-left" *ngIf="document.nameFile">
-          <h5>Attacment Document : </h5>
-        </div>
-        <div class="col-sm-12 row text-left" *ngIf="document.nameFile">
-          <div class="col-sm-12" *ngFor="let file of document.nameFile; let i = index">
-            {{ i + 1 }}.
-            <a (click)="onPreview(document.urlPreview + file)">{{ file }}</a>
-          </div>
-        </div>
-        <div class="col-sm-12 text-left" *ngIf="document">
-          <h3 *ngIf="document.status === 'REJECTED' && document.reason">Reason : {{ document.reason}}</h3>
-        </div>
-      </div>
-      <br/>
-    <form *ngIf="document.status === 'PENDING' && role != 'USER'">
-      <div class="col-sm-12">
-        <label for="inputName" class="col-sm-2 col-form-label">Reason</label>
-        <div class="col-sm-12">
-          <textarea class="form-control" [(ngModel)]="document.reason" name="reason" placeholder="Give the reason if this document rejected" autocomplete="off"></textarea>
-        </div>
-      </div>
-      <br/>
-      <div class="col-sm-12 text-center">
-        <div class="btn-group mr-1">
-            <button type="button" class="btn btn-primary btn-sm" (click)="onApproved(document.id)"><i class="fa fa-cloud-approve" aria-hidden="true">Approve</i></button>
-        </div>
-        <div class="btn-group mr-1">
-            <button type="button" class="btn btn-primary btn-sm" (click)="onRejected(document.id)"><i class="fa fa-cloud-rejected" aria-hidden="true">Rejected</i></button>
-        </div>
-      </div>
-      <br/>
-    </form>
+<div class="px-5 py-2 template-document" *ngIf="document">
+  <div class="row">
+    <h1 class="col-sm text-center">{{ document.name }}</h1>
+  </div>
+  <br/>
+  <div class="row">
+    <div class="col-sm detail-document">
+      <h5>
+        Divisi :
+        <ng-container *ngFor="let divisi of document.divisiDisplay; let i = index">
+          <span class="badge badge-pill mr-1" [ngClass]="i % 2 == 0 ? ' badge-success' : ' badge-info'">
+            {{ divisi }}
+          </span>
+        </ng-container>
+      </h5>
+      <h5>Type : {{ document.type }}</h5>
+      <h5 *ngIf="document.type == 'SOP'">SOP : {{ document.sop }}</h5>
+      <h5>Category : {{ document.category }}</h5>
+    </div>
+    <div class="col-sm text-right system-document">
+      <h6>
+        <span class="fa fa-calendar"></span> {{ document.createdDateDisplay }} WIB
+      </h6>
+      <h6>
+        <span class="fa fa-user"></span>
+        <ng-container *ngIf="document.createdBy != 'superuser'; else admin" >
+          {{ document.createdBy}}
+        </ng-container>
+        <ng-template #admin>
+          Administrator
+        </ng-template>
+      </h6>
+      <h6>
+        <span class="fa fa-eye"></span> {{ document.countRead }}
+      </h6>
+    </div>
+  </div>
+  <br />
+  <div class="row">
+    <div class="col-sm text-justify" [innerHTML]="document.description"></div>
+  </div>
+  <br />
+  <div class="row">
+    <div class="col-sm" *ngIf="document.nameFile">
+      <h5>Attacment Document : </h5>
+      <h6 class="col-sm-12" *ngFor="let file of document.nameFile; let i = index">
+        {{ i + 1 }}. <a (click)="onPreview(document.urlPreview + file)">{{ file }}</a>
+      </h6>
+    </div>
+  </div>
 </div>
 <br />
+<div *ngIf="document" class="row">
+  <form *ngIf="document.status === 'PENDING' && role != 'USER'">
+    <div class="form-group">
+      <label for="inputReason">Reason</label>
+      <textarea class="form-control" [(ngModel)]="document.reason" name="reason" placeholder="Give the reason if this document rejected" autocomplete="off"></textarea>
+    </div>
+    <div class="form-group">
+      <div class="btn-group mr-1">
+          <button type="button" class="btn btn-primary btn-sm" (click)="onApproved(document.id)"><i class="fa fa-cloud-approve" aria-hidden="true">Approve</i></button>
+      </div>
+      <div class="btn-group mr-1">
+          <button type="button" class="btn btn-primary btn-sm" (click)="onRejected(document.id)"><i class="fa fa-cloud-rejected" aria-hidden="true">Rejected</i></button>
+      </div>
+    </div>
+  </form>
+</div>
 <asdp-modal-file [urlFile]="urlFile"></asdp-modal-file>
