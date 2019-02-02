@@ -27,19 +27,22 @@
     </div>
 
     <div class="form-group" *ngFor="let document of page.data; let i = index">
-      <div class="card">
+      <div class="col-sm-8 mx-auto">
+        <div class="card">
           <div class="row no-gutters">
               <div class="col-auto">
-                  <img [src]="document.tumbnail" class="thumbnail" alt="">
+                <img [src]="document.tumbnail" class="thumbnail" alt="">
               </div>
               <div class="col">
-                  <div class="card-block px-2">
-                      <h4 class="card-title text-center">{{document.name}}</h4>
-                      <p class="card-text  text-justify" [innerHTML]="document.descriptionNoTagShow"></p>
-                      <a (click)="onGoToDetail(document.id)" class="btn btn-primary">Read More</a>
-                  </div>
+                <div class="card-block px-2 py-1">
+                  <h4>
+                    <a (click)="onGoToDetail(document.id)">{{document.name}}</a>
+                  </h4>
+                  <p class="card-text  text-justify" [innerHTML]="document.descriptionNoTagShow"></p>
+                </div>
               </div>
           </div>
+        </div>
       </div>
     </div>
     <asdp-paging [pagingData]="page" (notify)="onNotify($event)"></asdp-paging>

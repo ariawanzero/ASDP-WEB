@@ -14,6 +14,16 @@
 }
 
 .thumbnail{
-    width:200px;
-    height:200px;
+    width:150px;
+    height:150px;
+}
+
+h4 a {
+    color: #007bff;
+    cursor: pointer;
+}
+
+h4 a:hover {
+    color: #007bff;
+    border-bottom: 1px solid;
 }
