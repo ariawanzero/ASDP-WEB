@@ -5,6 +5,7 @@ import { RouterGuardService } from '../shared/service/router-guard.service';
 
 import { LoginComponent } from '../login/login.component';
 import { HomeComponent } from '../home/home.component';
+import { ForgotComponent } from '../forgot/forgot.component';
 
 const appRoutes: Routes = [
   {
@@ -15,6 +16,10 @@ const appRoutes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'forgot',
+    component: ForgotComponent
   },
   {
     path: 'home',

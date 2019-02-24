@@ -18,6 +18,8 @@ import { ConfirmationDialogService } from './shared/service/confirmation-dialog.
 
 import { MessageComponent } from './shared/component/message/message.component';
 import { GlobalMessageService  } from './shared/service/global-message.service';
+import { ForgotModule } from './forgot/forgot.module';
+import { ForgotComponent } from './forgot/forgot.component';
 
 @NgModule({
   imports: [
@@ -28,6 +30,7 @@ import { GlobalMessageService  } from './shared/service/global-message.service';
     SharedModule,
 
     LoginModule,
+    ForgotModule,
 
     BlockUIModule.forRoot()
   ],

@@ -1,28 +1,9 @@
 <div class="px-5 py-2 template-document" *ngIf="document">
   <div class="row">
-    <h1 class="col-sm text-center">{{ document.name }}</h1>
-  </div>
-  <br/>
-  <div class="row">
-    <div class="col-sm detail-document">
-      <h5>
-        Divisi :
-        <ng-container *ngFor="let divisi of document.divisiDisplay; let i = index">
-          <span class="badge badge-pill mr-1" [ngClass]="i % 2 == 0 ? ' badge-success' : ' badge-info'">
-            {{ divisi }}
-          </span>
-        </ng-container>
-      </h5>
-      <h5>Type : {{ document.type }}</h5>
-      <h5 *ngIf="document.type == 'SOP'">SOP : {{ document.sop }}</h5>
-      <h5>Category : {{ document.category }}</h5>
-    </div>
-    <div class="col-sm text-right system-document">
+    <div class="col-sm">
+      <h1 class="text-left">{{ document.name }}</h1>
       <h6>
-        <span class="fa fa-calendar"></span> {{ document.createdDateDisplay }} WIB
-      </h6>
-      <h6>
-        <span class="fa fa-user"></span>
+        <span class="fa fa-user"> Written by:</span>
         <ng-container *ngIf="document.createdBy != 'superuser'; else admin" >
           {{ document.createdBy}}
         </ng-container>
@@ -31,8 +12,28 @@
         </ng-template>
       </h6>
       <h6>
-        <span class="fa fa-eye"></span> {{ document.countRead }}
+        <span class="text-left fa fa-calendar"> Published:</span> {{ document.createdDateDisplay }} WIB
       </h6>
+      <h6>
+        <span class="fa fa-eye"> Hits:</span> {{ document.countRead }}
+      </h6>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-sm text-left system-document">
+      <h5><b>Details</b></h5>
+      <h6>Category: {{ document.category }}</h6>
+      <h6>
+        Divisi :
+        <ng-container *ngFor="let divisi of document.divisiDisplay; let i = index">
+          <span class="badge badge-pill mr-1" [ngClass]="i % 2 == 0 ? ' badge-success' : ' badge-info'">
+            {{ divisi }}
+          </span>
+        </ng-container>
+      </h6>
+      <h6>Type: {{ document.type }}</h6>
+      <h6 *ngIf="document.type == 'SOP'">SOP: {{ document.sop }}</h6>
     </div>
   </div>
   <br />

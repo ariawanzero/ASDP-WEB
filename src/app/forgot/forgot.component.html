@@ -1,0 +1,33 @@
+<div class="container mt-3 white">
+  <div class="row pt-4">
+    <div class="col-sm-12">
+      <img src="../../assets/image/logo_asdp_rev.png" alt="Image Logo" />
+    </div>
+  </div>
+  <hr/>
+  <div class="row mb-3">
+    <div class="col-sm-12">
+      <img class="img-fluid" src="../../assets/image/banner_information.jpeg" alt="Image Information">
+    </div>
+  </div>
+  <div class="row pb-3">
+    <div class="col-sm-12 login-form">
+      <form class="p-3" [formGroup]="forgotForm" (ngSubmit)="forgotUser()">
+        <div class="form-group row justify-content-center">
+          <label for="staticEmail" class="col-sm-2 col-form-label label-text">Email</label>
+          <div class="col-sm-4">
+            <input type="email" class="form-control" [ngClass]="forgotForm.controls.username.errors && forgotForm.controls.username.touched ? ' error' : ''"  formControlName="username" name="username" placeholder="Email">
+            <span class="text-danger invalidMessage" *ngIf="forgotForm.controls.username.touched && forgotForm.controls.username.errors">
+              <span *ngIf="forgotForm.controls.username.errors?.required">Email Required.</span>
+            </span>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-2 offset-sm-5">
+            <button type="submit" class="btn btn-warning btn-block">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
