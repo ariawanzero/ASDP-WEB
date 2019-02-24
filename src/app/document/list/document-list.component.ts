@@ -44,7 +44,6 @@ export class DocumentListComponent implements OnInit {
     this.filter = new DocumentFilter();
     this.paramReq = new SysParam();
     this.role = this.localStorageServ.getValue('client-role-name');
-    console.log(this.role);
     this.getSysParamType();
     this.getSysParamDivisi();
     this.getDocumentList();

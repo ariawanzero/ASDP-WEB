@@ -45,4 +45,11 @@ export class UserService {
         map(this.respService.extractResultAction)
       )
   }
+
+  getCountHistLogin(value: any): Observable<UserDetail> {
+    return this.http.post(('/user/countTodayLogin'), value)
+      .pipe(
+        map(this.respService.extractData)
+      )
+  }
 }
