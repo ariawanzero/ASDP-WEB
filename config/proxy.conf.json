@@ -1,6 +1,6 @@
 [
   {
-    "context": ["/user/*", "/oauth/*", "/materi/*", "/quiz/*", "/result/*", "/document/*", "/sysparam/*"],
+    "context": ["/user/*", "/oauth/*", "/materi/*", "/quiz/*", "/result/*", "/document/*", "/sysparam/*", "/forgot/*"],
     "target": "http://localhost:8081/",
     "secure": false,
     "logLevel": "debug",
