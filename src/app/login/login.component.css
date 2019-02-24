@@ -1,65 +1,23 @@
-h3 {
-    font-size: 1.5rem;
+.white {
+    background-color: white;
 }
 
-.bg {
-    background-image: url('../../assets/image/background.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100%;
+form {
+    background-color: #e3e3e3;
 }
 
-.container {
-    padding-top: 5rem;
+div a {
+    color: #007bff;
+    cursor: pointer;
 }
 
-.rounded {
-    border-radius: 0.50rem !important
-}
-
-.img-logo {    
-    margin: auto;
-    max-width: 50%;
-}
-
-.img-logo-simple {
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
-}
-
-.login-header h1 {
-    font-size: 1.5rem;
-}
-
-.btn-block {
-    width: 100%;
-}
-
-.card-news {
-    display: none;
-}
-
-.img-header {
-    width: 40%;
+div a {
+    color: #007bff;
+    border-bottom: 1px solid;
 }
 
 @media only screen and (min-width: 768px) {
-    .card-news {
-        display: block;
-    }
-
-    .img-header {
-        width: 30%;
-    }
-
-    .container {
-        max-width: 730px;
-    }
-}
-
-@media only screen and (min-width: 992px) { 
-    .container {
-        max-width: 950px;
+    .label-text {
+        text-align: right;
     }
 }

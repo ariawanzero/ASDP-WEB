@@ -67,6 +67,10 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  onForgetPassword(): void {
+    
+  }
+
   private generateMenu(): void {
     let menuList = new Array();
     MENU.forEach(val => {
