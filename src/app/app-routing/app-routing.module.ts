@@ -18,7 +18,7 @@ const appRoutes: Routes = [
     component: LoginComponent
   },
   {
-    path: 'forgot',
+    path: 'forgot-password',
     component: ForgotPasswordComponent
   },
   {
