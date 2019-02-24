@@ -1,4 +1,4 @@
-import { ForgotModule } from './forgot.module';
+import { ForgotModule } from './forgot-password.module';
 
 describe('ForgotModule', () => {
   let forgotModule: ForgotModule;

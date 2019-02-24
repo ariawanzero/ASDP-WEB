@@ -1,24 +1,28 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
 
-import { ForgotComponent } from './forgot.component';
-import { ForgotPasswordService } from './forgot.service';
+import { ForgotPasswordComponent } from './forgot-password.component';
+
+import { ForgotPasswordService } from './forgot-password.service';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ],
   declarations: [
-    ForgotComponent
+    ForgotPasswordComponent
   ],
   providers: [
     ForgotPasswordService
   ],
   exports: [
-    ForgotComponent
+    ForgotPasswordComponent
   ]
 })
+
 export class ForgotModule { }

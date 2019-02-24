@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 import { SharedModule } from './shared/shared.module';
 
 import { LoginModule } from './login/login.module';
+import { ForgotModule } from './forgot-password/forgot-password.module';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -18,8 +19,6 @@ import { ConfirmationDialogService } from './shared/service/confirmation-dialog.
 
 import { MessageComponent } from './shared/component/message/message.component';
 import { GlobalMessageService  } from './shared/service/global-message.service';
-import { ForgotModule } from './forgot/forgot.module';
-import { ForgotComponent } from './forgot/forgot.component';
 
 @NgModule({
   imports: [

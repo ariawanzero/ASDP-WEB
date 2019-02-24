@@ -5,7 +5,7 @@ import { RouterGuardService } from '../shared/service/router-guard.service';
 
 import { LoginComponent } from '../login/login.component';
 import { HomeComponent } from '../home/home.component';
-import { ForgotComponent } from '../forgot/forgot.component';
+import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
 
 const appRoutes: Routes = [
   {
@@ -19,7 +19,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'forgot',
-    component: ForgotComponent
+    component: ForgotPasswordComponent
   },
   {
     path: 'home',

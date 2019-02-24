@@ -8,7 +8,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { AuthenticationService } from '../shared/service/authentication.service';
 import { LocalStorageService } from '../shared/service/local-storage.service';
 
-import { ForgotComponent } from './forgot.component';
+import { ForgotComponent } from './forgot-password.component';
 import { GlobalMessageService } from '../shared/service/global-message.service';
 
 

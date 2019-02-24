@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 
 import { ResponseService } from '../shared/service/response.service';
 
-import { ChangePassword } from './forgot';
+import { ChangePassword } from './forgot-password';
 
 @Injectable()
 export class ForgotPasswordService {

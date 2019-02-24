@@ -3,23 +3,19 @@ import { Router } from "@angular/router";
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
-import { CookieService } from 'ngx-cookie-service';
 
 import { Authentication } from '../shared/class/authentication';
-import { Menu } from '../shared/class/menu';
-import { MENU } from '../shared/constant/menu';
 import { LocalStorageService } from '../shared/service/local-storage.service';
 
-import { AuthenticationService } from '../shared/service/authentication.service';
 import { GlobalMessageService } from '../shared/service/global-message.service';
-import { ForgotPasswordService } from './forgot.service';
+import { ForgotPasswordService } from './forgot-password.service';
 
 @Component({
   selector: 'asdp-forgot',
-  templateUrl: './forgot.component.html',
-  styleUrls: ['./forgot.component.css']
+  templateUrl: './forgot-password.component.html',
+  styleUrls: ['./forgot-password.component.css']
 })
-export class ForgotComponent implements OnInit {
+export class ForgotPasswordComponent implements OnInit {
   @BlockUI() blockUI: NgBlockUI;
 
   forgotForm: FormGroup;
@@ -29,8 +25,7 @@ export class ForgotComponent implements OnInit {
     private router:Router,
     private forgotServ: ForgotPasswordService,
     private localStorageServ: LocalStorageService,
-    private globalMessageServ: GlobalMessageService,
-    private cookieService: CookieService
+    private globalMessageServ: GlobalMessageService
   ) { }
 
   ngOnInit() {
