@@ -19,6 +19,7 @@ import { DashboardService } from './dashboard.service';
 
 import { DashboardComponent } from './dashboard.component';
 import { SysParamService } from '../shared/service/sysparam.service';
+import { UserService } from '../user/user.service';
 
 @NgModule({
   imports: [
@@ -51,7 +52,8 @@ import { SysParamService } from '../shared/service/sysparam.service';
       deps: [ CookieService ]
     },
     DashboardService,
-    SysParamService
+    SysParamService,
+    UserService
   ]
 })
 export class DashboardModule { }

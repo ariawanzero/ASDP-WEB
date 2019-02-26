@@ -24,6 +24,7 @@ export class Document {
     createdBy: string;
     createdDateDisplay: string;
     nameFile: string[];
+    countHist: number;
 }
 
 export class DocumentHistory {

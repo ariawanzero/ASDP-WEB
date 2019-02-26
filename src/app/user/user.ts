@@ -40,6 +40,7 @@ export class UserDetail {
     divisi: string;
     unit: string;
     expiredDate: number;
+    countHist: number;
 }
 
 export class UserHistoryFilter {

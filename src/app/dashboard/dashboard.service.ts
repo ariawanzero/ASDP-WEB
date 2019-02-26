@@ -24,4 +24,11 @@ export class DashboardService {
         map(this.respService.extractDataPaging)
       )
   }
+
+  getCountHistDoc(value: any): Observable<Document> {
+    return this.http.post(('/document/countTodayLogin'), value)
+      .pipe(
+        map(this.respService.extractData)
+      )
+  }
 }
