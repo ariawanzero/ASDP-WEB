@@ -1,14 +1,28 @@
-<div class="wrapper" [class.extend-wrapper]="isOpen">
-    <!-- Sidebar  -->
-    <asdp-navbar-sidebar></asdp-navbar-sidebar>
-    <!-- Page Content  -->
-    <div id="content-main">
-        <asdp-navbar-top></asdp-navbar-top>   
-        <div id="content-item">
-            <router-outlet></router-outlet>
+<div class="container my-3 white">
+    <div class="row pt-4">
+        <div class="col-sm-12">
+            <img src="../../assets/image/logo_asdp_rev.png" alt="Image Logo" />
         </div>
     </div>
-</div>
-<div [class.extend-footer]="isOpen">
-    <asdp-footer></asdp-footer>
+    <hr>
+    <div class="row">
+        <div class="col-sm-9">
+            <div class="row">
+                <div class="col-sm-12">
+                    <img class="img-fluid" src="../../assets/image/banner_information.jpeg" alt="Image Information">
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-sm-12">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+        </div>
+    </div>
+    <div class="pb-3">
+        <asdp-footer></asdp-footer>
+    </div>
 </div>

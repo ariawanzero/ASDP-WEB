@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NavbarTopComponent } from './component/navbar-top/navbar-top.component';
 import { NavbarSidebarComponent } from './component/navbar-sidebar/navbar-sidebar.component';
+import { NavbarHeaderComponent } from './component/navbar-header/navbar-header.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { PagingComponent } from './component/paging/paging.component';
 import { ModalFileComponent } from './component/modal-file/modal-file.component';
@@ -31,6 +32,7 @@ import { DateTimeFormatPipe } from './pipe/date-time-format.pipe';
   declarations: [
     NavbarTopComponent,
     NavbarSidebarComponent,
+    NavbarHeaderComponent,
     FooterComponent,
     PagingComponent,
     ModalFileComponent,
@@ -49,6 +51,7 @@ import { DateTimeFormatPipe } from './pipe/date-time-format.pipe';
   exports: [
     NavbarTopComponent,
     NavbarSidebarComponent,
+    NavbarHeaderComponent,
     FooterComponent,
     PagingComponent,
     ModalFileComponent,

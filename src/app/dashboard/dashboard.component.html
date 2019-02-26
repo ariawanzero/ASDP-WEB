@@ -45,7 +45,7 @@
   </div>
 </div>
 
-<div class="row" *ngIf="page">
+<div class="row mt-4" *ngIf="page">
   <div class="col-sm-12">
     <div class="form-group">
       <form>
@@ -53,7 +53,7 @@
           <div class="col-sm-2 col-form-label">
             <img src="../../assets/image/logo_asdp.png" class="img-fluid img-header" alt="imgLogin" />
           </div>
-          <div class="col-sm-5 my-auto">
+          <div class="col-sm-7 my-auto">
             <input type="text" [(ngModel)]="filter.name" name="name" class="form-control form-control-lg" placeholder="Search" (keydown.enter)="onKeydown($event)">
           </div>
         </div>
@@ -99,16 +99,9 @@
 <div class="row" *ngIf="!page">
   <div class="col-sm-8 m-auto pt-5">
     <form>
-      <div class="form-group text-center">
-        <img src="../../assets/image/logo_asdp.png" class="img-fluid img-header-full" alt="imgLogin" />
-      </div>
       <div class="form-group">
         <input type="text" [(ngModel)]="filter.name" name="name" class="form-control form-control-lg" placeholder="Search" (keydown.enter)="onKeydown($event)">
       </div>
     </form>
   </div>
 </div>
-
-
-
-

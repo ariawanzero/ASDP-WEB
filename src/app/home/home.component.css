@@ -1,3 +1,7 @@
+.white {
+    background-color: white;
+}
+
 .wrapper {
     display: flex;
     width: 100%;
@@ -25,5 +29,3 @@
     .extend-wrapper { min-width: 150%; }
     .extend-footer { min-width: 150%; }
 }
-
-
