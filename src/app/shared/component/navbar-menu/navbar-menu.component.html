@@ -1,11 +1,11 @@
 <ul class="nav nav-pills flex-column flex-sm-row">
   <li class="nav-item">
-    <a class="nav-link" [ngClass]="root === 'Dashboard' ? ' active': ''"  (click)="goToPage('dashboard')">Dashboard</a>
+    <a class="nav-link" [ngClass]="root === 'DASHBOARD' ? ' active': ''"  (click)="goToPage('dashboard', 'DASHBOARD')">Dashboard</a>
   </li>
   <li class="nav-item dropdown" *ngFor="let menu of menuList;">
-    <a class="nav-link dropdown-toggle" [ngClass]="root === menu.value ? ' active': ''" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{{ menu.value }}</a>
+    <a class="nav-link dropdown-toggle" [ngClass]="root === menu.code ? ' active': ''" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{{ menu.value }}</a>
     <div class="dropdown-menu">
-      <a *ngFor="let item of menu.menuItem;" (click)='goToPage(item.url, menu.value)' class="dropdown-item">{{ item.menuName }}</a>
+      <a *ngFor="let item of menu.menuItem;" (click)='goToPage(item.url, menu.code)' class="dropdown-item">{{ item.menuName }}</a>
     </div>
   </li>
 </ul>

@@ -19,7 +19,7 @@ export class NavbarMenuComponent implements OnInit {
   @BlockUI() blockUI: NgBlockUI;
 
   menuList: Menu[];
-  root: String = "Dashboard";
+  root: String;
 
   constructor(
     private localStorageServ: LocalStorageService,
@@ -29,12 +29,17 @@ export class NavbarMenuComponent implements OnInit {
 
   ngOnInit() {
     this.menuList = JSON.parse(this.localStorageServ.getValue('menu'));
+    this.checkActiveChild();
   }
   
-  goToPage(urlPage:string, path: string = "Dashboard"): void {
-    this.root = path;
+  goToPage(urlPage:string, menu: string): void {
     this.router.navigate([urlPage], {
       relativeTo: this.activatedRoute, skipLocationChange: false
     });
+    this.checkActiveChild(menu);
+  }
+
+  private checkActiveChild(param: string = undefined): void {
+    this.root = param ? param : this.activatedRoute.firstChild.snapshot.url[0].path.toUpperCase();
   }
 }
