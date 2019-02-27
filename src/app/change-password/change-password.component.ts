@@ -97,7 +97,7 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   onGoToList(): void {
-    this.router.navigate(['home']);
+    this.router.navigate(['/home/dashboard']);
   }
 
   onSave(): void { this.task = Task.Save; }

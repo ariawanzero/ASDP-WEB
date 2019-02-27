@@ -6,8 +6,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NavbarTopComponent } from './component/navbar-top/navbar-top.component';
 import { NavbarSidebarComponent } from './component/navbar-sidebar/navbar-sidebar.component';
-import { NavbarHeaderComponent } from './component/navbar-header/navbar-header.component';
 import { NavbarMenuComponent } from './component/navbar-menu/navbar-menu.component';
+import { UserContentComponent } from './component/user-content/user-content.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { PagingComponent } from './component/paging/paging.component';
 import { ModalFileComponent } from './component/modal-file/modal-file.component';
@@ -33,8 +33,8 @@ import { DateTimeFormatPipe } from './pipe/date-time-format.pipe';
   declarations: [
     NavbarTopComponent,
     NavbarSidebarComponent,
-    NavbarHeaderComponent,
     NavbarMenuComponent,
+    UserContentComponent,
     FooterComponent,
     PagingComponent,
     ModalFileComponent,
@@ -53,8 +53,8 @@ import { DateTimeFormatPipe } from './pipe/date-time-format.pipe';
   exports: [
     NavbarTopComponent,
     NavbarSidebarComponent,
-    NavbarHeaderComponent,
     NavbarMenuComponent,
+    UserContentComponent,
     FooterComponent,
     PagingComponent,
     ModalFileComponent,
