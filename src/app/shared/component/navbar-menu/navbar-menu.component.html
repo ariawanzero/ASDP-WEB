@@ -1,21 +1,11 @@
 <ul class="nav nav-pills flex-column flex-sm-row">
   <li class="nav-item">
-    <a class="nav-link active" href="#">Active</a>
+    <a class="nav-link" [ngClass]="root === 'Dashboard' ? ' active': ''"  (click)="goToPage('dashboard')">Dashboard</a>
   </li>
-  <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+  <li class="nav-item dropdown" *ngFor="let menu of menuList;">
+    <a class="nav-link dropdown-toggle" [ngClass]="root === menu.value ? ' active': ''" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{{ menu.value }}</a>
     <div class="dropdown-menu">
-      <a class="dropdown-item" href="#">Action</a>
-      <a class="dropdown-item" href="#">Another action</a>
-      <a class="dropdown-item" href="#">Something else here</a>
-      <div class="dropdown-divider"></div>
-      <a class="dropdown-item" href="#">Separated link</a>
+      <a *ngFor="let item of menu.menuItem;" (click)='goToPage(item.url, menu.value)' class="dropdown-item">{{ item.menuName }}</a>
     </div>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Link</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link disabled" href="#">Disabled</a>
   </li>
 </ul>
